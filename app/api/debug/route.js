@@ -2,28 +2,50 @@ import { kv } from '@vercel/kv';
 import { NextResponse } from 'next/server';
 
 export async function GET() {
+  const debug = {};
+
   try {
-    // Clean up test data from previous debug
-    await kv.hdel('ratings', 'test_a');
+    // Simulate exact same operations as vote API
+    const winnerId = 'debug_winner';
+    const loserId = 'debug_loser';
 
-    // Reset matchCount that was incremented by debug test
-    const mc = await kv.get('matchCount');
-    if (mc === 1) {
-      await kv.del('matchCount');
-    }
+    // Step 1: hmget
+    const values = await kv.hmget('ratings', winnerId, loserId);
+    debug.step1_hmget = { raw: values, isNull: values === null };
 
+    // Step 2: null guard (the fix)
+    const safe = values || {};
+    const rW = safe[winnerId] ?? 1200;
+    const rL = safe[loserId] ?? 1200;
+    debug.step2_values = { rW, rL };
+
+    // Step 3: hset
+    await kv.hset('ratings', { [winnerId]: 1216, [loserId]: 1184 });
+    debug.step3_hset = 'OK';
+
+    // Step 4: incr
+    await kv.incr('matchCount');
+    debug.step4_incr = 'OK';
+
+    // Step 5: verify
     const [ratings, matchCount] = await Promise.all([
       kv.hgetall('ratings'),
       kv.get('matchCount'),
     ]);
-
-    return NextResponse.json({
-      status: 'OK',
-      matchCount: matchCount ?? 0,
+    debug.step5_verify = {
+      matchCount,
       ratingsCount: ratings ? Object.keys(ratings).length : 0,
-      cleanup: 'done',
-    });
+      ratings: ratings,
+    };
+
+    // Cleanup debug data
+    await kv.hdel('ratings', winnerId, loserId);
+    await kv.set('matchCount', 0);
+
   } catch (error) {
-    return NextResponse.json({ error: error.message });
+    debug.error = error.message;
+    debug.errorAt = error.stack?.split('\n')[1]?.trim();
   }
+
+  return NextResponse.json(debug);
 }
