@@ -3193,13 +3193,23 @@ export default function TokaiVote() {
   const [phase, setPhase] = useState('idle');
   const [isSmallScreen, setIsSmallScreen] = useState(false);
 
+  // 再生数帯ごとのリスト（初回・2回目用）
+  const VIDEOS_10M = FILTERED_VIDEOS.filter(v => v.views >= 10000000);
+  const VIDEOS_4M_10M = FILTERED_VIDEOS.filter(v => v.views >= 4000000 && v.views < 10000000);
+
   const pickPair = useCallback(() => {
-    const i = Math.floor(Math.random() * FILTERED_VIDEOS.length);
-    let j = Math.floor(Math.random() * (FILTERED_VIDEOS.length - 1));
+    let pool = FILTERED_VIDEOS;
+    if (myVoteCount === 0 && VIDEOS_10M.length >= 2) {
+      pool = VIDEOS_10M;
+    } else if (myVoteCount === 1 && VIDEOS_4M_10M.length >= 2) {
+      pool = VIDEOS_4M_10M;
+    }
+    const i = Math.floor(Math.random() * pool.length);
+    let j = Math.floor(Math.random() * (pool.length - 1));
     if (j >= i) j++;
-    const a = FILTERED_VIDEOS[i], b = FILTERED_VIDEOS[j];
+    const a = pool[i], b = pool[j];
     setPair(Math.random() < 0.5 ? [a, b] : [b, a]);
-  }, []);
+  }, [myVoteCount]);
 
   useEffect(() => { pickPair(); }, [pickPair]);
 
