@@ -3257,7 +3257,7 @@ export default function TokaiVote() {
                 {i + 1}
               </span>
               <img
-                src={\`https://img.youtube.com/vi/\${v.id}/mqdefault.jpg\`}
+                src={`https://img.youtube.com/vi/${v.id}/mqdefault.jpg`}
                 alt=""
                 style={{ width: "48px", height: "27px", borderRadius: "4px", objectFit: "cover", flexShrink: 0, background: "#1a1a2e" }}
                 onError={(e) => (e.target.style.display = "none")}
