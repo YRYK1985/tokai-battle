@@ -3302,6 +3302,7 @@ export default function TokaiVote() {
           <h1 style={{ fontSize: "24px", fontWeight: 800, background: "linear-gradient(180deg,#ff7d54,#ffa850,#ffbc18,#ffe478)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", margin: 0 }}>
             ランキング {rankYear === 'all' ? 'TOP300' : 'TOP50'}
           </h1>
+          <p style={{ color: "#888", fontSize: "11px", marginTop: "4px", letterSpacing: "0.03em" }}>by 東海ランキング【公認】</p>
           <p style={{ color: "#999", fontSize: "13px", marginTop: "8px" }}>ユーザー{formatNum(Math.floor(matchCount / 5))}人 全{formatNum(matchCount)}票 の投票に基づく</p>
         </div>
         <div style={{ padding: "16px" }}>
@@ -3328,7 +3329,7 @@ export default function TokaiVote() {
           )}
           {ranking.slice(0, rankYear === 'all' ? 300 : 50).map((v, i) => (
             <div key={v.id} style={{ display: "flex", alignItems: "center", gap: "10px", padding: "10px 14px", background: "rgba(255,255,255,0.07)", borderRadius: "12px", marginBottom: "6px", maxWidth: "700px", marginLeft: "auto", marginRight: "auto" }}>
-              <span style={{ fontWeight: 900, fontSize: "18px", width: "32px", textAlign: "center", flexShrink: 0, color: i === 0 ? "#ffd700" : i === 1 ? "#c0c0c0" : i === 2 ? "#cd7f32" : "#666" }}>
+              <span style={{ fontWeight: 900, fontSize: "18px", width: "32px", textAlign: "center", flexShrink: 0, color: i === 0 ? "#ffd700" : i === 1 ? "#c0c0c0" : i === 2 ? "#cd7f32" : i <= 9 ? "#e08050" : "#555" }}>
                 {i + 1}
               </span>
               <img
@@ -3363,14 +3364,15 @@ export default function TokaiVote() {
   if (!pair[0] || !pair[1]) return null;
 
   return (
-    <div style={{ minHeight: "100vh", background: "linear-gradient(135deg,#0f0c29,#1a1a3e,#24243e)", color: "#fff", fontFamily: "system-ui,sans-serif", padding: 0, margin: 0, paddingBottom: '80px', display: "flex", flexDirection: "column", justifyContent: "center" }}>
-      <div style={{ textAlign: "center", padding: isSmallScreen ? "12px 12px 4px" : "32px 16px 8px" }}>
-        <h1 style={{ fontSize: isSmallScreen ? "24px" : "32px", fontWeight: 700, fontFamily: '"Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic Medium", sans-serif', letterSpacing: "0.05em", background: "linear-gradient(180deg,#ff7d54,#ffa850,#ffbc18,#ffe478)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", margin: 0 }}>
+    <div style={{ minHeight: "100vh", background: "linear-gradient(135deg,#0f0c29,#1a1a3e,#24243e)", color: "#fff", fontFamily: "system-ui,sans-serif", padding: 0, margin: 0, paddingBottom: '80px', display: "flex", flexDirection: "column", justifyContent: "center", marginTop: isSmallScreen ? "-40px" : "0" }}>
+      <div style={{ textAlign: "center", padding: isSmallScreen ? "12px 12px 6px" : "32px 16px 8px" }}>
+        <h1 style={{ fontSize: isSmallScreen ? "26px" : "32px", fontWeight: 700, fontFamily: '"Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic Medium", sans-serif', letterSpacing: "0.05em", background: "linear-gradient(180deg,#ff7d54,#ffa850,#ffbc18,#ffe478)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", margin: 0, lineHeight: "1.4" }}>
           東海オンエア 動画バトル
         </h1>
-        <p style={{ color: "#999", fontSize: isSmallScreen ? "13px" : "14px", marginTop: isSmallScreen ? "6px" : "8px" }}>どっちの動画が好き？タップで投票！</p>
+        <p style={{ color: "#888", fontSize: isSmallScreen ? "11px" : "12px", marginTop: "4px", letterSpacing: "0.03em" }}>by 東海ランキング【公認】</p>
+        <p style={{ color: "#bbb", fontSize: isSmallScreen ? "14px" : "15px", marginTop: "8px", lineHeight: "1.5" }}>どっちの動画が好き？タップで投票！</p>
       </div>
-      <div style={{ textAlign: "center", color: "#888", fontSize: isSmallScreen ? "13px" : "14px", padding: isSmallScreen ? "4px 0 8px" : "8px 0 16px" }}>
+      <div style={{ textAlign: "center", color: "#aaa", fontSize: isSmallScreen ? "14px" : "15px", padding: isSmallScreen ? "4px 0 10px" : "8px 0 16px", lineHeight: "1.5" }}>
         あなた {myVoteCount}回投票済み ・ 全体 {formatNum(matchCount)}票 ・ {FILTERED_VIDEOS.length}本の動画
       </div>
 
@@ -3438,7 +3440,7 @@ export default function TokaiVote() {
       </button>
 
       {myVoteCount < 5 ? (
-        <p style={{ textAlign: "center", color: "#666", fontSize: isSmallScreen ? "14px" : "14px", padding: "4px 0 32px" }}>
+        <p style={{ textAlign: "center", color: "#aaa", fontSize: isSmallScreen ? "14px" : "15px", padding: "4px 0 32px", lineHeight: "1.5" }}>
           あと{5 - myVoteCount}回投票するとランキングが見られます
         </p>
       ) : (
