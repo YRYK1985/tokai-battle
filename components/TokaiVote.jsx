@@ -3205,7 +3205,7 @@ export default function TokaiVote() {
 
   const cardStyle = (isWinner, isLoser, isHovered) => ({
     flex: 1,
-    maxWidth: isSmallScreen ? "100%" : "400px",
+    maxWidth: isSmallScreen ? "100%" : "480px",
     background: "rgba(255,255,255,0.06)",
     borderRadius: "16px",
     overflow: "hidden",
@@ -3290,7 +3290,7 @@ export default function TokaiVote() {
   return (
     <div style={{ minHeight: "100vh", background: "linear-gradient(135deg,#0f0c29,#1a1a3e,#24243e)", color: "#fff", fontFamily: "system-ui,sans-serif", padding: 0, margin: 0, paddingBottom: '80px' }}>
       <div style={{ textAlign: "center", padding: "32px 16px 8px" }}>
-        <h1 style={{ fontSize: isSmallScreen ? "24px" : "28px", fontWeight: 700, fontFamily: '"Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic Medium", sans-serif', letterSpacing: "0.05em", background: "linear-gradient(180deg,#ff7d54,#ffa850,#ffbc18,#ffe478)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", margin: 0 }}>
+        <h1 style={{ fontSize: isSmallScreen ? "24px" : "32px", fontWeight: 700, fontFamily: '"Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic Medium", sans-serif', letterSpacing: "0.05em", background: "linear-gradient(180deg,#ff7d54,#ffa850,#ffbc18,#ffe478)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", margin: 0 }}>
           東海オンエア 動画バトル
         </h1>
         <p style={{ color: "#999", fontSize: "13px", marginTop: "8px" }}>どっちの動画が好き？タップで投票！</p>
@@ -3299,7 +3299,7 @@ export default function TokaiVote() {
         {matchCount}回投票済み ・ {VIDEOS.length}本の動画
       </div>
 
-      <div style={{ display: "flex", justifyContent: "center", alignItems: "stretch", gap: isSmallScreen ? "12px" : "20px", padding: "0 16px 16px", maxWidth: "860px", margin: "0 auto", minHeight: "340px", opacity: phase === 'exit' ? 0 : 1, transition: "opacity 0.15s ease", flexDirection: isSmallScreen ? "column" : "row" }}>
+      <div style={{ display: "flex", justifyContent: "center", alignItems: "stretch", gap: isSmallScreen ? "12px" : "20px", padding: "0 16px 16px", maxWidth: "1040px", margin: "0 auto", minHeight: "400px", opacity: phase === 'exit' ? 0 : 1, transition: "opacity 0.15s ease", flexDirection: isSmallScreen ? "column" : "row" }}>
         {pair.map((video, idx) => {
           const isWinner = phase === 'voted' && votedState?.winnerId === video.id;
           const isLoser = phase === 'voted' && votedState?.loserId === video.id;
