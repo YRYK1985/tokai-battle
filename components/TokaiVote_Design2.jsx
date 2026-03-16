@@ -3316,77 +3316,100 @@ export default function TokaiVote() {
     boxShadow: (!isSmallScreen && isHovered && phase === 'idle') ? "0 20px 48px rgba(0,0,0,0.45)" : "none",
   });
 
-  // ---- Ranking ----
+
+  const cardStyle2 = (isWinner, isLoser, isHovered) => ({
+    flex: 1,
+    maxWidth: isSmallScreen ? "100%" : "520px",
+    minWidth: isSmallScreen ? "auto" : "360px",
+    background: "#fff",
+    borderRadius: "12px",
+    overflow: "hidden",
+    cursor: phase !== 'idle' ? "default" : "pointer",
+    transition: "transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease",
+    border: isWinner ? "3px solid #e85d3a" : "1px solid #e8e8e8",
+    display: "flex",
+    flexDirection: "column",
+    transform: isWinner ? "scale(1.02)" : isLoser ? "scale(0.96)" : (!isSmallScreen && isHovered) ? "translateY(-4px)" : "none",
+    opacity: isLoser ? 0.35 : 1,
+    boxShadow: isWinner ? "0 8px 30px rgba(232,93,58,0.25)" : (!isSmallScreen && isHovered && phase === 'idle') ? "0 12px 36px rgba(0,0,0,0.12)" : "0 2px 12px rgba(0,0,0,0.06)",
+  });
+
+  // ---- Ranking (Design 2 - Clean/Official style) ----
   if (showRanking) {
     return (
-      <div style={{ minHeight: "100vh", background: "linear-gradient(135deg,#12102e,#1c1c42,#282848)", color: "#fff", fontFamily: "system-ui,sans-serif", padding: 0, margin: 0, paddingBottom: '80px' }}>
-        <div style={{ textAlign: "center", padding: "32px 16px 8px" }}>
-          <h1 style={{ fontSize: "24px", fontWeight: 800, background: "linear-gradient(180deg,#ff7d54,#ffa850,#ffbc18,#ffe478)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", margin: 0 }}>
-            ランキング {rankYear === 'all' ? 'TOP300' : 'TOP50'}
+      <div style={{ minHeight: "100vh", background: "#fafafa", color: "#222", fontFamily: '"Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic Medium", system-ui, sans-serif', padding: 0, margin: 0, paddingBottom: '80px' }}>
+        <div style={{ textAlign: "center", padding: "36px 16px 12px", borderBottom: "1px solid #eee", background: "#fff" }}>
+          <h1 style={{ fontSize: "22px", fontWeight: 800, color: "#222", margin: 0, letterSpacing: "0.08em" }}>
+            RANKING {rankYear === 'all' ? 'TOP 300' : 'TOP 50'}
           </h1>
-          <p style={{ color: "#888", fontSize: "11px", marginTop: "4px", letterSpacing: "0.03em" }}>by 東海ランキング【公認】</p>
-          <p style={{ color: "#999", fontSize: "13px", marginTop: "8px" }}>ユーザー{formatNum(Math.floor(matchCount / 5))}人 全{formatNum(matchCount)}票 の投票に基づく</p>
+          <p style={{ color: "#999", fontSize: "11px", marginTop: "6px", letterSpacing: "0.1em", textTransform: "uppercase" }}>東海オンエア 動画バトル</p>
+          <p style={{ color: "#888", fontSize: "13px", marginTop: "8px" }}>
+            {formatNum(Math.floor(matchCount / 5))} users ・ {formatNum(matchCount)} votes
+          </p>
         </div>
-        <div style={{ padding: "16px" }}>
+
+        <div style={{ padding: "16px", maxWidth: "680px", margin: "0 auto" }}>
           <button
-            style={{ display: "block", margin: "0 auto 16px", padding: "10px 28px", background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.2)", borderRadius: "30px", color: "#fff", fontSize: "14px", cursor: "pointer" }}
+            style={{ display: "block", margin: "0 auto 20px", padding: "10px 28px", background: "#222", border: "none", borderRadius: "6px", color: "#fff", fontSize: "13px", fontWeight: 600, cursor: "pointer", letterSpacing: "0.05em" }}
             onClick={() => setShowRanking(false)}
           >
             ← 投票に戻る
           </button>
+
           {availableYears.length > 0 && (
-            <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", justifyContent: "center", padding: "0 0 16px", maxWidth: "700px", margin: "0 auto" }}>
+            <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", justifyContent: "center", padding: "0 0 20px" }}>
               <button
                 onClick={() => setRankYear('all')}
-                style={{ padding: "6px 14px", borderRadius: "20px", border: "none", fontSize: "12px", fontWeight: 600, cursor: "pointer", background: rankYear === 'all' ? "rgba(255,160,64,0.8)" : "rgba(255,255,255,0.08)", color: rankYear === 'all' ? "#fff" : "#aaa" }}
-              >全期間</button>
+                style={{ padding: "6px 16px", borderRadius: "4px", border: rankYear === 'all' ? "2px solid #222" : "1px solid #ddd", fontSize: "12px", fontWeight: 600, cursor: "pointer", background: rankYear === 'all' ? "#222" : "#fff", color: rankYear === 'all' ? "#fff" : "#666", transition: "all 0.2s" }}
+              >ALL</button>
               {availableYears.map(y => (
                 <button
                   key={y}
                   onClick={() => setRankYear(y)}
-                  style={{ padding: "6px 14px", borderRadius: "20px", border: "none", fontSize: "12px", fontWeight: 600, cursor: "pointer", background: rankYear === y ? "rgba(255,160,64,0.8)" : "rgba(255,255,255,0.08)", color: rankYear === y ? "#fff" : "#aaa" }}
-                >{y}年</button>
+                  style={{ padding: "6px 16px", borderRadius: "4px", border: rankYear === y ? "2px solid #222" : "1px solid #ddd", fontSize: "12px", fontWeight: 600, cursor: "pointer", background: rankYear === y ? "#222" : "#fff", color: rankYear === y ? "#fff" : "#666", transition: "all 0.2s" }}
+                >{y}</button>
               ))}
             </div>
           )}
+
           {ranking.slice(0, rankYear === 'all' ? 300 : 50).map((v, i) => (
-            <div key={v.id} style={{ display: "flex", alignItems: "center", gap: "10px", padding: "10px 14px", background: "rgba(255,255,255,0.07)", borderRadius: "12px", marginBottom: "6px", maxWidth: "700px", marginLeft: "auto", marginRight: "auto" }}>
-              <span style={{ fontWeight: 900, fontSize: "18px", width: "32px", textAlign: "center", flexShrink: 0, color: i === 0 ? "#ffd700" : i === 1 ? "#c0c0c0" : i === 2 ? "#cd7f32" : i <= 9 ? "#88c8e8" : "#666" }}>
+            <div key={v.id} style={{ display: "flex", alignItems: "center", gap: "12px", padding: "12px 16px", background: i < 3 ? "#fff" : "#fff", borderRadius: "8px", marginBottom: "4px", border: i === 0 ? "2px solid #e85d3a" : i < 3 ? "1px solid #ddd" : "1px solid #f0f0f0", boxShadow: i < 3 ? "0 2px 8px rgba(0,0,0,0.06)" : "none" }}>
+              <span style={{ fontWeight: 900, fontSize: i < 3 ? "22px" : "16px", width: "36px", textAlign: "center", flexShrink: 0, color: i === 0 ? "#e85d3a" : i === 1 ? "#888" : i === 2 ? "#a06830" : i <= 9 ? "#555" : "#bbb", fontFamily: "'Helvetica Neue', Arial, sans-serif" }}>
                 {i + 1}
               </span>
               <img
                 src={`https://img.youtube.com/vi/${v.id}/mqdefault.jpg`}
                 alt=""
-                style={{ width: "48px", height: "27px", borderRadius: "4px", objectFit: "cover", flexShrink: 0, background: "#1a1a2e" }}
+                style={{ width: i < 3 ? "64px" : "48px", height: i < 3 ? "36px" : "27px", borderRadius: "4px", objectFit: "cover", flexShrink: 0, background: "#f0f0f0" }}
                 onError={(e) => (e.target.style.display = "none")}
               />
               <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontSize: "13px", fontWeight: 600, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{v.title}</div>
-                <div style={{ fontSize: "11px", color: "#888", marginTop: "2px" }}>Elo {v.elo} ・ ▶ {formatNum(v.views)} ・ ♡ {formatNum(v.likes)}</div>
+                <div style={{ fontSize: "13px", fontWeight: 600, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", color: "#222" }}>{v.title}</div>
+                <div style={{ fontSize: "11px", color: "#999", marginTop: "3px", letterSpacing: "0.02em" }}>Elo {v.elo} ・ {formatNum(v.views)}再生 ・ {formatNum(v.likes)}いいね</div>
               </div>
             </div>
           ))}
 
           <button
-            style={{ display: "block", margin: "24px auto 16px", padding: "14px 32px", background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.2)", borderRadius: "30px", color: "#ccc", fontSize: "15px", fontWeight: 600, cursor: "pointer", transition: "background 0.2s" }}
+            style={{ display: "block", margin: "28px auto 16px", padding: "14px 32px", background: "#fff", border: "2px solid #222", borderRadius: "6px", color: "#222", fontSize: "14px", fontWeight: 700, cursor: "pointer", letterSpacing: "0.05em", transition: "all 0.2s" }}
             onClick={() => {
               const v = FILTERED_VIDEOS[Math.floor(Math.random() * FILTERED_VIDEOS.length)];
               window.open(`https://www.youtube.com/watch?v=${v.id}`, '_blank');
             }}
-            onMouseEnter={(e) => e.target.style.background = "rgba(255,255,255,0.15)"}
-            onMouseLeave={(e) => e.target.style.background = "rgba(255,255,255,0.08)"}
+            onMouseEnter={(e) => { e.target.style.background = "#222"; e.target.style.color = "#fff"; }}
+            onMouseLeave={(e) => { e.target.style.background = "#fff"; e.target.style.color = "#222"; }}
           >
-            🎲 ランダムで東海オンエアの動画を見る
+            ランダムで動画を見る →
           </button>
         </div>
 
-        {/* 広告枠 - AdSense設定後にここを差し替え */}
         <div style={{
           position: 'fixed', bottom: 0, left: 0, right: 0,
-          height: '60px', background: 'rgba(20,20,40,0.95)',
-          borderTop: '1px solid rgba(255,255,255,0.1)',
+          height: '60px', background: 'rgba(255,255,255,0.95)',
+          borderTop: '1px solid #eee',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
-          color: '#555', fontSize: '12px', zIndex: 100,
+          color: '#ccc', fontSize: '12px', zIndex: 100,
+          backdropFilter: 'blur(10px)',
         }}>
           広告スペース
         </div>
@@ -3394,22 +3417,30 @@ export default function TokaiVote() {
     );
   }
 
-  // ---- Vote ----
+  // ---- Vote (Design 2 - Clean/Official style) ----
   if (!pair[0] || !pair[1]) return null;
 
   return (
-    <div style={{ minHeight: "100vh", background: "linear-gradient(135deg,#0f0c29,#1a1a3e,#24243e)", color: "#fff", fontFamily: "system-ui,sans-serif", padding: 0, margin: 0, paddingBottom: '80px', display: "flex", flexDirection: "column", justifyContent: "center", marginTop: isSmallScreen ? "-40px" : "0" }}>
-      <div style={{ textAlign: "center", padding: isSmallScreen ? "12px 12px 0" : "32px 16px 0" }}>
-        <h1 style={{ fontSize: isSmallScreen ? "26px" : "32px", fontWeight: 700, fontFamily: '"Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic Medium", sans-serif', letterSpacing: "0.05em", margin: 0, lineHeight: "1.6", paddingLeft: "0.15em", position: "relative", display: "inline-block" }}>
-          <span style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, WebkitTextStroke: isSmallScreen ? "3px #000" : "4px #000", color: "transparent", zIndex: 0 }} aria-hidden="true">東海オンエア 動画バトル</span>
-          <span style={{ position: "relative", background: "linear-gradient(180deg,#ff7d54,#ffa850,#ffbc18,#ffe478)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", zIndex: 1 }}>東海オンエア 動画バトル</span>
+    <div style={{ minHeight: "100vh", background: "#fafafa", color: "#222", fontFamily: '"Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic Medium", system-ui, sans-serif', padding: 0, margin: 0, paddingBottom: '80px', display: "flex", flexDirection: "column", justifyContent: "center" }}>
+      <div style={{ textAlign: "center", padding: isSmallScreen ? "16px 12px 8px" : "28px 16px 12px" }}>
+        <h1 style={{ fontSize: isSmallScreen ? "22px" : "28px", fontWeight: 800, color: "#222", margin: 0, lineHeight: "1.4", letterSpacing: "0.1em" }}>
+          東海オンエア
+          <br />
+          <span style={{ fontSize: isSmallScreen ? "15px" : "18px", fontWeight: 600, letterSpacing: "0.2em", color: "#666" }}>動画バトル</span>
         </h1>
-        <p style={{ color: "#aaa", fontSize: isSmallScreen ? "12px" : "13px", marginTop: "6px", letterSpacing: "0.03em", lineHeight: "1.6" }}>by 東海ランキング【公認】</p>
-        <p style={{ color: "#ff9944", fontSize: isSmallScreen ? "16px" : "18px", fontWeight: 700, marginTop: "8px", lineHeight: "1.6" }}>どっちの動画が好き？タップで投票！</p>
-        <p style={{ color: "#aaa", fontSize: isSmallScreen ? "13px" : "14px", marginTop: "6px", lineHeight: "1.6" }}>あなた {myVoteCount}回投票済み ・ 全体 {formatNum(matchCount)}票 ・ {FILTERED_VIDEOS.length}本の動画</p>
+        <p style={{ color: "#bbb", fontSize: "11px", marginTop: "6px", letterSpacing: "0.15em", textTransform: "uppercase" }}>by 東海ランキング【公認】</p>
+        <p style={{ color: "#e85d3a", fontSize: isSmallScreen ? "14px" : "16px", fontWeight: 700, marginTop: "12px", lineHeight: "1.4" }}>どっちの動画が好き？</p>
+        <p style={{ color: "#aaa", fontSize: isSmallScreen ? "11px" : "12px", marginTop: "4px", letterSpacing: "0.05em" }}>
+          {myVoteCount}票投票済み ・ 全体 {formatNum(matchCount)}票 ・ {FILTERED_VIDEOS.length}本
+        </p>
       </div>
 
-      <div style={{ display: "flex", justifyContent: "center", alignItems: "stretch", gap: isSmallScreen ? "8px" : "24px", padding: "0 16px 12px", maxWidth: "1200px", margin: "0 auto", minHeight: isSmallScreen ? "auto" : "440px", opacity: phase === 'exit' ? 0 : 1, transition: "opacity 0.15s ease", flexDirection: "row" }}>
+      <div style={{ display: "flex", justifyContent: "center", alignItems: "stretch", gap: isSmallScreen ? "8px" : "20px", padding: "0 12px 8px", maxWidth: "1100px", margin: "0 auto", minHeight: isSmallScreen ? "auto" : "380px", opacity: phase === 'exit' ? 0 : 1, transition: "opacity 0.15s ease", position: "relative" }}>
+        {!isSmallScreen && (
+          <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", zIndex: 10, width: "44px", height: "44px", borderRadius: "50%", background: "#e85d3a", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontWeight: 900, fontSize: "14px", letterSpacing: "0.05em", boxShadow: "0 4px 16px rgba(232,93,58,0.3)" }}>
+            VS
+          </div>
+        )}
         {pair.map((video, idx) => {
           const isWinner = phase === 'voted' && votedState?.winnerId === video.id;
           const isLoser = phase === 'voted' && votedState?.loserId === video.id;
@@ -3417,12 +3448,12 @@ export default function TokaiVote() {
           return (
             <div
               key={video.id + "-" + matchCount}
-              style={cardStyle(isWinner, isLoser, isHovered)}
+              style={cardStyle2(isWinner, isLoser, isHovered)}
               onClick={() => vote(video.id)}
               onMouseEnter={() => setHoveredCard(idx)}
               onMouseLeave={() => setHoveredCard(null)}
             >
-              <div style={{ position: "relative", width: "100%", paddingTop: "56.25%", overflow: "hidden", background: "#1a1a2e" }}>
+              <div style={{ position: "relative", width: "100%", paddingTop: "56.25%", overflow: "hidden", background: "#f0f0f0" }}>
                 {!imgErrors[video.id] ? (
                   <img
                     src={`https://img.youtube.com/vi/${video.id}/maxresdefault.jpg`}
@@ -3437,25 +3468,25 @@ export default function TokaiVote() {
                     }}
                   />
                 ) : (
-                  <div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "48px", background: "linear-gradient(135deg,#1e3a5f,#2d1b69)" }}>
+                  <div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "40px", background: "#f5f5f5" }}>
                     🎬
                   </div>
                 )}
               </div>
-              <div style={{ padding: isSmallScreen ? "8px 10px" : "14px 16px", flex: 1, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-                <p style={{ fontSize: isSmallScreen ? "13px" : "16px", fontWeight: 700, lineHeight: "1.4", margin: "0 0 6px", display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
+              <div style={{ padding: isSmallScreen ? "8px 10px" : "12px 16px", flex: 1, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                <p style={{ fontSize: isSmallScreen ? "12px" : "14px", fontWeight: 600, lineHeight: "1.5", margin: "0 0 6px", color: "#222", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
                   {video.title}
                 </p>
-                <div style={{ display: "flex", gap: isSmallScreen ? "8px" : "16px", fontSize: isSmallScreen ? "12px" : "13px", color: "#aaa" }}>
-                  <span>▶ {formatNum(video.views)}</span>
-                  <span>♡ {formatNum(video.likes)}</span>
+                <div style={{ display: "flex", gap: isSmallScreen ? "8px" : "16px", fontSize: isSmallScreen ? "11px" : "12px", color: "#999" }}>
+                  <span>{formatNum(video.views)}再生</span>
+                  <span>{formatNum(video.likes)}いいね</span>
                 </div>
               </div>
               <a
                 href={`https://www.youtube.com/watch?v=${video.id}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{ display: "block", textAlign: "center", padding: isSmallScreen ? "8px" : "10px", fontSize: isSmallScreen ? "12px" : "12px", color: "#ff4444", textDecoration: "none", borderTop: "1px solid rgba(255,255,255,0.06)" }}
+                style={{ display: "block", textAlign: "center", padding: isSmallScreen ? "8px" : "10px", fontSize: "12px", color: "#e85d3a", fontWeight: 600, textDecoration: "none", borderTop: "1px solid #f0f0f0", letterSpacing: "0.03em" }}
                 onClick={(e) => e.stopPropagation()}
               >
                 YouTubeで見る →
@@ -3465,43 +3496,49 @@ export default function TokaiVote() {
         })}
       </div>
 
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "12px", padding: "4px 0 24px" }}>
+      {isSmallScreen && (
+        <div style={{ textAlign: "center", padding: "4px 0 0", color: "#e85d3a", fontWeight: 800, fontSize: "16px", letterSpacing: "0.1em" }}>VS</div>
+      )}
+
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "10px", padding: "8px 0 20px" }}>
         <button
-          style={{ padding: "8px 24px", background: "none", border: "1px solid rgba(255,255,255,0.15)", borderRadius: "20px", color: "#888", fontSize: "14px", cursor: phase !== 'idle' ? "default" : "pointer", opacity: phase !== 'idle' ? 0.4 : 1 }}
+          style={{ padding: "6px 20px", background: "none", border: "none", color: "#aaa", fontSize: "13px", cursor: phase !== 'idle' ? "default" : "pointer", opacity: phase !== 'idle' ? 0.4 : 1, textDecoration: "underline", textUnderlineOffset: "3px" }}
           onClick={() => { if (phase === 'idle') pickPair(); }}
         >
-          この組み合わせをスキップ
+          スキップ
         </button>
 
-      {myVoteCount < 5 ? (
-        <p style={{ textAlign: "center", color: "#aaa", fontSize: isSmallScreen ? "14px" : "15px", margin: 0, lineHeight: "1.6" }}>
-          あと{5 - myVoteCount}回投票するとランキングが見られます
-        </p>
-      ) : (
-        <button
-          style={{ padding: "12px 32px", background: "linear-gradient(135deg,#ff6b6b,#ee5a24)", border: "none", borderRadius: "30px", color: "#fff", fontSize: "16px", fontWeight: 700, cursor: "pointer", boxShadow: "0 4px 20px rgba(255,107,107,0.3)" }}
-          onClick={() => {
-            fetch('/api/ratings').then(r => r.json()).then(data => {
-              if (data.ratings && Object.keys(data.ratings).length > 0) {
-                setRatings(prev => ({ ...prev, ...data.ratings }));
-              }
-              if (data.matchCount) setMatchCount(data.matchCount);
-            }).catch(() => {});
-            setShowRanking(true);
-          }}
-        >
-          🏆 ランキングを見る
-        </button>
-      )}
+        {myVoteCount < 5 ? (
+          <p style={{ textAlign: "center", color: "#aaa", fontSize: isSmallScreen ? "12px" : "13px", margin: 0 }}>
+            あと{5 - myVoteCount}回投票するとランキングが見られます
+          </p>
+        ) : (
+          <button
+            style={{ padding: "12px 36px", background: "#222", border: "none", borderRadius: "6px", color: "#fff", fontSize: "14px", fontWeight: 700, cursor: "pointer", letterSpacing: "0.08em", transition: "background 0.2s" }}
+            onClick={() => {
+              fetch('/api/ratings').then(r => r.json()).then(data => {
+                if (data.ratings && Object.keys(data.ratings).length > 0) {
+                  setRatings(prev => ({ ...prev, ...data.ratings }));
+                }
+                if (data.matchCount) setMatchCount(data.matchCount);
+              }).catch(() => {});
+              setShowRanking(true);
+            }}
+            onMouseEnter={(e) => e.target.style.background = "#e85d3a"}
+            onMouseLeave={(e) => e.target.style.background = "#222"}
+          >
+            RANKING →
+          </button>
+        )}
       </div>
 
-      {/* 広告枠 - AdSense設定後にここを差し替え */}
-      <div style={{ 
+      <div style={{
         position: 'fixed', bottom: 0, left: 0, right: 0,
-        height: '60px', background: 'rgba(20,20,40,0.95)',
-        borderTop: '1px solid rgba(255,255,255,0.1)',
+        height: '60px', background: 'rgba(255,255,255,0.95)',
+        borderTop: '1px solid #eee',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
-        color: '#555', fontSize: '12px', zIndex: 100,
+        color: '#ccc', fontSize: '12px', zIndex: 100,
+        backdropFilter: 'blur(10px)',
       }}>
         広告スペース
       </div>
