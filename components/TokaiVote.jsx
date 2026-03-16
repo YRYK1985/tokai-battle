@@ -3459,7 +3459,6 @@ export default function TokaiVote() {
                 <div style={{ display: "flex", gap: isSmallScreen ? "8px" : "16px", fontSize: isSmallScreen ? "12px" : "13px", color: "#aaa" }}>
                   <span>▶ {formatNum(video.views)}</span>
                   <span>♡ {formatNum(video.likes)}</span>
-                  {video.year && <span>{video.year}年</span>}
                 </div>
               </div>
               <a
