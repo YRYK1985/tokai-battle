@@ -4,32 +4,52 @@ import { NextResponse } from 'next/server';
 export async function GET() {
   const debug = {
     hasKvUrl: !!process.env.KV_REST_API_URL,
-    kvUrlPrefix: process.env.KV_REST_API_URL ? process.env.KV_REST_API_URL.substring(0, 30) + '...' : 'NOT SET',
     hasKvToken: !!process.env.KV_REST_API_TOKEN,
-    tokenPrefix: process.env.KV_REST_API_TOKEN ? process.env.KV_REST_API_TOKEN.substring(0, 10) + '...' : 'NOT SET',
   };
 
   try {
-    // Test write
+    // Test basic set/get
     await kv.set('debug_test', 'hello');
-    debug.writeTest = 'OK';
-
-    // Test read
     const val = await kv.get('debug_test');
-    debug.readTest = val;
+    debug.basicTest = val === 'hello' ? 'OK' : 'FAIL';
+    await kv.del('debug_test');
 
-    // Check existing data
-    const matchCount = await kv.get('matchCount');
-    debug.matchCount = matchCount;
+    // Test hmget (same as vote API uses)
+    try {
+      const hmgetResult = await kv.hmget('ratings', 'test_a', 'test_b');
+      debug.hmgetTest = { result: hmgetResult, type: typeof hmgetResult };
+    } catch (e) {
+      debug.hmgetError = e.message;
+    }
 
+    // Test hset (same as vote API uses)
+    try {
+      await kv.hset('ratings', { 'test_a': 1200 });
+      debug.hsetTest = 'OK';
+    } catch (e) {
+      debug.hsetError = e.message;
+    }
+
+    // Test incr (same as vote API uses)
+    try {
+      await kv.incr('matchCount');
+      const mc = await kv.get('matchCount');
+      debug.incrTest = 'OK';
+      debug.matchCount = mc;
+    } catch (e) {
+      debug.incrError = e.message;
+    }
+
+    // Check ratings
     const ratings = await kv.hgetall('ratings');
     debug.ratingsCount = ratings ? Object.keys(ratings).length : 0;
+    debug.ratingsPreview = ratings ? Object.entries(ratings).slice(0, 3) : null;
 
-    // Cleanup
-    await kv.del('debug_test');
+    // Cleanup test data
+    await kv.hdel('ratings', 'test_a');
+
   } catch (error) {
     debug.error = error.message;
-    debug.errorStack = error.stack?.split('\n').slice(0, 3).join(' | ');
   }
 
   return NextResponse.json(debug);
