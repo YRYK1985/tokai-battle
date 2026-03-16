@@ -3175,7 +3175,15 @@ const SHORTS_IDS = new Set([
   "8ko1eeSPFp0","7vuEv48uplw","_0WYKvmPkZE","15YNeRh3uTs","WgCgjbu0lVY",
   "1r2CrR4Qi_A","bdDiQd6P1vQ","jUJEOS9CQyk","XK_6SvROUO0",
 ]);
-const FILTERED_VIDEOS = VIDEOS.filter(v => !LIVE_STREAM_IDS.has(v.id) && !SHORTS_IDS.has(v.id));
+// グレーゾーン・アイランド / エージェンシーのエピソード（プレミアム限定含む）を除外
+const GRAYZONE_IDS = new Set([
+  "kxF9Da7ZLtk","lwEYrTCS3x4","AuCPNZOWeng","AKFEXaXozqU","FIPQuGOQics",
+  "svrwhI3Zn-A","8DeyyLNM7QU","chGU2yCtWkc","izqZorOYWsY", // エージェンシー EP2-10 (views:0)
+  "BuB_c1Lp-hI","ZLCxwcdAt4o","nYSKK1uyUSY","qe-GY4r9Qtg","P2z2sBmG9mA","BHUVfQXAuhg", // エージェンシー EP1,トレーラー等
+  "Yv-LDeIrQ84","8qG87BvMSyM","fNipfeUNl4Y","dSUV7NkRYuc","qnXNSiinhjQ",
+  "dnWEXjpHijE","UCyzux2niJA","xqiVycOfjO0", // アイランド 全EP+トレーラー+メイキング
+]);
+const FILTERED_VIDEOS = VIDEOS.filter(v => !LIVE_STREAM_IDS.has(v.id) && !SHORTS_IDS.has(v.id) && !GRAYZONE_IDS.has(v.id));
 
 export default function TokaiVote() {
   const [ratings, setRatings] = useState(() => {
