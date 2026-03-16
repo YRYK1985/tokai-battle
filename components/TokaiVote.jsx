@@ -3301,7 +3301,8 @@ export default function TokaiVote() {
 
   const cardStyle = (isWinner, isLoser, isHovered) => ({
     flex: 1,
-    maxWidth: isSmallScreen ? "100%" : "520px",
+    maxWidth: isSmallScreen ? "100%" : "560px",
+    minWidth: isSmallScreen ? "auto" : "400px",
     background: "rgba(255,255,255,0.06)",
     borderRadius: "16px",
     overflow: "hidden",
@@ -3407,7 +3408,7 @@ export default function TokaiVote() {
         <p style={{ color: "#aaa", fontSize: isSmallScreen ? "13px" : "14px", marginTop: "6px", lineHeight: "1.6" }}>あなた {myVoteCount}回投票済み ・ 全体 {formatNum(matchCount)}票 ・ {FILTERED_VIDEOS.length}本の動画</p>
       </div>
 
-      <div style={{ display: "flex", justifyContent: "center", alignItems: "stretch", gap: isSmallScreen ? "8px" : "20px", padding: "0 8px 12px", maxWidth: "1120px", margin: "0 auto", minHeight: isSmallScreen ? "auto" : "440px", opacity: phase === 'exit' ? 0 : 1, transition: "opacity 0.15s ease", flexDirection: "row" }}>
+      <div style={{ display: "flex", justifyContent: "center", alignItems: "stretch", gap: isSmallScreen ? "8px" : "24px", padding: "0 16px 12px", maxWidth: "1200px", margin: "0 auto", minHeight: isSmallScreen ? "auto" : "440px", opacity: phase === 'exit' ? 0 : 1, transition: "opacity 0.15s ease", flexDirection: "row" }}>
         {pair.map((video, idx) => {
           const isWinner = phase === 'voted' && votedState?.winnerId === video.id;
           const isLoser = phase === 'voted' && votedState?.loserId === video.id;
