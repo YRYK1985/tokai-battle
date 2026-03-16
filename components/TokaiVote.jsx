@@ -3329,7 +3329,7 @@ export default function TokaiVote() {
           )}
           {ranking.slice(0, rankYear === 'all' ? 300 : 50).map((v, i) => (
             <div key={v.id} style={{ display: "flex", alignItems: "center", gap: "10px", padding: "10px 14px", background: "rgba(255,255,255,0.07)", borderRadius: "12px", marginBottom: "6px", maxWidth: "700px", marginLeft: "auto", marginRight: "auto" }}>
-              <span style={{ fontWeight: 900, fontSize: "18px", width: "32px", textAlign: "center", flexShrink: 0, color: i === 0 ? "#ffd700" : i === 1 ? "#c0c0c0" : i === 2 ? "#cd7f32" : i <= 9 ? "#e08050" : "#555" }}>
+              <span style={{ fontWeight: 900, fontSize: "18px", width: "32px", textAlign: "center", flexShrink: 0, color: i === 0 ? "#ffd700" : i === 1 ? "#c0c0c0" : i === 2 ? "#cd7f32" : i <= 9 ? "#4fc3f7" : "#666" }}>
                 {i + 1}
               </span>
               <img
@@ -3441,7 +3441,7 @@ export default function TokaiVote() {
 
       {myVoteCount < 5 ? (
         <p style={{ textAlign: "center", color: "#aaa", fontSize: isSmallScreen ? "14px" : "15px", padding: "4px 0 32px", lineHeight: "1.5" }}>
-          あと{5 - myVoteCount}回投票するとランキングが見られます
+          あと{5 - myVoteCount}回投票するとランキングが見れます
         </p>
       ) : (
         <button
