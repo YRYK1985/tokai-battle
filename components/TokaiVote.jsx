@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback, useMemo } from "react";
+import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 
 const K = 32;
 function expectedScore(ra, rb) {
@@ -3196,12 +3196,14 @@ export default function TokaiVote() {
   // 再生数帯ごとのリスト（初回・2回目用）
   const VIDEOS_10M = FILTERED_VIDEOS.filter(v => v.views >= 10000000);
   const VIDEOS_4M_10M = FILTERED_VIDEOS.filter(v => v.views >= 4000000 && v.views < 10000000);
+  const voteCountRef = useRef(0);
 
   const pickPair = useCallback(() => {
     let pool = FILTERED_VIDEOS;
-    if (myVoteCount === 0 && VIDEOS_10M.length >= 2) {
+    const count = voteCountRef.current;
+    if (count === 0 && VIDEOS_10M.length >= 2) {
       pool = VIDEOS_10M;
-    } else if (myVoteCount === 1 && VIDEOS_4M_10M.length >= 2) {
+    } else if (count === 1 && VIDEOS_4M_10M.length >= 2) {
       pool = VIDEOS_4M_10M;
     }
     const i = Math.floor(Math.random() * pool.length);
@@ -3209,7 +3211,7 @@ export default function TokaiVote() {
     if (j >= i) j++;
     const a = pool[i], b = pool[j];
     setPair(Math.random() < 0.5 ? [a, b] : [b, a]);
-  }, [myVoteCount]);
+  }, []);
 
   useEffect(() => { pickPair(); }, [pickPair]);
 
@@ -3246,6 +3248,7 @@ export default function TokaiVote() {
     });
     setMatchCount((c) => c + 1);
     setMyVoteCount((c) => c + 1);
+    voteCountRef.current += 1;
 
     // Send to server
     fetch('/api/vote', {
@@ -3339,7 +3342,7 @@ export default function TokaiVote() {
           )}
           {ranking.slice(0, rankYear === 'all' ? 300 : 50).map((v, i) => (
             <div key={v.id} style={{ display: "flex", alignItems: "center", gap: "10px", padding: "10px 14px", background: "rgba(255,255,255,0.07)", borderRadius: "12px", marginBottom: "6px", maxWidth: "700px", marginLeft: "auto", marginRight: "auto" }}>
-              <span style={{ fontWeight: 900, fontSize: "18px", width: "32px", textAlign: "center", flexShrink: 0, color: i === 0 ? "#ffd700" : i === 1 ? "#c0c0c0" : i === 2 ? "#cd7f32" : i <= 9 ? "#4fc3f7" : "#666" }}>
+              <span style={{ fontWeight: 900, fontSize: "18px", width: "32px", textAlign: "center", flexShrink: 0, color: i === 0 ? "#ffd700" : i === 1 ? "#c0c0c0" : i === 2 ? "#cd7f32" : i <= 9 ? "#88c8e8" : "#666" }}>
                 {i + 1}
               </span>
               <img
@@ -3354,10 +3357,22 @@ export default function TokaiVote() {
               </div>
             </div>
           ))}
+
+          <button
+            style={{ display: "block", margin: "24px auto 16px", padding: "14px 32px", background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.2)", borderRadius: "30px", color: "#ccc", fontSize: "15px", fontWeight: 600, cursor: "pointer", transition: "background 0.2s" }}
+            onClick={() => {
+              const v = FILTERED_VIDEOS[Math.floor(Math.random() * FILTERED_VIDEOS.length)];
+              window.open(`https://www.youtube.com/watch?v=${v.id}`, '_blank');
+            }}
+            onMouseEnter={(e) => e.target.style.background = "rgba(255,255,255,0.15)"}
+            onMouseLeave={(e) => e.target.style.background = "rgba(255,255,255,0.08)"}
+          >
+            🎲 ランダムで東海オンエアの動画を見る
+          </button>
         </div>
 
         {/* 広告枠 - AdSense設定後にここを差し替え */}
-        <div style={{ 
+        <div style={{
           position: 'fixed', bottom: 0, left: 0, right: 0,
           height: '60px', background: 'rgba(20,20,40,0.95)',
           borderTop: '1px solid rgba(255,255,255,0.1)',
@@ -3380,7 +3395,7 @@ export default function TokaiVote() {
           東海オンエア 動画バトル
         </h1>
         <p style={{ color: "#aaa", fontSize: isSmallScreen ? "12px" : "13px", marginTop: "6px", letterSpacing: "0.03em", lineHeight: "1.6" }}>by 東海ランキング【公認】</p>
-        <p style={{ color: "#bbb", fontSize: isSmallScreen ? "14px" : "15px", marginTop: "6px", lineHeight: "1.6" }}>どっちの動画が好き？タップで投票！</p>
+        <p style={{ color: "#ff9944", fontSize: isSmallScreen ? "16px" : "18px", fontWeight: 700, marginTop: "8px", lineHeight: "1.6" }}>どっちの動画が好き？タップで投票！</p>
         <p style={{ color: "#aaa", fontSize: isSmallScreen ? "13px" : "14px", marginTop: "6px", lineHeight: "1.6" }}>あなた {myVoteCount}回投票済み ・ 全体 {formatNum(matchCount)}票 ・ {FILTERED_VIDEOS.length}本の動画</p>
       </div>
 
@@ -3418,7 +3433,7 @@ export default function TokaiVote() {
                 )}
               </div>
               <div style={{ padding: isSmallScreen ? "8px 10px" : "14px 16px", flex: 1, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-                <p style={{ fontSize: isSmallScreen ? "13px" : "14px", fontWeight: 700, lineHeight: "1.4", margin: "0 0 6px", display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
+                <p style={{ fontSize: isSmallScreen ? "13px" : "16px", fontWeight: 700, lineHeight: "1.4", margin: "0 0 6px", display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
                   {video.title}
                 </p>
                 <div style={{ display: "flex", gap: isSmallScreen ? "8px" : "16px", fontSize: isSmallScreen ? "12px" : "13px", color: "#aaa" }}>
@@ -3450,7 +3465,7 @@ export default function TokaiVote() {
 
       {myVoteCount < 5 ? (
         <p style={{ textAlign: "center", color: "#aaa", fontSize: isSmallScreen ? "14px" : "15px", margin: 0, lineHeight: "1.6" }}>
-          あと{5 - myVoteCount}回投票するとランキングが見れます
+          あと{5 - myVoteCount}回投票するとランキングが見られます
         </p>
       ) : (
         <button
