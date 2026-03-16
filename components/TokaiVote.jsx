@@ -3134,12 +3134,39 @@ const VIDEOS = [
   { id: "chGU2yCtWkc", title: "EP 3 大いなるプレゼン | 株式会社グレーゾーン・エージェンシー", views: 0, likes: 0, year: 2020 },
   { id: "izqZorOYWsY", title: "EP 2 驚愕の入社式 | 株式会社グレーゾーン・エージェンシー", views: 0, likes: 0, year: 2020 },
   { id: "YweDMFNiZPg", title: "【生放送】東海オンエア質問コーナー！！！", views: 0, likes: 2554, year: 2017 },
-].filter(v => !v.title.includes('生放送'));
+];
+
+// 生放送・ライブ配信の動画IDを除外（通常動画で「生放送」に言及しているものは含めない）
+const LIVE_STREAM_IDS = new Set([
+  "oryUgwPR7nk","OAvgN562nag","KPyqJxT9tio","mq14H2NGpSA","FkJrnh3m39k",
+  "vnDRX945Vw4","3zoWguEJi5M","Mc0HeSKgzcA","rC7G3D1nXCE","1AByJCPKZ-c",
+  "w6d5DSNvMVI","MLBo9MPt02U","UFZ4fC2wSsg","kM-nBpSmATk","nPpi8pgX7_Y",
+  "-hz-QeyBZEA","YweDMFNiZPg", // 【生放送】系
+  "_QYXP7CwAlI","HvQmKW4rPsQ","R0YQFx2eYtQ","Dal7Y33kw1w","2Kj-yc2QUlY",
+  "YO8Z7DYqdxs", // 桃鉄100年決戦生配信
+  "p9MOw1HsimA","4RjeVkPkLME","GKdNdDqAqOE", // MOTHER2生配信
+  "UenBOO1iM1c","GhRhdTfJZFU","aBi_1ennXRo","NbYxU9skdAs", // Only Up生限
+  "PMwoGUQCa8I","ElHnJhkMtmQ","OlnZjuT-Bqo","wxrazaw8G00","dmklCzIjsJI", // 48時間耐久ウォーキング
+  "1MYAbZLzsY0","iBM1st1_d1E", // いちご生配信
+  "QVmzbyPRs3g", // バドミントン生配信
+  "ghwF7S3OH1c","S6KZpx-qEz4","0tomVliKMFE","-kZ0tZDGshM","vaA7mDOJY2Y",
+  "DDQwL7fGq0k","_0WYKvmPkZE", // 工作100個生配信
+  "j0kFxCNk7Ig","5_3hQh40Eds","447DelL-_2k","BdLAGTpycrI",
+  "hftx9QNPO3M","OC6M51dgn8o","tL_cr0JabHQ","15YNeRh3uTs",
+  "W4B67ttarYM", // ウィザー討伐チャレンジ
+  "QO7-__WYwGQ", // 東海オンエア王決定戦生配信
+  "0SBlfDxvIoo", // 復活直前緊急生配信
+  "O9W6m6Br_KI", // 300万人カウントダウン
+  "ds3Ayjdww4k", // 早抜けクイズ生配信
+  "HDPpuuQj1Sc","Amu4JPQa8n4","amO_PgcPN1k","a__0Ebc9chc", // 宿題ライブ等
+  "nzbHOij23-c","uM2DBohbUow", // 生呑み・大新掃除
+]);
+const FILTERED_VIDEOS = VIDEOS.filter(v => !LIVE_STREAM_IDS.has(v.id));
 
 export default function TokaiVote() {
   const [ratings, setRatings] = useState(() => {
     const r = {};
-    VIDEOS.forEach((v) => (r[v.id] = 1200));
+    FILTERED_VIDEOS.forEach((v) => (r[v.id] = 1200));
     return r;
   });
   const [matchCount, setMatchCount] = useState(0);
@@ -3153,10 +3180,10 @@ export default function TokaiVote() {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
 
   const pickPair = useCallback(() => {
-    const i = Math.floor(Math.random() * VIDEOS.length);
-    let j = Math.floor(Math.random() * (VIDEOS.length - 1));
+    const i = Math.floor(Math.random() * FILTERED_VIDEOS.length);
+    let j = Math.floor(Math.random() * (FILTERED_VIDEOS.length - 1));
     if (j >= i) j++;
-    const a = VIDEOS[i], b = VIDEOS[j];
+    const a = FILTERED_VIDEOS[i], b = FILTERED_VIDEOS[j];
     setPair(Math.random() < 0.5 ? [a, b] : [b, a]);
   }, []);
 
@@ -3226,12 +3253,12 @@ export default function TokaiVote() {
   const [rankYear, setRankYear] = useState('all');
 
   const availableYears = useMemo(() => {
-    const years = [...new Set(VIDEOS.filter(v => v.year).map(v => v.year))].sort((a, b) => b - a);
+    const years = [...new Set(FILTERED_VIDEOS.filter(v => v.year).map(v => v.year))].sort((a, b) => b - a);
     return years;
   }, []);
 
   const ranking = useMemo(() => {
-    const base = VIDEOS.map((v) => ({ ...v, elo: ratings[v.id] || 1200 }))
+    const base = FILTERED_VIDEOS.map((v) => ({ ...v, elo: ratings[v.id] || 1200 }))
       .sort((a, b) => b.elo - a.elo || b.views - a.views);
     if (rankYear === 'all') return base;
     return base.filter(v => v.year === rankYear);
@@ -3245,12 +3272,12 @@ export default function TokaiVote() {
     overflow: "hidden",
     cursor: phase !== 'idle' ? "default" : "pointer",
     transition: "transform 0.35s ease, opacity 0.35s ease, border-color 0.35s ease, box-shadow 0.2s ease",
-    border: isWinner ? "2px solid rgba(255,210,60,0.7)" : isHovered ? "2px solid rgba(255,255,255,0.25)" : "2px solid transparent",
+    border: isWinner ? "2px solid rgba(255,210,60,0.7)" : (!isSmallScreen && isHovered) ? "2px solid rgba(255,255,255,0.25)" : "2px solid transparent",
     display: "flex",
     flexDirection: "column",
-    transform: isWinner ? "scale(1.03)" : isLoser ? "scale(0.97)" : isHovered ? "translateY(-7px) scale(1.02)" : "none",
+    transform: isWinner ? "scale(1.03)" : isLoser ? "scale(0.97)" : (!isSmallScreen && isHovered) ? "translateY(-7px) scale(1.02)" : "none",
     opacity: isLoser ? 0.4 : 1,
-    boxShadow: isHovered && phase === 'idle' ? "0 20px 48px rgba(0,0,0,0.45)" : "none",
+    boxShadow: (!isSmallScreen && isHovered && phase === 'idle') ? "0 20px 48px rgba(0,0,0,0.45)" : "none",
   });
 
   // ---- Ranking ----
@@ -3324,13 +3351,13 @@ export default function TokaiVote() {
   return (
     <div style={{ minHeight: "100vh", background: "linear-gradient(135deg,#0f0c29,#1a1a3e,#24243e)", color: "#fff", fontFamily: "system-ui,sans-serif", padding: 0, margin: 0, paddingBottom: '80px', display: isSmallScreen ? "flex" : "block", flexDirection: "column", justifyContent: "center" }}>
       <div style={{ textAlign: "center", padding: isSmallScreen ? "12px 12px 4px" : "32px 16px 8px" }}>
-        <h1 style={{ fontSize: isSmallScreen ? "20px" : "32px", fontWeight: 700, fontFamily: '"Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic Medium", sans-serif', letterSpacing: "0.05em", background: "linear-gradient(180deg,#ff7d54,#ffa850,#ffbc18,#ffe478)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", margin: 0 }}>
+        <h1 style={{ fontSize: isSmallScreen ? "24px" : "32px", fontWeight: 700, fontFamily: '"Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic Medium", sans-serif', letterSpacing: "0.05em", background: "linear-gradient(180deg,#ff7d54,#ffa850,#ffbc18,#ffe478)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", margin: 0 }}>
           東海オンエア 動画バトル
         </h1>
-        <p style={{ color: "#999", fontSize: isSmallScreen ? "11px" : "13px", marginTop: isSmallScreen ? "4px" : "8px" }}>どっちの動画が好き？タップで投票！</p>
+        <p style={{ color: "#999", fontSize: isSmallScreen ? "13px" : "14px", marginTop: isSmallScreen ? "6px" : "8px" }}>どっちの動画が好き？タップで投票！</p>
       </div>
-      <div style={{ textAlign: "center", color: "#888", fontSize: isSmallScreen ? "11px" : "13px", padding: isSmallScreen ? "4px 0 8px" : "8px 0 16px" }}>
-        あなた {myVoteCount}票投票済み ・ 全体 {formatNum(matchCount)}票 ・ {VIDEOS.length}本の動画
+      <div style={{ textAlign: "center", color: "#888", fontSize: isSmallScreen ? "13px" : "14px", padding: isSmallScreen ? "4px 0 8px" : "8px 0 16px" }}>
+        あなた {myVoteCount}回投票済み ・ 全体 {formatNum(matchCount)}票 ・ {FILTERED_VIDEOS.length}本の動画
       </div>
 
       <div style={{ display: "flex", justifyContent: "center", alignItems: "stretch", gap: isSmallScreen ? "8px" : "20px", padding: "0 8px 12px", maxWidth: "1120px", margin: "0 auto", minHeight: isSmallScreen ? "auto" : "440px", opacity: phase === 'exit' ? 0 : 1, transition: "opacity 0.15s ease", flexDirection: "row" }}>
@@ -3361,10 +3388,10 @@ export default function TokaiVote() {
                 )}
               </div>
               <div style={{ padding: isSmallScreen ? "8px 10px" : "14px 16px", flex: 1, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-                <p style={{ fontSize: isSmallScreen ? "12px" : "14px", fontWeight: 700, lineHeight: "1.4", margin: "0 0 6px", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
+                <p style={{ fontSize: isSmallScreen ? "13px" : "14px", fontWeight: 700, lineHeight: "1.4", margin: "0 0 6px", display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
                   {video.title}
                 </p>
-                <div style={{ display: "flex", gap: isSmallScreen ? "8px" : "16px", fontSize: isSmallScreen ? "11px" : "13px", color: "#aaa" }}>
+                <div style={{ display: "flex", gap: isSmallScreen ? "8px" : "16px", fontSize: isSmallScreen ? "12px" : "13px", color: "#aaa" }}>
                   <span>▶ {formatNum(video.views)}</span>
                   <span>♡ {formatNum(video.likes)}</span>
                 </div>
@@ -3373,7 +3400,7 @@ export default function TokaiVote() {
                 href={`https://www.youtube.com/watch?v=${video.id}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{ display: "block", textAlign: "center", padding: isSmallScreen ? "6px" : "10px", fontSize: isSmallScreen ? "10px" : "12px", color: "#ff4444", textDecoration: "none", borderTop: "1px solid rgba(255,255,255,0.06)" }}
+                style={{ display: "block", textAlign: "center", padding: isSmallScreen ? "8px" : "10px", fontSize: isSmallScreen ? "12px" : "12px", color: "#ff4444", textDecoration: "none", borderTop: "1px solid rgba(255,255,255,0.06)" }}
                 onClick={(e) => e.stopPropagation()}
               >
                 YouTubeで見る →
@@ -3384,14 +3411,14 @@ export default function TokaiVote() {
       </div>
 
       <button
-        style={{ display: "block", margin: "0 auto 12px", padding: "8px 24px", background: "none", border: "1px solid rgba(255,255,255,0.15)", borderRadius: "20px", color: "#888", fontSize: "13px", cursor: phase !== 'idle' ? "default" : "pointer", opacity: phase !== 'idle' ? 0.4 : 1 }}
+        style={{ display: "block", margin: "0 auto 12px", padding: "8px 24px", background: "none", border: "1px solid rgba(255,255,255,0.15)", borderRadius: "20px", color: "#888", fontSize: isSmallScreen ? "14px" : "14px", cursor: phase !== 'idle' ? "default" : "pointer", opacity: phase !== 'idle' ? 0.4 : 1 }}
         onClick={() => { if (phase === 'idle') pickPair(); }}
       >
         この組み合わせをスキップ
       </button>
 
       {myVoteCount < 5 ? (
-        <p style={{ textAlign: "center", color: "#666", fontSize: "13px", padding: "4px 0 32px" }}>
+        <p style={{ textAlign: "center", color: "#666", fontSize: isSmallScreen ? "14px" : "14px", padding: "4px 0 32px" }}>
           あと{5 - myVoteCount}回投票するとランキングが見られます
         </p>
       ) : (
