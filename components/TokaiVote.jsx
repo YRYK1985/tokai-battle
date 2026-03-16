@@ -3405,7 +3405,10 @@ export default function TokaiVote() {
           <span style={{ position: "relative", background: "linear-gradient(180deg,#ff7d54,#ffa850,#ffbc18,#ffe478)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", zIndex: 1 }}>東海オンエア 動画バトル</span>
         </h1>
         <p style={{ color: "#aaa", fontSize: isSmallScreen ? "12px" : "13px", marginTop: "6px", letterSpacing: "0.03em", lineHeight: "1.6" }}>by 東海ランキング【公認】</p>
-        <p style={{ color: "#ff9944", fontSize: isSmallScreen ? "16px" : "18px", fontWeight: 700, marginTop: "8px", lineHeight: "1.6" }}>どっちの動画が好き？タップで投票！</p>
+        <p style={{ fontSize: isSmallScreen ? "16px" : "18px", fontWeight: 700, marginTop: "8px", lineHeight: "1.6", position: "relative", display: "inline-block" }}>
+          <span style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, WebkitTextStroke: isSmallScreen ? "2px #000" : "3px #000", color: "transparent", zIndex: 0 }} aria-hidden="true">どっちの動画が好き？タップで投票！</span>
+          <span style={{ position: "relative", color: "#ff9944", zIndex: 1 }}>どっちの動画が好き？タップで投票！</span>
+        </p>
         <p style={{ color: "#aaa", fontSize: isSmallScreen ? "13px" : "14px", marginTop: "6px", lineHeight: "1.6" }}>あなた {myVoteCount}回投票済み ・ 全体 {formatNum(matchCount)}票 ・ {FILTERED_VIDEOS.length}本の動画</p>
       </div>
 
