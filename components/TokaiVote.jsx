@@ -3161,7 +3161,21 @@ const LIVE_STREAM_IDS = new Set([
   "HDPpuuQj1Sc","Amu4JPQa8n4","amO_PgcPN1k","a__0Ebc9chc", // 宿題ライブ等
   "nzbHOij23-c","uM2DBohbUow", // 生呑み・大新掃除
 ]);
-const FILTERED_VIDEOS = VIDEOS.filter(v => !LIVE_STREAM_IDS.has(v.id));
+
+// Shorts動画のIDを除外（YouTube API + /shorts/ URLチェックで確定）
+const SHORTS_IDS = new Set([
+  "8s2rSSGjA_Y","bxhQ98TrCQQ","Kyvt3ENI9C4","qWNp0c8mSww","rMHEVmYi1JE",
+  "WJ9F8mk7oTo","V7BoilPjcJU","15kxUkVKvpU","nmQzz_ilA8g","gTFmVV-4KDI",
+  "_LY5BMSpI5E","HaS5xve8-X4","l2DHLRnfLJw","AzCdqauVQck","pg92wMuUhwU",
+  "9OMtOR0hY5o","_iBdkdBDJRo","bGK4R205WxU","HqXxl2Yv4JE","WdQBbWXWGCs",
+  "NbYxU9skdAs","lEUtuKekV1k","7uqPuo_89gk","KxEMbBZ3OeY","d8yfQJJF78w",
+  "5SaSw4fGbCc","rnbxm8pXFxU","n3Y35qANs98","JDNctTLm-PQ","ZFYcF1s2dAc",
+  "C9R-u5n5TMs","ds3Ayjdww4k","ypBvGYXiQWw","c5lFK1yfZ7w","YO8Z7DYqdxs",
+  "fkx2p-Svqbw","m4KYCAR52u4","tL_cr0JabHQ","W4B67ttarYM","p3zxLPWAM_E",
+  "8ko1eeSPFp0","7vuEv48uplw","_0WYKvmPkZE","15YNeRh3uTs","WgCgjbu0lVY",
+  "1r2CrR4Qi_A","bdDiQd6P1vQ","jUJEOS9CQyk","XK_6SvROUO0",
+]);
+const FILTERED_VIDEOS = VIDEOS.filter(v => !LIVE_STREAM_IDS.has(v.id) && !SHORTS_IDS.has(v.id));
 
 export default function TokaiVote() {
   const [ratings, setRatings] = useState(() => {
