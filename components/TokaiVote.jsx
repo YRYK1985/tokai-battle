@@ -3365,15 +3365,13 @@ export default function TokaiVote() {
 
   return (
     <div style={{ minHeight: "100vh", background: "linear-gradient(135deg,#0f0c29,#1a1a3e,#24243e)", color: "#fff", fontFamily: "system-ui,sans-serif", padding: 0, margin: 0, paddingBottom: '80px', display: "flex", flexDirection: "column", justifyContent: "center", marginTop: isSmallScreen ? "-40px" : "0" }}>
-      <div style={{ textAlign: "center", padding: isSmallScreen ? "12px 12px 6px" : "32px 16px 8px" }}>
-        <h1 style={{ fontSize: isSmallScreen ? "26px" : "32px", fontWeight: 700, fontFamily: '"Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic Medium", sans-serif', letterSpacing: "0.05em", background: "linear-gradient(180deg,#ff7d54,#ffa850,#ffbc18,#ffe478)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", margin: 0, lineHeight: "1.4" }}>
+      <div style={{ textAlign: "center", padding: isSmallScreen ? "12px 12px 0" : "32px 16px 0" }}>
+        <h1 style={{ fontSize: isSmallScreen ? "26px" : "32px", fontWeight: 700, fontFamily: '"Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic Medium", sans-serif', letterSpacing: "0.05em", background: "linear-gradient(180deg,#ff7d54,#ffa850,#ffbc18,#ffe478)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", margin: 0, lineHeight: "1.6", paddingLeft: "0.15em" }}>
           東海オンエア 動画バトル
         </h1>
-        <p style={{ color: "#888", fontSize: isSmallScreen ? "11px" : "12px", marginTop: "4px", letterSpacing: "0.03em" }}>by 東海ランキング【公認】</p>
-        <p style={{ color: "#bbb", fontSize: isSmallScreen ? "14px" : "15px", marginTop: "8px", lineHeight: "1.5" }}>どっちの動画が好き？タップで投票！</p>
-      </div>
-      <div style={{ textAlign: "center", color: "#aaa", fontSize: isSmallScreen ? "14px" : "15px", padding: isSmallScreen ? "4px 0 10px" : "8px 0 16px", lineHeight: "1.5" }}>
-        あなた {myVoteCount}回投票済み ・ 全体 {formatNum(matchCount)}票 ・ {FILTERED_VIDEOS.length}本の動画
+        <p style={{ color: "#aaa", fontSize: isSmallScreen ? "12px" : "13px", marginTop: "6px", letterSpacing: "0.03em", lineHeight: "1.6" }}>by 東海ランキング【公認】</p>
+        <p style={{ color: "#bbb", fontSize: isSmallScreen ? "14px" : "15px", marginTop: "6px", lineHeight: "1.6" }}>どっちの動画が好き？タップで投票！</p>
+        <p style={{ color: "#aaa", fontSize: isSmallScreen ? "13px" : "14px", marginTop: "6px", lineHeight: "1.6" }}>あなた {myVoteCount}回投票済み ・ 全体 {formatNum(matchCount)}票 ・ {FILTERED_VIDEOS.length}本の動画</p>
       </div>
 
       <div style={{ display: "flex", justifyContent: "center", alignItems: "stretch", gap: isSmallScreen ? "8px" : "20px", padding: "0 8px 12px", maxWidth: "1120px", margin: "0 auto", minHeight: isSmallScreen ? "auto" : "440px", opacity: phase === 'exit' ? 0 : 1, transition: "opacity 0.15s ease", flexDirection: "row" }}>
@@ -3432,20 +3430,21 @@ export default function TokaiVote() {
         })}
       </div>
 
-      <button
-        style={{ display: "block", margin: "0 auto 12px", padding: "8px 24px", background: "none", border: "1px solid rgba(255,255,255,0.15)", borderRadius: "20px", color: "#888", fontSize: isSmallScreen ? "14px" : "14px", cursor: phase !== 'idle' ? "default" : "pointer", opacity: phase !== 'idle' ? 0.4 : 1 }}
-        onClick={() => { if (phase === 'idle') pickPair(); }}
-      >
-        この組み合わせをスキップ
-      </button>
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "12px", padding: "4px 0 24px" }}>
+        <button
+          style={{ padding: "8px 24px", background: "none", border: "1px solid rgba(255,255,255,0.15)", borderRadius: "20px", color: "#888", fontSize: "14px", cursor: phase !== 'idle' ? "default" : "pointer", opacity: phase !== 'idle' ? 0.4 : 1 }}
+          onClick={() => { if (phase === 'idle') pickPair(); }}
+        >
+          この組み合わせをスキップ
+        </button>
 
       {myVoteCount < 5 ? (
-        <p style={{ textAlign: "center", color: "#aaa", fontSize: isSmallScreen ? "14px" : "15px", padding: "4px 0 32px", lineHeight: "1.5" }}>
+        <p style={{ textAlign: "center", color: "#aaa", fontSize: isSmallScreen ? "14px" : "15px", margin: 0, lineHeight: "1.6" }}>
           あと{5 - myVoteCount}回投票するとランキングが見れます
         </p>
       ) : (
         <button
-          style={{ display: "block", margin: "8px auto 32px", padding: "12px 32px", background: "linear-gradient(135deg,#ff6b6b,#ee5a24)", border: "none", borderRadius: "30px", color: "#fff", fontSize: "16px", fontWeight: 700, cursor: "pointer", boxShadow: "0 4px 20px rgba(255,107,107,0.3)" }}
+          style={{ padding: "12px 32px", background: "linear-gradient(135deg,#ff6b6b,#ee5a24)", border: "none", borderRadius: "30px", color: "#fff", fontSize: "16px", fontWeight: 700, cursor: "pointer", boxShadow: "0 4px 20px rgba(255,107,107,0.3)" }}
           onClick={() => {
             fetch('/api/ratings').then(r => r.json()).then(data => {
               if (data.ratings && Object.keys(data.ratings).length > 0) {
@@ -3459,6 +3458,7 @@ export default function TokaiVote() {
           🏆 ランキングを見る
         </button>
       )}
+      </div>
 
       {/* 広告枠 - AdSense設定後にここを差し替え */}
       <div style={{ 
