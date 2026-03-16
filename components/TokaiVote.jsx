@@ -3183,7 +3183,14 @@ const GRAYZONE_IDS = new Set([
   "Yv-LDeIrQ84","8qG87BvMSyM","fNipfeUNl4Y","dSUV7NkRYuc","qnXNSiinhjQ",
   "dnWEXjpHijE","UCyzux2niJA","xqiVycOfjO0", // アイランド 全EP+トレーラー+メイキング
 ]);
-const FILTERED_VIDEOS = VIDEOS.filter(v => !LIVE_STREAM_IDS.has(v.id) && !SHORTS_IDS.has(v.id) && !GRAYZONE_IDS.has(v.id));
+const MUSIC_VIDEO_IDS = new Set([
+  "Bqwo_7QdmhQ", // リサイタルズ - 俺らリサイタルズ
+  "4aAtpQk1PAo", // リサイタルズ - Dejavina
+  "rwgA7mVXcM0", // リサイタルズ - 888月
+  "bULTcUTZwKQ", // リサイタルズ - Choiced 漢 Soul feat. 木村昴
+  "wMsemPt98uU", // リサイタルズ - 助かった！
+]);
+const FILTERED_VIDEOS = VIDEOS.filter(v => !LIVE_STREAM_IDS.has(v.id) && !SHORTS_IDS.has(v.id) && !GRAYZONE_IDS.has(v.id) && !MUSIC_VIDEO_IDS.has(v.id));
 
 export default function TokaiVote() {
   const [ratings, setRatings] = useState(() => {
