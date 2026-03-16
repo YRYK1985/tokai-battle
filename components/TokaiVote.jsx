@@ -3327,16 +3327,16 @@ export default function TokaiVote() {
   if (showRanking) {
     return (
       <div style={{ minHeight: "100vh", background: "linear-gradient(135deg,#12102e,#1c1c42,#282848)", color: "#fff", fontFamily: "system-ui,sans-serif", padding: 0, margin: 0, paddingBottom: '80px' }}>
-        <div style={{ textAlign: "center", padding: "32px 16px 8px" }}>
+        <div style={{ textAlign: "center", padding: "24px 16px 4px" }}>
           <h1 style={{ fontSize: "24px", fontWeight: 800, background: "linear-gradient(180deg,#ff7d54,#ffa850,#ffbc18,#ffe478)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", margin: 0 }}>
             ランキング {rankYear === 'all' ? 'TOP300' : 'TOP50'}
           </h1>
           <p style={{ color: "#888", fontSize: "11px", marginTop: "4px", letterSpacing: "0.03em" }}>by 東海ランキング【公認】</p>
-          <p style={{ color: "#999", fontSize: "13px", marginTop: "8px" }}>ユーザー{formatNum(Math.floor(matchCount / 5))}人 全{formatNum(matchCount)}票 の投票に基づく</p>
+          <p style={{ color: "#999", fontSize: "13px", marginTop: "6px" }}>ユーザー{formatNum(Math.floor(matchCount / 5))}人 全{formatNum(matchCount)}票 の投票に基づく</p>
         </div>
-        <div style={{ padding: "16px" }}>
+        <div style={{ padding: "8px 16px 16px" }}>
           <button
-            style={{ display: "block", margin: "0 auto 16px", padding: "10px 28px", background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.2)", borderRadius: "30px", color: "#fff", fontSize: "14px", cursor: "pointer" }}
+            style={{ display: "block", margin: "0 auto 12px", padding: "10px 28px", background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.2)", borderRadius: "30px", color: "#fff", fontSize: "14px", cursor: "pointer" }}
             onClick={() => setShowRanking(false)}
           >
             ← 投票に戻る
