@@ -3155,7 +3155,8 @@ export default function TokaiVote() {
     const i = Math.floor(Math.random() * VIDEOS.length);
     let j = Math.floor(Math.random() * (VIDEOS.length - 1));
     if (j >= i) j++;
-    setPair([VIDEOS[i], VIDEOS[j]]);
+    const a = VIDEOS[i], b = VIDEOS[j];
+    setPair(Math.random() < 0.5 ? [a, b] : [b, a]);
   }, []);
 
   useEffect(() => { pickPair(); }, [pickPair]);
@@ -3205,7 +3206,7 @@ export default function TokaiVote() {
 
   const cardStyle = (isWinner, isLoser, isHovered) => ({
     flex: 1,
-    maxWidth: isSmallScreen ? "100%" : "480px",
+    maxWidth: "480px",
     background: "rgba(255,255,255,0.06)",
     borderRadius: "16px",
     overflow: "hidden",
@@ -3289,17 +3290,17 @@ export default function TokaiVote() {
 
   return (
     <div style={{ minHeight: "100vh", background: "linear-gradient(135deg,#0f0c29,#1a1a3e,#24243e)", color: "#fff", fontFamily: "system-ui,sans-serif", padding: 0, margin: 0, paddingBottom: '80px' }}>
-      <div style={{ textAlign: "center", padding: "32px 16px 8px" }}>
-        <h1 style={{ fontSize: isSmallScreen ? "24px" : "32px", fontWeight: 700, fontFamily: '"Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic Medium", sans-serif', letterSpacing: "0.05em", background: "linear-gradient(180deg,#ff7d54,#ffa850,#ffbc18,#ffe478)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", margin: 0 }}>
+      <div style={{ textAlign: "center", padding: isSmallScreen ? "16px 12px 4px" : "32px 16px 8px" }}>
+        <h1 style={{ fontSize: isSmallScreen ? "20px" : "32px", fontWeight: 700, fontFamily: '"Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic Medium", sans-serif', letterSpacing: "0.05em", background: "linear-gradient(180deg,#ff7d54,#ffa850,#ffbc18,#ffe478)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", margin: 0 }}>
           東海オンエア 動画バトル
         </h1>
-        <p style={{ color: "#999", fontSize: "13px", marginTop: "8px" }}>どっちの動画が好き？タップで投票！</p>
+        <p style={{ color: "#999", fontSize: isSmallScreen ? "11px" : "13px", marginTop: isSmallScreen ? "4px" : "8px" }}>どっちの動画が好き？タップで投票！</p>
       </div>
-      <div style={{ textAlign: "center", color: "#888", fontSize: "13px", padding: "8px 0 16px" }}>
+      <div style={{ textAlign: "center", color: "#888", fontSize: isSmallScreen ? "11px" : "13px", padding: isSmallScreen ? "4px 0 8px" : "8px 0 16px" }}>
         {matchCount}回投票済み ・ {VIDEOS.length}本の動画
       </div>
 
-      <div style={{ display: "flex", justifyContent: "center", alignItems: "stretch", gap: isSmallScreen ? "12px" : "20px", padding: "0 16px 16px", maxWidth: "1040px", margin: "0 auto", minHeight: "400px", opacity: phase === 'exit' ? 0 : 1, transition: "opacity 0.15s ease", flexDirection: isSmallScreen ? "column" : "row" }}>
+      <div style={{ display: "flex", justifyContent: "center", alignItems: "stretch", gap: isSmallScreen ? "8px" : "20px", padding: "0 8px 12px", maxWidth: "1040px", margin: "0 auto", minHeight: isSmallScreen ? "auto" : "400px", opacity: phase === 'exit' ? 0 : 1, transition: "opacity 0.15s ease", flexDirection: "row" }}>
         {pair.map((video, idx) => {
           const isWinner = phase === 'voted' && votedState?.winnerId === video.id;
           const isLoser = phase === 'voted' && votedState?.loserId === video.id;
@@ -3326,11 +3327,11 @@ export default function TokaiVote() {
                   </div>
                 )}
               </div>
-              <div style={{ padding: "14px 16px", flex: 1, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-                <p style={{ fontSize: "14px", fontWeight: 700, lineHeight: "1.4", margin: "0 0 10px", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
+              <div style={{ padding: isSmallScreen ? "8px 10px" : "14px 16px", flex: 1, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                <p style={{ fontSize: isSmallScreen ? "12px" : "14px", fontWeight: 700, lineHeight: "1.4", margin: "0 0 6px", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
                   {video.title}
                 </p>
-                <div style={{ display: "flex", gap: "16px", fontSize: "13px", color: "#aaa" }}>
+                <div style={{ display: "flex", gap: isSmallScreen ? "8px" : "16px", fontSize: isSmallScreen ? "11px" : "13px", color: "#aaa" }}>
                   <span>▶ {formatNum(video.views)}</span>
                   <span>♡ {formatNum(video.likes)}</span>
                 </div>
@@ -3339,7 +3340,7 @@ export default function TokaiVote() {
                 href={`https://www.youtube.com/watch?v=${video.id}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{ display: "block", textAlign: "center", padding: "10px", fontSize: "12px", color: "#ff4444", textDecoration: "none", borderTop: "1px solid rgba(255,255,255,0.06)" }}
+                style={{ display: "block", textAlign: "center", padding: isSmallScreen ? "6px" : "10px", fontSize: isSmallScreen ? "10px" : "12px", color: "#ff4444", textDecoration: "none", borderTop: "1px solid rgba(255,255,255,0.06)" }}
                 onClick={(e) => e.stopPropagation()}
               >
                 YouTubeで見る →
