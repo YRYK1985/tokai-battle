@@ -14,7 +14,7 @@ export async function POST(request) {
     }
 
     // Get current ratings from hash (2 commands → 1 command with hmget)
-    const values = await kv.hmget('ratings', winnerId, loserId);
+    const values = await kv.hmget('ratings', winnerId, loserId) || {};
     const rW = values[winnerId] ?? 1200;
     const rL = values[loserId] ?? 1200;
 
