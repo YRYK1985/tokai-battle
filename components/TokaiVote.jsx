@@ -3390,7 +3390,7 @@ export default function TokaiVote() {
               <div style={{ position: "relative", width: "100%", paddingTop: "56.25%", overflow: "hidden", background: "#1a1a2e" }}>
                 {!imgErrors[video.id] ? (
                   <img
-                    src={`https://img.youtube.com/vi/${video.id}/mqdefault.jpg`}
+                    src={`https://img.youtube.com/vi/${video.id}/hqdefault.jpg`}
                     alt={video.title}
                     style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover" }}
                     onError={() => setImgErrors((p) => ({ ...p, [video.id]: true }))}
