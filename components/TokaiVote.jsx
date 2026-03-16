@@ -3297,12 +3297,12 @@ export default function TokaiVote() {
   // ---- Ranking ----
   if (showRanking) {
     return (
-      <div style={{ minHeight: "100vh", background: "linear-gradient(135deg,#0f0c29,#1a1a3e,#24243e)", color: "#fff", fontFamily: "system-ui,sans-serif", padding: 0, margin: 0, paddingBottom: '80px' }}>
+      <div style={{ minHeight: "100vh", background: "linear-gradient(135deg,#12102e,#1c1c42,#282848)", color: "#fff", fontFamily: "system-ui,sans-serif", padding: 0, margin: 0, paddingBottom: '80px' }}>
         <div style={{ textAlign: "center", padding: "32px 16px 8px" }}>
           <h1 style={{ fontSize: "24px", fontWeight: 800, background: "linear-gradient(180deg,#ff7d54,#ffa850,#ffbc18,#ffe478)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", margin: 0 }}>
             ランキング {rankYear === 'all' ? 'TOP300' : 'TOP50'}
           </h1>
-          <p style={{ color: "#999", fontSize: "13px", marginTop: "8px" }}>全ユーザー {formatNum(matchCount)}票 の投票に基づく</p>
+          <p style={{ color: "#999", fontSize: "13px", marginTop: "8px" }}>ユーザー{formatNum(Math.floor(matchCount / 5))}人 全{formatNum(matchCount)}票 の投票に基づく</p>
         </div>
         <div style={{ padding: "16px" }}>
           <button
