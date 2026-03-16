@@ -3390,10 +3390,16 @@ export default function TokaiVote() {
               <div style={{ position: "relative", width: "100%", paddingTop: "56.25%", overflow: "hidden", background: "#1a1a2e" }}>
                 {!imgErrors[video.id] ? (
                   <img
-                    src={`https://img.youtube.com/vi/${video.id}/hqdefault.jpg`}
+                    src={`https://img.youtube.com/vi/${video.id}/maxresdefault.jpg`}
                     alt={video.title}
                     style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover" }}
-                    onError={() => setImgErrors((p) => ({ ...p, [video.id]: true }))}
+                    onError={(e) => {
+                      if (e.target.src.includes('maxresdefault')) {
+                        e.target.src = `https://img.youtube.com/vi/${video.id}/hqdefault.jpg`;
+                      } else {
+                        setImgErrors((p) => ({ ...p, [video.id]: true }));
+                      }
+                    }}
                   />
                 ) : (
                   <div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "48px", background: "linear-gradient(135deg,#1e3a5f,#2d1b69)" }}>
