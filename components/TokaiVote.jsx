@@ -3143,6 +3143,7 @@ export default function TokaiVote() {
     return r;
   });
   const [matchCount, setMatchCount] = useState(0);
+  const [myVoteCount, setMyVoteCount] = useState(0);
   const [pair, setPair] = useState([null, null]);
   const [showRanking, setShowRanking] = useState(false);
   const [hoveredCard, setHoveredCard] = useState(null);
@@ -3161,6 +3162,19 @@ export default function TokaiVote() {
 
   useEffect(() => { pickPair(); }, [pickPair]);
 
+  // Fetch global ratings on mount
+  useEffect(() => {
+    fetch('/api/ratings')
+      .then(res => res.json())
+      .then(data => {
+        if (data.ratings && Object.keys(data.ratings).length > 0) {
+          setRatings(prev => ({ ...prev, ...data.ratings }));
+        }
+        if (data.matchCount) setMatchCount(data.matchCount);
+      })
+      .catch(() => {});
+  }, []);
+
   useEffect(() => {
     const handleResize = () => {
       setIsSmallScreen(window.innerWidth < 640);
@@ -3173,11 +3187,30 @@ export default function TokaiVote() {
   const vote = (winnerId) => {
     if (phase !== 'idle') return;
     const loserId = pair[0].id === winnerId ? pair[1].id : pair[0].id;
+
+    // Optimistic local update
     setRatings((prev) => {
       const [newW, newL] = updateElo(prev[winnerId], prev[loserId]);
       return { ...prev, [winnerId]: newW, [loserId]: newL };
     });
     setMatchCount((c) => c + 1);
+    setMyVoteCount((c) => c + 1);
+
+    // Send to server
+    fetch('/api/vote', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ winnerId, loserId }),
+    }).then(res => res.json()).then(data => {
+      if (data.winnerElo && data.loserElo) {
+        setRatings(prev => ({
+          ...prev,
+          [winnerId]: data.winnerElo,
+          [loserId]: data.loserElo,
+        }));
+      }
+    }).catch(() => {});
+
     setVotedState({ winnerId, loserId });
     setPhase('voted');
     setTimeout(() => {
@@ -3228,7 +3261,7 @@ export default function TokaiVote() {
           <h1 style={{ fontSize: "24px", fontWeight: 800, background: "linear-gradient(180deg,#ff7d54,#ffa850,#ffbc18,#ffe478)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", margin: 0 }}>
             ランキング TOP50
           </h1>
-          <p style={{ color: "#999", fontSize: "13px", marginTop: "8px" }}>{matchCount}回の投票に基づく</p>
+          <p style={{ color: "#999", fontSize: "13px", marginTop: "8px" }}>全ユーザー {formatNum(matchCount)}票 の投票に基づく</p>
         </div>
         <div style={{ padding: "16px" }}>
           <button
@@ -3297,7 +3330,7 @@ export default function TokaiVote() {
         <p style={{ color: "#999", fontSize: isSmallScreen ? "11px" : "13px", marginTop: isSmallScreen ? "4px" : "8px" }}>どっちの動画が好き？タップで投票！</p>
       </div>
       <div style={{ textAlign: "center", color: "#888", fontSize: isSmallScreen ? "11px" : "13px", padding: isSmallScreen ? "4px 0 8px" : "8px 0 16px" }}>
-        {matchCount}回投票済み ・ {VIDEOS.length}本の動画
+        あなた {myVoteCount}票 ・ 全体 {formatNum(matchCount)}票 ・ {VIDEOS.length}本の動画
       </div>
 
       <div style={{ display: "flex", justifyContent: "center", alignItems: "stretch", gap: isSmallScreen ? "8px" : "20px", padding: "0 8px 12px", maxWidth: "1040px", margin: "0 auto", minHeight: isSmallScreen ? "auto" : "400px", opacity: phase === 'exit' ? 0 : 1, transition: "opacity 0.15s ease", flexDirection: "row" }}>
@@ -3357,14 +3390,22 @@ export default function TokaiVote() {
         この組み合わせをスキップ
       </button>
 
-      {matchCount < 10 ? (
+      {myVoteCount < 10 ? (
         <p style={{ textAlign: "center", color: "#666", fontSize: "13px", padding: "4px 0 32px" }}>
-          あと{10 - matchCount}回投票するとランキングが見られます
+          あと{10 - myVoteCount}回投票するとランキングが見られます
         </p>
       ) : (
         <button
           style={{ display: "block", margin: "8px auto 32px", padding: "12px 32px", background: "linear-gradient(135deg,#ff6b6b,#ee5a24)", border: "none", borderRadius: "30px", color: "#fff", fontSize: "16px", fontWeight: 700, cursor: "pointer", boxShadow: "0 4px 20px rgba(255,107,107,0.3)" }}
-          onClick={() => setShowRanking(true)}
+          onClick={() => {
+            fetch('/api/ratings').then(r => r.json()).then(data => {
+              if (data.ratings && Object.keys(data.ratings).length > 0) {
+                setRatings(prev => ({ ...prev, ...data.ratings }));
+              }
+              if (data.matchCount) setMatchCount(data.matchCount);
+            }).catch(() => {});
+            setShowRanking(true);
+          }}
         >
           🏆 ランキングを見る
         </button>
