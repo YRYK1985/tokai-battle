@@ -3160,6 +3160,7 @@ const LIVE_STREAM_IDS = new Set([
   "ds3Ayjdww4k", // 早抜けクイズ生配信
   "HDPpuuQj1Sc","Amu4JPQa8n4","amO_PgcPN1k","a__0Ebc9chc", // 宿題ライブ等
   "nzbHOij23-c","uM2DBohbUow", // 生呑み・大新掃除
+  "mqT3U7_-LYw", // 【大断捨離】撮影部屋の押入れ、鬼の年末大掃除SP
 ]);
 
 // Shorts動画のIDを除外（YouTube API + /shorts/ URLチェックで確定）
