@@ -3411,7 +3411,7 @@ export default function TokaiVote() {
           東海オンエア 動画バトル
         </h1>
         <p style={{ color: "#aaa", fontSize: isSmallScreen ? "12px" : "13px", marginTop: "4px", letterSpacing: "0.03em", lineHeight: "1.6" }}>by 東海ランキング<span style={{ marginLeft: "-0.3em" }}>【</span>公認】</p>
-        <p style={{ color: "#ff9944", fontSize: isSmallScreen ? "16px" : "18px", fontWeight: 700, fontFamily: '"Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic Medium", sans-serif', letterSpacing: "0.05em", marginTop: "8px", lineHeight: "1.6" }}>どっちの動画が好き？タップで投票！</p>
+        <p style={{ color: "#ff9944", fontSize: isSmallScreen ? "18px" : "22px", fontWeight: 900, fontFamily: '"Noto Sans JP", "Hiragino Sans", sans-serif', letterSpacing: "0.05em", marginTop: "8px", lineHeight: "1.6" }}>どっちの動画が好き？タップで投票！</p>
         <p style={{ color: "#aaa", fontSize: isSmallScreen ? "13px" : "14px", marginTop: "8px", lineHeight: "1.6" }}>あなた {myVoteCount}回投票済み ・ 全体 {formatNum(matchCount)}票 ・ {FILTERED_VIDEOS.length}本の動画</p>
       </div>
 
