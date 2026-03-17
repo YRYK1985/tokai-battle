@@ -24,6 +24,7 @@ export default function RootLayout({ children }) {
     <html lang="ja">
       <head>
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700;900&display=swap" rel="stylesheet" />
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9862215132601373" crossOrigin="anonymous"></script>
       </head>
       <body style={{ margin: 0, padding: 0 }}>{children}</body>
     </html>
