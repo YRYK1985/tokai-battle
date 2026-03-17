@@ -3409,11 +3409,11 @@ export default function TokaiVote() {
     <div style={{ minHeight: "100vh", background: "linear-gradient(135deg,#0f0c29,#1a1a3e,#24243e)", color: "#fff", fontFamily: "system-ui,sans-serif", padding: 0, margin: 0, paddingBottom: '80px', display: "flex", flexDirection: "column", justifyContent: "center", marginTop: isSmallScreen ? "-40px" : "0" }}>
       <div style={{ textAlign: "center", padding: isSmallScreen ? "12px 12px 0" : "32px 16px 0" }}>
         <h1 style={{ fontSize: isSmallScreen ? "26px" : "32px", fontWeight: 700, fontFamily: '"Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic Medium", sans-serif', letterSpacing: "0.05em", margin: 0, lineHeight: "1.6", position: "relative", display: "inline-block" }}>
-          <span style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, WebkitTextStroke: isSmallScreen ? "5px #000" : "6px #000", color: "transparent", zIndex: 0, letterSpacing: "0.05em" }} aria-hidden="true">東海オンエア 動画バトル</span>
+          <span style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, WebkitTextStroke: isSmallScreen ? "3px #000" : "4px #000", color: "transparent", zIndex: 0, letterSpacing: "0.05em" }} aria-hidden="true">東海オンエア 動画バトル</span>
           <span style={{ position: "relative", background: "linear-gradient(180deg,#ff7d54,#ffa850,#ffbc18,#ffe478)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", zIndex: 1 }}>東海オンエア 動画バトル</span>
         </h1>
         <p style={{ color: "#aaa", fontSize: isSmallScreen ? "12px" : "13px", marginTop: "4px", letterSpacing: "0.03em", lineHeight: "1.6" }}>by 東海ランキング<span style={{ marginLeft: "-0.3em" }}>【</span>公認】</p>
-        <p style={{ color: "#ff9944", fontSize: isSmallScreen ? "15px" : "17px", fontWeight: 700, fontFamily: '"Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic Medium", sans-serif', letterSpacing: "0.05em", marginTop: "8px", lineHeight: "1.6" }}>どっちの動画が好き？タップで投票！</p>
+        <p style={{ color: "#ff9944", fontSize: isSmallScreen ? "17px" : "19px", fontWeight: 700, fontFamily: '"Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic Medium", sans-serif', letterSpacing: "0.05em", marginTop: "8px", lineHeight: "1.6" }}>どっちの動画が好き？タップで投票！</p>
         <p style={{ color: "#aaa", fontSize: isSmallScreen ? "13px" : "14px", marginTop: "8px", lineHeight: "1.6" }}>あなた {myVoteCount}回投票済み ・ 全体 {formatNum(matchCount)}票 ・ {FILTERED_VIDEOS.length}本の動画</p>
       </div>
 
