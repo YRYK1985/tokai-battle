@@ -3377,13 +3377,14 @@ export default function TokaiVote() {
           <button
             style={{ display: "block", margin: "24px auto 16px", padding: "14px 32px", background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.2)", borderRadius: "30px", color: "#ccc", fontSize: "15px", fontWeight: 600, cursor: "pointer", transition: "background 0.2s" }}
             onClick={() => {
-              const v = FILTERED_VIDEOS[Math.floor(Math.random() * FILTERED_VIDEOS.length)];
+              const pool = rankYear === 'all' ? FILTERED_VIDEOS : FILTERED_VIDEOS.filter(v => v.year === rankYear);
+              const v = pool[Math.floor(Math.random() * pool.length)];
               window.open(`https://www.youtube.com/watch?v=${v.id}`, '_blank');
             }}
             onMouseEnter={(e) => e.target.style.background = "rgba(255,255,255,0.15)"}
             onMouseLeave={(e) => e.target.style.background = "rgba(255,255,255,0.08)"}
           >
-            🎲 ランダムで東海オンエアの動画を見る
+            🎲 ランダムで{rankYear === 'all' ? '' : `${rankYear}年の`}東海オンエアの動画を見る
           </button>
         </div>
 
