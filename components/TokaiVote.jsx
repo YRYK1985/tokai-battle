@@ -3413,7 +3413,7 @@ export default function TokaiVote() {
         @keyframes p-sway1  { 0%,100%{transform:translateX(0)} 50%{transform:translateX(20px)} }
         @keyframes p-sway2  { 0%,100%{transform:translateX(0)} 50%{transform:translateX(-18px)} }
         @keyframes p-sway3  { 0%,100%{transform:translateX(0)} 50%{transform:translateX(14px)} }
-        .gp { position:absolute; border-radius:50%; pointer-events:none; z-index:-1; }
+        .gp { position:absolute; border-radius:50%; pointer-events:none; z-index:0; }
       `}</style>
       {[
         { s:3, l:"8%",  dur:10, d:0,   sw:"p-sway1", sd:3,   c:"#ffcc44" },
