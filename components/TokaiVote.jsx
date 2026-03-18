@@ -3415,34 +3415,34 @@ export default function TokaiVote() {
         @keyframes p-sway3  { 0%,100%{transform:translateX(0)} 50%{transform:translateX(14px)} }
         .gp { position:absolute; border-radius:50%; pointer-events:none; z-index:0; }
       `}</style>
-      {[
-        { s:3, l:"8%",  dur:10, d:0,   sw:"p-sway1", sd:3,   c:"#ffcc44" },
-        { s:4, l:"20%", dur:13, d:2,   sw:"p-sway2", sd:4,   c:"#ffaa00" },
-        { s:2, l:"33%", dur:9,  d:4,   sw:"p-sway3", sd:2.5, c:"#ffd080" },
-        { s:5, l:"48%", dur:12, d:1,   sw:"p-sway1", sd:3.5, c:"#ffbb33" },
-        { s:3, l:"62%", dur:11, d:3,   sw:"p-sway2", sd:4.5, c:"#ffcc44" },
-        { s:4, l:"75%", dur:8,  d:5,   sw:"p-sway3", sd:3,   c:"#ff9922" },
-        { s:2, l:"88%", dur:14, d:1.5, sw:"p-sway1", sd:5,   c:"#ffd080" },
-        { s:3, l:"15%", dur:11, d:6,   sw:"p-sway2", sd:3.8, c:"#ffbb33" },
-        { s:4, l:"55%", dur:9,  d:2.5, sw:"p-sway3", sd:4.2, c:"#ffaa00" },
-        { s:2, l:"92%", dur:13, d:4.5, sw:"p-sway1", sd:3.2, c:"#ffd080" },
-      ].map((p, i) => (
-        <div key={i} className="gp" style={{
-          width: p.s + "px",
-          height: p.s + "px",
-          left: p.l,
-          background: p.c,
-          boxShadow: `0 0 ${p.s * 2}px ${p.c}`,
-          animation: `p-rise1 ${p.dur}s linear ${p.d}s infinite, ${p.sw} ${p.sd}s ease-in-out ${p.d}s infinite`,
-        }} />
-      ))}
-      <div style={{ textAlign: "center", padding: isSmallScreen ? "12px 12px 0" : "32px 16px 0", position: "relative", zIndex: 1 }}>
-        <h1 style={{ fontSize: isSmallScreen ? "26px" : "32px", fontWeight: 700, fontFamily: '"Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic Medium", sans-serif', letterSpacing: "0.05em", margin: 0, lineHeight: "1.6", display: "inline-block", paddingLeft: "0.15em" }}>
+      <div style={{ textAlign: "center", padding: isSmallScreen ? "12px 12px 0" : "32px 16px 0", position: "relative", overflow: "hidden" }}>
+        {[
+          { s:3, l:"8%",  dur:10, d:0,   sw:"p-sway1", sd:3,   c:"#ffcc44" },
+          { s:4, l:"20%", dur:13, d:2,   sw:"p-sway2", sd:4,   c:"#ffaa00" },
+          { s:2, l:"33%", dur:9,  d:4,   sw:"p-sway3", sd:2.5, c:"#ffd080" },
+          { s:5, l:"48%", dur:12, d:1,   sw:"p-sway1", sd:3.5, c:"#ffbb33" },
+          { s:3, l:"62%", dur:11, d:3,   sw:"p-sway2", sd:4.5, c:"#ffcc44" },
+          { s:4, l:"75%", dur:8,  d:5,   sw:"p-sway3", sd:3,   c:"#ff9922" },
+          { s:2, l:"88%", dur:14, d:1.5, sw:"p-sway1", sd:5,   c:"#ffd080" },
+          { s:3, l:"15%", dur:11, d:6,   sw:"p-sway2", sd:3.8, c:"#ffbb33" },
+          { s:4, l:"55%", dur:9,  d:2.5, sw:"p-sway3", sd:4.2, c:"#ffaa00" },
+          { s:2, l:"92%", dur:13, d:4.5, sw:"p-sway1", sd:3.2, c:"#ffd080" },
+        ].map((p, i) => (
+          <div key={i} className="gp" style={{
+            width: p.s + "px",
+            height: p.s + "px",
+            left: p.l,
+            background: p.c,
+            boxShadow: `0 0 ${p.s * 2}px ${p.c}`,
+            animation: `p-rise1 ${p.dur}s linear ${p.d}s infinite, ${p.sw} ${p.sd}s ease-in-out ${p.d}s infinite`,
+          }} />
+        ))}
+        <h1 style={{ fontSize: isSmallScreen ? "26px" : "32px", fontWeight: 700, fontFamily: '"Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic Medium", sans-serif', letterSpacing: "0.05em", margin: 0, lineHeight: "1.6", display: "inline-block", paddingLeft: "0.15em", position: "relative", zIndex: 1 }}>
           <span style={{ background: "linear-gradient(180deg,#ffd080,#ffb840,#ffa030,#ff8820)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>東海オンエア 動画バトル</span>
         </h1>
-        <p style={{ color: "#aaa", fontSize: isSmallScreen ? "12px" : "13px", marginTop: "-2px", letterSpacing: "0.03em", lineHeight: "1.6" }}>by 東海ランキング<span style={{ marginLeft: "-0.3em" }}>【</span>公認】</p>
-        <p style={{ color: "#ff9944", fontSize: isSmallScreen ? "15px" : "17px", fontWeight: 700, fontFamily: '"Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic Medium", sans-serif', letterSpacing: "0.05em", marginTop: "16px", lineHeight: "1.6" }}>どっちの動画が好き？タップで投票！</p>
-        <p style={{ color: "#aaa", fontSize: isSmallScreen ? "13px" : "14px", marginTop: "8px", lineHeight: "1.6" }}>あなた {myVoteCount.toLocaleString()}回投票済み ・ 全体 {formatNum(matchCount)}票 ・ {FILTERED_VIDEOS.length.toLocaleString()}本の動画</p>
+        <p style={{ color: "#aaa", fontSize: isSmallScreen ? "12px" : "13px", marginTop: "-2px", letterSpacing: "0.03em", lineHeight: "1.6", position: "relative", zIndex: 1 }}>by 東海ランキング<span style={{ marginLeft: "-0.3em" }}>【</span>公認】</p>
+        <p style={{ color: "#ff9944", fontSize: isSmallScreen ? "15px" : "17px", fontWeight: 700, fontFamily: '"Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic Medium", sans-serif', letterSpacing: "0.05em", marginTop: "16px", lineHeight: "1.6", position: "relative", zIndex: 1 }}>どっちの動画が好き？タップで投票！</p>
+        <p style={{ color: "#aaa", fontSize: isSmallScreen ? "13px" : "14px", marginTop: "8px", lineHeight: "1.6", position: "relative", zIndex: 1 }}>あなた {myVoteCount.toLocaleString()}回投票済み ・ 全体 {formatNum(matchCount)}票 ・ {FILTERED_VIDEOS.length.toLocaleString()}本の動画</p>
       </div>
 
       <div style={{ display: "flex", justifyContent: "center", alignItems: "stretch", gap: isSmallScreen ? "8px" : "24px", padding: "0 16px 12px", maxWidth: "1200px", margin: "0 auto", minHeight: isSmallScreen ? "auto" : "440px", opacity: phase === 'exit' ? 0 : 1, transition: "opacity 0.15s ease", flexDirection: "row", position: "relative", zIndex: 1 }}>
