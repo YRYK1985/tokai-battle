@@ -3409,33 +3409,23 @@ export default function TokaiVote() {
   return (
     <div style={{ minHeight: "100vh", background: "linear-gradient(135deg,#0f0c29,#1a1a3e,#24243e)", color: "#fff", fontFamily: "system-ui,sans-serif", padding: 0, margin: 0, paddingBottom: '80px', display: "flex", flexDirection: "column", justifyContent: "center", marginTop: isSmallScreen ? "-40px" : "0", position: "relative", overflow: "hidden" }}>
       <style>{`
-        @keyframes p-rise1  { 0%{bottom:-10px;opacity:0} 10%{opacity:.9} 90%{opacity:.3} 100%{bottom:105%;opacity:0} }
+        @keyframes p-rise1  { 0%{bottom:-10px;opacity:0} 10%{opacity:.7} 90%{opacity:.2} 100%{bottom:105%;opacity:0} }
         @keyframes p-sway1  { 0%,100%{transform:translateX(0)} 50%{transform:translateX(20px)} }
         @keyframes p-sway2  { 0%,100%{transform:translateX(0)} 50%{transform:translateX(-18px)} }
         @keyframes p-sway3  { 0%,100%{transform:translateX(0)} 50%{transform:translateX(14px)} }
-        .gp { position:absolute; border-radius:50%; pointer-events:none; z-index:0; }
+        .gp { position:absolute; border-radius:50%; pointer-events:none; z-index:-1; }
       `}</style>
       {[
-        { s:3, l:"8%",  dur:9,  d:0,   sw:"p-sway1", sd:3,   c:"#ffcc44" },
-        { s:4, l:"15%", dur:11, d:1.5, sw:"p-sway2", sd:4,   c:"#ffaa00" },
-        { s:2, l:"23%", dur:8,  d:3,   sw:"p-sway3", sd:2.5, c:"#ffd080" },
-        { s:5, l:"32%", dur:13, d:0.5, sw:"p-sway1", sd:3.5, c:"#ffbb33" },
-        { s:3, l:"41%", dur:10, d:2,   sw:"p-sway2", sd:4.5, c:"#ffcc44" },
-        { s:4, l:"50%", dur:7,  d:4,   sw:"p-sway3", sd:3,   c:"#ff9922" },
-        { s:2, l:"59%", dur:12, d:1,   sw:"p-sway1", sd:5,   c:"#ffd080" },
-        { s:5, l:"67%", dur:9,  d:3.5, sw:"p-sway2", sd:2.8, c:"#ffaa00" },
-        { s:3, l:"75%", dur:11, d:2.5, sw:"p-sway3", sd:3.8, c:"#ffcc44" },
-        { s:4, l:"83%", dur:8,  d:0.8, sw:"p-sway1", sd:4.2, c:"#ffbb33" },
-        { s:2, l:"91%", dur:14, d:1.8, sw:"p-sway2", sd:3.2, c:"#ffd080" },
-        { s:3, l:"5%",  dur:10, d:5,   sw:"p-sway3", sd:4,   c:"#ff9922" },
-        { s:4, l:"28%", dur:12, d:4.5, sw:"p-sway1", sd:3.6, c:"#ffcc44" },
-        { s:2, l:"46%", dur:9,  d:6,   sw:"p-sway2", sd:2.4, c:"#ffaa00" },
-        { s:5, l:"63%", dur:11, d:3.2, sw:"p-sway3", sd:4.8, c:"#ffd080" },
-        { s:3, l:"79%", dur:8,  d:5.5, sw:"p-sway1", sd:3.4, c:"#ffbb33" },
-        { s:4, l:"88%", dur:13, d:2.2, sw:"p-sway2", sd:5.2, c:"#ffcc44" },
-        { s:2, l:"36%", dur:7,  d:7,   sw:"p-sway3", sd:2.6, c:"#ff9922" },
-        { s:3, l:"55%", dur:10, d:4.8, sw:"p-sway1", sd:3.9, c:"#ffd080" },
-        { s:4, l:"72%", dur:12, d:1.2, sw:"p-sway2", sd:4.6, c:"#ffaa00" },
+        { s:3, l:"8%",  dur:10, d:0,   sw:"p-sway1", sd:3,   c:"#ffcc44" },
+        { s:4, l:"20%", dur:13, d:2,   sw:"p-sway2", sd:4,   c:"#ffaa00" },
+        { s:2, l:"33%", dur:9,  d:4,   sw:"p-sway3", sd:2.5, c:"#ffd080" },
+        { s:5, l:"48%", dur:12, d:1,   sw:"p-sway1", sd:3.5, c:"#ffbb33" },
+        { s:3, l:"62%", dur:11, d:3,   sw:"p-sway2", sd:4.5, c:"#ffcc44" },
+        { s:4, l:"75%", dur:8,  d:5,   sw:"p-sway3", sd:3,   c:"#ff9922" },
+        { s:2, l:"88%", dur:14, d:1.5, sw:"p-sway1", sd:5,   c:"#ffd080" },
+        { s:3, l:"15%", dur:11, d:6,   sw:"p-sway2", sd:3.8, c:"#ffbb33" },
+        { s:4, l:"55%", dur:9,  d:2.5, sw:"p-sway3", sd:4.2, c:"#ffaa00" },
+        { s:2, l:"92%", dur:13, d:4.5, sw:"p-sway1", sd:3.2, c:"#ffd080" },
       ].map((p, i) => (
         <div key={i} className="gp" style={{
           width: p.s + "px",
@@ -3455,7 +3445,7 @@ export default function TokaiVote() {
         <p style={{ color: "#aaa", fontSize: isSmallScreen ? "13px" : "14px", marginTop: "8px", lineHeight: "1.6" }}>あなた {myVoteCount.toLocaleString()}回投票済み ・ 全体 {formatNum(matchCount)}票 ・ {FILTERED_VIDEOS.length.toLocaleString()}本の動画</p>
       </div>
 
-      <div style={{ display: "flex", justifyContent: "center", alignItems: "stretch", gap: isSmallScreen ? "8px" : "24px", padding: "0 16px 12px", maxWidth: "1200px", margin: "0 auto", minHeight: isSmallScreen ? "auto" : "440px", opacity: phase === 'exit' ? 0 : 1, transition: "opacity 0.15s ease", flexDirection: "row" }}>
+      <div style={{ display: "flex", justifyContent: "center", alignItems: "stretch", gap: isSmallScreen ? "8px" : "24px", padding: "0 16px 12px", maxWidth: "1200px", margin: "0 auto", minHeight: isSmallScreen ? "auto" : "440px", opacity: phase === 'exit' ? 0 : 1, transition: "opacity 0.15s ease", flexDirection: "row", position: "relative", zIndex: 1 }}>
         {pair.map((video, idx) => {
           const isWinner = phase === 'voted' && votedState?.winnerId === video.id;
           const isLoser = phase === 'voted' && votedState?.loserId === video.id;
