@@ -1,6 +1,9 @@
 export const metadata = {
   title: '東海オンエア 動画バトル',
   description: '東海オンエアの動画3000本以上から、好きな動画を選んで投票！あなたの推し動画ランキングを作ろう',
+  icons: {
+    icon: '/favicon.svg',
+  },
   openGraph: {
     title: '東海オンエア 動画バトル',
     description: '3000本以上の東海オンエア動画から好きな方を選んで投票しよう！',
@@ -26,6 +29,13 @@ export default function RootLayout({ children }) {
     <html lang="ja">
       <head>
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9862215132601373" crossOrigin="anonymous"></script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-2L1ZYVZQ3C"></script>
+        <script dangerouslySetInnerHTML={{ __html: `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-2L1ZYVZQ3C');
+        `}} />
       </head>
       <body style={{ margin: 0, padding: 0 }}>{children}</body>
     </html>
