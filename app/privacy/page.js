@@ -53,7 +53,11 @@ export default function PrivacyPage() {
       </Section>
 
       <Section title="お問い合わせ">
-        本サイトに関するお問い合わせは、東海ランキング の YouTube チャンネルまたは X（Twitter）のDMよりお願いいたします。
+        本サイトに関するお問い合わせは、X（Twitter）のDMよりお願いいたします。
+        <br />
+        <a href="https://x.com/RankingQQQ" target="_blank" rel="noopener noreferrer" style={{ color: '#ffb840' }}>
+          @RankingQQQ
+        </a>
       </Section>
 
       <p style={{ marginTop: '40px', fontSize: '12px', color: '#666' }}>制定日：2026年3月17日</p>
