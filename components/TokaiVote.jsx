@@ -3483,7 +3483,7 @@ export default function TokaiVote() {
         </button>
 
       {myVoteCount < 5 ? (
-        <p style={{ textAlign: "center", color: "#aaa", fontSize: isSmallScreen ? "14px" : "15px", margin: 0, lineHeight: "1.6" }}>
+        <p style={{ textAlign: "center", color: "#bbb", fontSize: isSmallScreen ? "14px" : "15px", margin: 0, lineHeight: "1.6" }}>
           あと{5 - myVoteCount}回投票するとランキングが見られます
         </p>
       ) : (
