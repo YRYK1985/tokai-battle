@@ -3503,8 +3503,21 @@ export default function TokaiVote() {
       )}
       </div>
 
+      {/* フッター */}
+      <div style={{ textAlign: "center", padding: "32px 16px 100px", color: "#555", fontSize: "13px", lineHeight: "1.8" }}>
+        <p style={{ margin: "0 0 8px" }}>東海オンエアの動画3000本以上から、好きな動画を選んで投票できるランキングサイトです。</p>
+        <a
+          href="https://www.youtube.com/@tokairanking"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ color: "#ffb840", textDecoration: "none", fontSize: "13px" }}
+        >
+          東海ランキング【公認】チャンネルはこちら →
+        </a>
+      </div>
+
       {/* 広告枠 - AdSense設定後にここを差し替え */}
-      <div style={{ 
+      <div style={{
         position: 'fixed', bottom: 0, left: 0, right: 0,
         height: '60px', background: 'rgba(20,20,40,0.95)',
         borderTop: '1px solid rgba(255,255,255,0.1)',
