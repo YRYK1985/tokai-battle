@@ -3510,7 +3510,7 @@ export default function TokaiVote() {
           href="https://www.youtube.com/@tokairanking"
           target="_blank"
           rel="noopener noreferrer"
-          style={{ color: "#ffb840", textDecoration: "none", fontSize: "13px" }}
+          style={{ color: "#555", textDecoration: "none", fontSize: "13px" }}
         >
           東海ランキング【公認】チャンネルはこちら →
         </a>
