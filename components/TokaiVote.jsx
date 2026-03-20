@@ -3512,7 +3512,7 @@ export default function TokaiVote() {
           rel="noopener noreferrer"
           style={{ color: "#666", textDecoration: "none", fontSize: "13px" }}
         >
-          東海ランキング【公認】チャンネルはこちら →
+          東海ランキング【公認】チャンネルはこちらをクリック
         </a>
         <p style={{ margin: "12px 0 0" }}>
           <a href="/privacy" style={{ color: "#666", textDecoration: "none", fontSize: "12px" }}>プライバシーポリシー</a>
