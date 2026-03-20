@@ -3514,6 +3514,9 @@ export default function TokaiVote() {
         >
           東海ランキング【公認】チャンネルはこちら →
         </a>
+        <p style={{ margin: "12px 0 0" }}>
+          <a href="/privacy" style={{ color: "#555", textDecoration: "none", fontSize: "12px" }}>プライバシーポリシー</a>
+        </p>
       </div>
 
       {/* 広告枠 - AdSense設定後にここを差し替え */}
