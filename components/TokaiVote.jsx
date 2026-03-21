@@ -3488,7 +3488,7 @@ export default function TokaiVote() {
       {myVoteCount < 5 ? (
         <>
         <p style={{ textAlign: "center", color: "#bbb", fontSize: isSmallScreen ? "14px" : "15px", margin: 0, lineHeight: "1.6" }}>
-          あと{5 - myVoteCount}回投票するとランキングが見られます
+          あと{5 - myVoteCount}回投票すると詳しいランキングが見られます
         </p>
         {matchCount > 0 && (
           <div style={{ margin: "6px auto 0", padding: "0 16px" }}>
