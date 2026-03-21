@@ -3483,9 +3483,23 @@ export default function TokaiVote() {
         </button>
 
       {myVoteCount < 5 ? (
+        <>
         <p style={{ textAlign: "center", color: "#bbb", fontSize: isSmallScreen ? "14px" : "15px", margin: 0, lineHeight: "1.6" }}>
           あと{5 - myVoteCount}回投票するとランキングが見られます
         </p>
+        {matchCount > 0 && (
+          <div style={{ margin: "24px auto 0", maxWidth: "480px", padding: "0 16px" }}>
+            <p style={{ textAlign: "center", color: "#888", fontSize: "12px", marginBottom: "12px" }}>現在のTOP5（全{formatNum(matchCount)}票）</p>
+            {ranking.slice(0, 5).map((v, i) => (
+              <div key={v.id} style={{ display: "flex", alignItems: "center", gap: "10px", padding: "8px 12px", marginBottom: "6px", background: "rgba(255,255,255,0.04)", borderRadius: "10px" }}>
+                <span style={{ fontSize: "18px", fontWeight: 800, color: i === 0 ? "#ffd700" : i === 1 ? "#c0c0c0" : i === 2 ? "#cd7f32" : "#666", minWidth: "28px", textAlign: "center" }}>{i + 1}</span>
+                <img src={`https://img.youtube.com/vi/${v.id}/mqdefault.jpg`} alt="" style={{ width: "64px", height: "36px", borderRadius: "4px", objectFit: "cover", flexShrink: 0 }} />
+                <span style={{ color: "#ccc", fontSize: "13px", lineHeight: "1.3", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{v.title}</span>
+              </div>
+            ))}
+          </div>
+        )}
+        </>
       ) : (
         <button
           style={{ padding: "12px 32px", background: "linear-gradient(135deg,#ff6b6b,#ee5a24)", border: "none", borderRadius: "30px", color: "#fff", fontSize: "16px", fontWeight: 700, cursor: "pointer", boxShadow: "0 4px 20px rgba(255,107,107,0.3)" }}
