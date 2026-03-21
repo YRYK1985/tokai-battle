@@ -3409,7 +3409,7 @@ export default function TokaiVote() {
 
   return (
     <div style={{ minHeight: "100vh", background: "linear-gradient(135deg,#0f0c29,#1a1a3e,#24243e)", color: "#fff", fontFamily: "system-ui,sans-serif", padding: 0, margin: 0, paddingBottom: '80px', display: "flex", flexDirection: "column", justifyContent: "flex-start" }}>
-      <div style={{ textAlign: "center", padding: isSmallScreen ? "12px 12px 0" : "32px 16px 0" }}>
+      <div style={{ textAlign: "center", padding: isSmallScreen ? "32px 12px 0" : "48px 16px 0" }}>
         <h1 style={{ fontSize: isSmallScreen ? "26px" : "32px", fontWeight: 700, fontFamily: '"Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic Medium", sans-serif', letterSpacing: "0.05em", margin: 0, lineHeight: "1.6", display: "inline-block", paddingLeft: "0.15em" }}>
           <span style={{ background: "linear-gradient(180deg,#ffd080,#ffb840,#ffa030,#ff8820)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>東海オンエア 動画バトル</span>
         </h1>
@@ -3488,7 +3488,7 @@ export default function TokaiVote() {
           あと{5 - myVoteCount}回投票するとランキングが見られます
         </p>
         {matchCount > 0 && (
-          <div style={{ margin: "16px auto 0", padding: "0 16px" }}>
+          <div style={{ margin: "6px auto 0", padding: "0 16px" }}>
             <p style={{ textAlign: "center", color: "#888", fontSize: "11px", marginBottom: "8px" }}>現在のTOP3</p>
             <div style={{ display: "flex", justifyContent: "center", gap: "8px" }}>
               {ranking.slice(0, 3).map((v, i) => (
