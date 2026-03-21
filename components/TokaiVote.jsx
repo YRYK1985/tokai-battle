@@ -3498,6 +3498,7 @@ export default function TokaiVote() {
                 <div key={v.id} style={{ position: "relative", width: isSmallScreen ? "30vw" : "120px", flexShrink: 0 }}>
                   <div style={{ position: "absolute", top: "-6px", left: "-4px", zIndex: 1, width: "22px", height: "22px", borderRadius: "50%", background: i === 0 ? "#ffd700" : i === 1 ? "#c0c0c0" : "#cd7f32", color: "#000", fontSize: "12px", fontWeight: 800, display: "flex", alignItems: "center", justifyContent: "center" }}>{i + 1}</div>
                   <img src={`https://img.youtube.com/vi/${v.id}/mqdefault.jpg`} alt="" style={{ width: "100%", aspectRatio: "16/9", borderRadius: "6px", objectFit: "cover", display: "block" }} />
+                  <a href={`https://www.youtube.com/watch?v=${v.id}`} target="_blank" rel="noopener noreferrer" style={{ display: "block", textAlign: "center", color: "#888", fontSize: "10px", textDecoration: "none", marginTop: "4px" }}>YouTubeで見る →</a>
                 </div>
               ))}
             </div>
