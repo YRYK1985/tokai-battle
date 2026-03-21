@@ -3488,15 +3488,16 @@ export default function TokaiVote() {
           あと{5 - myVoteCount}回投票するとランキングが見られます
         </p>
         {matchCount > 0 && (
-          <div style={{ margin: "24px auto 0", maxWidth: "480px", padding: "0 16px" }}>
-            <p style={{ textAlign: "center", color: "#888", fontSize: "12px", marginBottom: "12px" }}>現在のTOP5（全{formatNum(matchCount)}票）</p>
-            {ranking.slice(0, 5).map((v, i) => (
-              <div key={v.id} style={{ display: "flex", alignItems: "center", gap: "10px", padding: "8px 12px", marginBottom: "6px", background: "rgba(255,255,255,0.04)", borderRadius: "10px" }}>
-                <span style={{ fontSize: "18px", fontWeight: 800, color: i === 0 ? "#ffd700" : i === 1 ? "#c0c0c0" : i === 2 ? "#cd7f32" : "#666", minWidth: "28px", textAlign: "center" }}>{i + 1}</span>
-                <img src={`https://img.youtube.com/vi/${v.id}/mqdefault.jpg`} alt="" style={{ width: "64px", height: "36px", borderRadius: "4px", objectFit: "cover", flexShrink: 0 }} />
-                <span style={{ color: "#ccc", fontSize: "13px", lineHeight: "1.3", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{v.title}</span>
-              </div>
-            ))}
+          <div style={{ margin: "16px auto 0", padding: "0 16px" }}>
+            <p style={{ textAlign: "center", color: "#888", fontSize: "11px", marginBottom: "8px" }}>現在のTOP3</p>
+            <div style={{ display: "flex", justifyContent: "center", gap: "8px" }}>
+              {ranking.slice(0, 3).map((v, i) => (
+                <div key={v.id} style={{ position: "relative", width: isSmallScreen ? "30vw" : "120px", flexShrink: 0 }}>
+                  <div style={{ position: "absolute", top: "-6px", left: "-4px", zIndex: 1, width: "22px", height: "22px", borderRadius: "50%", background: i === 0 ? "#ffd700" : i === 1 ? "#c0c0c0" : "#cd7f32", color: "#000", fontSize: "12px", fontWeight: 800, display: "flex", alignItems: "center", justifyContent: "center" }}>{i + 1}</div>
+                  <img src={`https://img.youtube.com/vi/${v.id}/mqdefault.jpg`} alt="" style={{ width: "100%", aspectRatio: "16/9", borderRadius: "6px", objectFit: "cover", display: "block" }} />
+                </div>
+              ))}
+            </div>
           </div>
         )}
         </>
