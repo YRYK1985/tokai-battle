@@ -3287,7 +3287,7 @@ export default function TokaiVote() {
     const loserTitle = pair.find(p => p.id === loserId)?.title;
     setVotedState({ winnerId, loserId });
     setPhase('voted');
-    if (myVoteCount >= 4) {
+    if (myVoteCount === 0) {
       setLastVote({ winnerTitle, loserTitle });
     }
     setTimeout(() => {
