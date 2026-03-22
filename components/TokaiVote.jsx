@@ -3537,8 +3537,8 @@ export default function TokaiVote() {
                   </a>
                 </div>
                 {adPositions.includes(i + 1) && (
-                  <div className="ad-slot" style={{ maxWidth: "700px", marginLeft: "auto", marginRight: "auto", marginBottom: "6px", padding: "12px", background: "rgba(255,255,255,0.04)", borderRadius: "12px", textAlign: "center", minHeight: "90px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                    <span style={{ color: "#555", fontSize: "11px" }}>広告スペース</span>
+                  <div className="ad-slot" style={{ maxWidth: "700px", marginLeft: "auto", marginRight: "auto", marginBottom: "6px", padding: "12px", background: "rgba(255,255,255,0.04)", borderRadius: "12px", textAlign: "center", minHeight: i + 1 === 5 ? "90px" : "250px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    <span style={{ color: "#555", fontSize: "11px" }}>広告スペース{i + 1 === 5 ? "（横長バナー）" : "（レスポンシブ）"}</span>
                   </div>
                 )}
               </div>
@@ -3546,8 +3546,8 @@ export default function TokaiVote() {
           })}
 
           {/* ランキング終わりの広告スロット */}
-          <div className="ad-slot" style={{ maxWidth: "700px", marginLeft: "auto", marginRight: "auto", marginTop: "16px", marginBottom: "16px", padding: "12px", background: "rgba(255,255,255,0.04)", borderRadius: "12px", textAlign: "center", minHeight: "90px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <span style={{ color: "#555", fontSize: "11px" }}>広告スペース</span>
+          <div className="ad-slot" style={{ maxWidth: "700px", marginLeft: "auto", marginRight: "auto", marginTop: "16px", marginBottom: "16px", padding: "12px", background: "rgba(255,255,255,0.04)", borderRadius: "12px", textAlign: "center", minHeight: "250px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <span style={{ color: "#555", fontSize: "11px" }}>広告スペース（レスポンシブ）</span>
           </div>
 
           <button
