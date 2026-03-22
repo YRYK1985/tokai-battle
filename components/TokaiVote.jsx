@@ -3643,7 +3643,7 @@ export default function TokaiVote() {
 
       {lastVote && myVoteCount >= 5 && (
         <a
-          href={`https://x.com/intent/tweet?text=${encodeURIComponent(`🔥 東海オンエア 動画バトル「${lastVote.winnerTitle}」に私は投票！\nhttps://tokairanking.com`)}`}
+          href={`https://x.com/intent/tweet?text=${encodeURIComponent(`🔥 東海オンエア 動画バトル🔥\n私は「${lastVote.winnerTitle}」に投票！https://tokairanking.com`)}`}
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => setLastVote(null)}
