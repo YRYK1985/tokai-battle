@@ -3207,6 +3207,7 @@ export default function TokaiVote() {
   const [hoveredCard, setHoveredCard] = useState(null);
   const [imgErrors, setImgErrors] = useState({});
   const [votedState, setVotedState] = useState(null);
+  const [lastVote, setLastVote] = useState(null);
   const [phase, setPhase] = useState('idle');
   const [isSmallScreen, setIsSmallScreen] = useState(false);
 
@@ -3282,8 +3283,13 @@ export default function TokaiVote() {
       }
     }).catch(() => {});
 
+    const winnerTitle = pair.find(p => p.id === winnerId)?.title;
+    const loserTitle = pair.find(p => p.id === loserId)?.title;
     setVotedState({ winnerId, loserId });
     setPhase('voted');
+    if (myVoteCount >= 4) {
+      setLastVote({ winnerTitle, loserTitle });
+    }
     setTimeout(() => {
       setPhase('exit');
       setTimeout(() => {
@@ -3484,6 +3490,21 @@ export default function TokaiVote() {
         >
           この組み合わせをスキップ
         </button>
+
+      {lastVote && myVoteCount >= 5 && (
+        <a
+          href={`https://x.com/intent/tweet?text=${encodeURIComponent(`🔥 東海オンエア 動画バトル🔥\n私は「${lastVote.winnerTitle}」に投票！あなたはどっち？\nhttps://tokairanking.com`)}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => setLastVote(null)}
+          style={{ display: "inline-flex", alignItems: "center", gap: "6px", padding: "8px 20px", background: "#000", border: "1px solid #333", borderRadius: "20px", color: "#fff", fontSize: "13px", fontWeight: 600, textDecoration: "none", transition: "background 0.15s" }}
+          onMouseEnter={(e) => e.currentTarget.style.background = "#1a1a1a"}
+          onMouseLeave={(e) => e.currentTarget.style.background = "#000"}
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          この投票をXでシェアする
+        </a>
+      )}
 
       {myVoteCount < 5 ? (
         <>
