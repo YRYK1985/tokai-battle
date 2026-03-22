@@ -3515,7 +3515,7 @@ export default function TokaiVote() {
             </div>
           )}
           {ranking.slice(0, rankYear === 'all' ? 300 : 50).map((v, i) => {
-            const adPositions = rankYear === 'all' ? [5, 20, 50, 100, 200] : [5, 20, 50];
+            const adPositions = rankYear === 'all' ? [5, 20, 50, 100, 150, 200, 250] : [5, 20, 50];
             return (
               <div key={v.id}>
                 <div style={{ display: "flex", alignItems: "center", gap: "10px", padding: "10px 14px", background: "rgba(255,255,255,0.09)", borderRadius: "12px", marginBottom: "6px", maxWidth: "700px", marginLeft: "auto", marginRight: "auto" }}>
