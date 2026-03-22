@@ -3514,26 +3514,41 @@ export default function TokaiVote() {
               ))}
             </div>
           )}
-          {ranking.slice(0, rankYear === 'all' ? 300 : 50).map((v, i) => (
-            <div key={v.id} style={{ display: "flex", alignItems: "center", gap: "10px", padding: "10px 14px", background: "rgba(255,255,255,0.09)", borderRadius: "12px", marginBottom: "6px", maxWidth: "700px", marginLeft: "auto", marginRight: "auto" }}>
-              <span style={{ fontWeight: 900, fontSize: "18px", width: "32px", textAlign: "center", flexShrink: 0, color: i === 0 ? "#ffd700" : i === 1 ? "#c0c0c0" : i === 2 ? "#cd7f32" : i <= 9 ? "#88c8e8" : "#666" }}>
-                {i + 1}
-              </span>
-              <img
-                src={`https://img.youtube.com/vi/${v.id}/mqdefault.jpg`}
-                alt=""
-                style={{ width: "48px", height: "27px", borderRadius: "4px", objectFit: "cover", flexShrink: 0, background: "#1a1a2e" }}
-                onError={(e) => (e.target.style.display = "none")}
-              />
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontSize: "13px", fontWeight: 600, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{v.title}</div>
-                <div style={{ fontSize: "11px", color: "#888", marginTop: "2px" }}>Elo {v.elo} ・ ▶ {formatNum(v.views)} ・ ♡ {formatNum(v.likes)}</div>
+          {ranking.slice(0, rankYear === 'all' ? 300 : 50).map((v, i) => {
+            const adPositions = rankYear === 'all' ? [5, 20, 50, 100, 200] : [5, 20, 50];
+            return (
+              <div key={v.id}>
+                <div style={{ display: "flex", alignItems: "center", gap: "10px", padding: "10px 14px", background: "rgba(255,255,255,0.09)", borderRadius: "12px", marginBottom: "6px", maxWidth: "700px", marginLeft: "auto", marginRight: "auto" }}>
+                  <span style={{ fontWeight: 900, fontSize: "18px", width: "32px", textAlign: "center", flexShrink: 0, color: i === 0 ? "#ffd700" : i === 1 ? "#c0c0c0" : i === 2 ? "#cd7f32" : i <= 9 ? "#88c8e8" : "#666" }}>
+                    {i + 1}
+                  </span>
+                  <img
+                    src={`https://img.youtube.com/vi/${v.id}/mqdefault.jpg`}
+                    alt=""
+                    style={{ width: "48px", height: "27px", borderRadius: "4px", objectFit: "cover", flexShrink: 0, background: "#1a1a2e" }}
+                    onError={(e) => (e.target.style.display = "none")}
+                  />
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{ fontSize: "13px", fontWeight: 600, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{v.title}</div>
+                    <div style={{ fontSize: "11px", color: "#888", marginTop: "2px" }}>Elo {v.elo} ・ ▶ {formatNum(v.views)} ・ ♡ {formatNum(v.likes)}</div>
+                  </div>
+                  <a href={`https://www.youtube.com/watch?v=${v.id}`} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} style={{ flexShrink: 0, display: "flex", alignItems: "center", padding: "4px" }}>
+                    <svg width="20" height="14" viewBox="0 0 28 20" fill="none"><rect width="28" height="20" rx="4" fill="#FF0000"/><polygon points="11,4 11,16 21,10" fill="#fff"/></svg>
+                  </a>
+                </div>
+                {adPositions.includes(i + 1) && (
+                  <div className="ad-slot" style={{ maxWidth: "700px", marginLeft: "auto", marginRight: "auto", marginBottom: "6px", padding: "12px", background: "rgba(255,255,255,0.04)", borderRadius: "12px", textAlign: "center", minHeight: "90px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    <span style={{ color: "#555", fontSize: "11px" }}>広告スペース</span>
+                  </div>
+                )}
               </div>
-              <a href={`https://www.youtube.com/watch?v=${v.id}`} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} style={{ flexShrink: 0, display: "flex", alignItems: "center", padding: "4px" }}>
-                <svg width="20" height="14" viewBox="0 0 28 20" fill="none"><rect width="28" height="20" rx="4" fill="#FF0000"/><polygon points="11,4 11,16 21,10" fill="#fff"/></svg>
-              </a>
-            </div>
-          ))}
+            );
+          })}
+
+          {/* ランキング終わりの広告スロット */}
+          <div className="ad-slot" style={{ maxWidth: "700px", marginLeft: "auto", marginRight: "auto", marginTop: "16px", marginBottom: "16px", padding: "12px", background: "rgba(255,255,255,0.04)", borderRadius: "12px", textAlign: "center", minHeight: "90px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <span style={{ color: "#555", fontSize: "11px" }}>広告スペース</span>
+          </div>
 
           <button
             style={{ display: "block", margin: "24px auto 16px", padding: "14px 32px", background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.2)", borderRadius: "30px", color: "#ccc", fontSize: "15px", fontWeight: 600, cursor: "pointer", transition: "background 0.2s" }}
