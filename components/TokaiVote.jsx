@@ -3353,13 +3353,13 @@ export default function TokaiVote() {
             <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", justifyContent: "center", padding: "0 0 16px", maxWidth: "700px", margin: "0 auto" }}>
               <button
                 onClick={() => setRankYear('all')}
-                style={{ padding: "6px 14px", borderRadius: "20px", border: "none", fontSize: "12px", fontWeight: 600, cursor: "pointer", background: rankYear === 'all' ? "rgba(255,160,64,0.8)" : "rgba(255,255,255,0.08)", color: rankYear === 'all' ? "#fff" : "#aaa" }}
+                style={{ padding: "6px 14px", borderRadius: "20px", border: "none", fontSize: "12px", fontWeight: 600, cursor: "pointer", background: rankYear === 'all' ? "rgba(80,180,255,0.8)" : "rgba(255,255,255,0.08)", color: rankYear === 'all' ? "#fff" : "#aaa" }}
               >全期間</button>
               {availableYears.map(y => (
                 <button
                   key={y}
                   onClick={() => setRankYear(y)}
-                  style={{ padding: "6px 14px", borderRadius: "20px", border: "none", fontSize: "12px", fontWeight: 600, cursor: "pointer", background: rankYear === y ? "rgba(255,160,64,0.8)" : "rgba(255,255,255,0.08)", color: rankYear === y ? "#fff" : "#aaa" }}
+                  style={{ padding: "6px 14px", borderRadius: "20px", border: "none", fontSize: "12px", fontWeight: 600, cursor: "pointer", background: rankYear === y ? "rgba(80,180,255,0.8)" : "rgba(255,255,255,0.08)", color: rankYear === y ? "#fff" : "#aaa" }}
                 >{y}年</button>
               ))}
             </div>
