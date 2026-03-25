@@ -3514,6 +3514,20 @@ export default function TokaiVote() {
               ))}
             </div>
           )}
+
+          {/* 動的分析テキスト（AdSense審査対策：テキストコンテンツ） */}
+          {ranking.length > 0 && (
+            <div style={{ maxWidth: "700px", margin: "0 auto 16px", padding: "14px 18px", background: "rgba(255,255,255,0.05)", borderRadius: "12px", lineHeight: "1.8" }}>
+              <p style={{ color: "#aaa", fontSize: "13px", margin: 0 }}>
+                {rankYear === 'all' ? (
+                  <>東海オンエアの全{formatNum(FILTERED_VIDEOS.length)}本の動画から、ファン投票で選ばれたランキングです。現在{formatNum(matchCount)}票が投じられており、1位は「{ranking[0]?.title}」（再生回数{formatNum(ranking[0]?.views)}回・{ranking[0]?.year}年投稿）。Eloレーティングシステムにより、2本の動画を比較する「どっちが好き？」形式の投票結果を集計しています。{ranking.length >= 3 && (<>2位「{ranking[1]?.title}」、3位「{ranking[2]?.title}」が続きます。</>)}</>
+                ) : (
+                  <>{rankYear}年に投稿された東海オンエアの動画の中から、ファン投票で選ばれたTOP50です。{ranking.length >= 1 && (<>{rankYear}年の1位は「{ranking[0]?.title}」（再生回数{formatNum(ranking[0]?.views)}回）。</>)}{ranking.length >= 3 && (<>2位「{ranking[1]?.title}」、3位「{ranking[2]?.title}」と続きます。</>)}あなたの好きな{rankYear}年の動画はランクインしていますか？</>
+                )}
+              </p>
+            </div>
+          )}
+
           {ranking.slice(0, rankYear === 'all' ? 300 : 50).map((v, i) => {
             const adPositions = rankYear === 'all' ? [5, 20, 50, 100, 150, 200, 250] : [5, 20, 50];
             return (
@@ -3562,6 +3576,26 @@ export default function TokaiVote() {
           >
             🎲 ランダムで{rankYear === 'all' ? '' : `${rankYear}年の`}東海オンエアの動画を見る
           </button>
+
+          {/* ランキング下部の説明テキスト（AdSense審査対策） */}
+          <div style={{ maxWidth: "700px", margin: "0 auto 24px", padding: "16px 18px", background: "rgba(255,255,255,0.04)", borderRadius: "12px", lineHeight: "1.9" }}>
+            <p style={{ color: "#888", fontSize: "12px", margin: 0 }}>
+              「東海オンエア 動画バトル」は、東海オンエアの全{formatNum(FILTERED_VIDEOS.length)}本の動画をファン投票で順位付けするランキングサイトです。運営は東海オンエア公認切り抜きチャンネル「東海ランキング」（チャンネル登録者数32万人）。投票にはEloレーティングシステムを採用しており、2本の動画を比較する形式で「どっちが好き？」を繰り返すことで、統計的に信頼性の高い順位を算出しています。5回投票すると全体のランキング結果を閲覧でき、全期間ランキングと年度別ランキングを切り替えて楽しめます。あなたの一票がランキングを動かします。
+            </p>
+          </div>
+
+          {/* ランキングページ フッター */}
+          <div style={{ textAlign: "center", padding: "16px 16px 100px", color: "#888", fontSize: "13px", lineHeight: "1.8" }}>
+            <p style={{ margin: "0 0 8px" }}>東海オンエアの動画3000本以上から、好きな動画を選んで投票できるランキングサイトです。</p>
+            <a href="https://www.youtube.com/@tokairanking" target="_blank" rel="noopener noreferrer" style={{ color: "#888", textDecoration: "none", fontSize: "13px" }}>
+              東海ランキング【公認】チャンネルはこちらをクリック
+            </a>
+            <p style={{ margin: "12px 0 0" }}>
+              <a href="/about" style={{ color: "#666", textDecoration: "none", fontSize: "12px" }}>このサイトについて</a>
+              <span style={{ color: "#444", margin: "0 8px" }}>|</span>
+              <a href="/privacy" style={{ color: "#666", textDecoration: "none", fontSize: "12px" }}>プライバシーポリシー</a>
+            </p>
+          </div>
         </div>
 
         {/* 広告枠 - AdSense設定後にここを差し替え */}
@@ -3721,6 +3755,8 @@ export default function TokaiVote() {
           東海ランキング【公認】チャンネルはこちらをクリック
         </a>
         <p style={{ margin: "12px 0 0" }}>
+          <a href="/about" style={{ color: "#666", textDecoration: "none", fontSize: "12px" }}>このサイトについて</a>
+          <span style={{ color: "#444", margin: "0 8px" }}>|</span>
           <a href="/privacy" style={{ color: "#666", textDecoration: "none", fontSize: "12px" }}>プライバシーポリシー</a>
         </p>
       </div>
