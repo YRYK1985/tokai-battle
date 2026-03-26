@@ -60,7 +60,7 @@ export default function PrivacyPage() {
         </a>
       </Section>
 
-      <p style={{ marginTop: '40px', fontSize: '12px', color: '#666' }}>制定日：2026年3月17日</p>
+      <p style={{ marginTop: '40px', fontSize: '12px', color: '#666' }}>制定日：2026年3月17日　最終更新：2026年3月27日</p>
 
       <div style={{ marginTop: '40px', textAlign: 'center' }}>
         <a href="/" style={{ color: '#ffb840', fontSize: '14px', textDecoration: 'none' }}>← トップに戻る</a>

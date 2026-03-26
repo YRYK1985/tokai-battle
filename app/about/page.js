@@ -72,7 +72,7 @@ export default function AboutPage() {
         再生回数やいいね数はランキング順位には影響しません。
       </Section>
 
-      <p style={{ marginTop: '40px', fontSize: '12px', color: '#666' }}>最終更新：2026年3月25日</p>
+      <p style={{ marginTop: '40px', fontSize: '12px', color: '#666' }}>最終更新：2026年3月27日</p>
 
       <div style={{ marginTop: '40px', textAlign: 'center' }}>
         <a href="/" style={{ color: '#ffb840', fontSize: '14px', textDecoration: 'none' }}>← トップに戻る</a>
