@@ -3573,7 +3573,7 @@ export default function TokaiVote() {
 
           {/* ランキングページ フッター */}
           <div style={{ textAlign: "center", padding: "16px 16px 100px", color: "#888", fontSize: "13px", lineHeight: "1.8" }}>
-            <p style={{ margin: "0 0 8px" }}>東海オンエアの動画3000本以上から、好きな動画を選んで投票できるランキングサイトです。</p>
+            <p style={{ margin: "0 0 8px" }}>東海オンエアの動画3,000本以上から、好きな動画を選んで投票できるランキングサイトです。</p>
             <a href="https://www.youtube.com/@tokairanking" target="_blank" rel="noopener noreferrer" style={{ color: "#888", textDecoration: "none", fontSize: "13px" }}>
               東海ランキング【公認】チャンネルはこちらをクリック
             </a>
@@ -3732,7 +3732,7 @@ export default function TokaiVote() {
 
       {/* フッター */}
       <div style={{ textAlign: "center", padding: "32px 16px 100px", color: "#888", fontSize: "13px", lineHeight: "1.8" }}>
-        <p style={{ margin: "0 0 8px" }}>東海オンエアの動画3000本以上から、好きな動画を選んで投票できるランキングサイトです。</p>
+        <p style={{ margin: "0 0 8px" }}>東海オンエアの動画3,000本以上から、好きな動画を選んで投票できるランキングサイトです。</p>
         <a
           href="https://www.youtube.com/@tokairanking"
           target="_blank"

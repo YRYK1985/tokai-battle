@@ -1,6 +1,6 @@
 export const metadata = {
   title: '東海オンエア 動画バトル',
-  description: '東海オンエアの動画3000本以上から、好きな動画を選んで投票！あなたの推し動画ランキングを作ろう',
+  description: '東海オンエアの動画3,000本以上から、好きな動画を選んで投票！あなたの推し動画ランキングを作ろう',
   icons: {
     icon: '/favicon.svg',
   },
