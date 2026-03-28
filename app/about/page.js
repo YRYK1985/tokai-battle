@@ -57,22 +57,7 @@ export default function AboutPage() {
         </a>
       </Section>
 
-      <Section title="よくある質問">
-        <strong style={{ color: '#ddd' }}>Q. ランキングは個人のもの？全体のもの？</strong>
-        <br />
-        全ユーザーの投票を合算した総合ランキングです。あなたの投票も全体のランキングに反映されます。
-        <br /><br />
-        <strong style={{ color: '#ddd' }}>Q. 何回でも投票できる？</strong>
-        <br />
-        はい、何回でも投票できます。投票するほどランキングの精度が上がり、より正確な順位になります。いつも投票してくださる皆さん、本当にありがとうございます。
-        <br /><br />
-        <strong style={{ color: '#ddd' }}>Q. 再生回数が多い動画が有利？</strong>
-        <br />
-        いいえ。ランキングは純粋にファンの「どっちが好き？」の投票だけで決まります。
-        再生回数やいいね数はランキング順位には影響しません。
-      </Section>
-
-      <p style={{ marginTop: '40px', fontSize: '12px', color: '#666' }}>最終更新：2026年3月27日</p>
+      <p style={{ marginTop: '40px', fontSize: '12px', color: '#666' }}>最終更新：2026年3月28日</p>
 
       <div style={{ marginTop: '40px', textAlign: 'center' }}>
         <a href="/" style={{ color: '#ffb840', fontSize: '14px', textDecoration: 'none' }}>← トップに戻る</a>
