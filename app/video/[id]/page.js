@@ -171,11 +171,11 @@ export default async function VideoPage({ params }) {
               value={winRate !== null ? `${winRate}%` : '-'}
             />
             <DataCard
-              label="全体ランキング"
+              label="ランキング（全体）"
               value={`${overallRank}位`}
             />
             <DataCard
-              label={`${video.year}年ランキング`}
+              label={`ランキング（${video.year}年）`}
               value={`${yearRank}位`}
             />
           </div>
@@ -193,11 +193,11 @@ export default async function VideoPage({ params }) {
             <DataCard label="再生回数" value={formatNum(video.views)} sub="回" />
             <DataCard label="高評価数" value={formatNum(video.likes)} />
             <DataCard
-              label="再生数ランキング"
+              label="再生数ランキング（全体）"
               value={`${viewsRank}位`}
             />
             <DataCard
-              label={`${video.year}年 再生数ランキング`}
+              label={`再生数ランキング（${video.year}年）`}
               value={`${yearViewsRank}位`}
             />
           </div>
