@@ -84,6 +84,10 @@ export default async function VideoPage({ params }) {
     .sort((a, b) => b.elo - a.elo || b.views - a.views);
   const yearRank = yearRanked.findIndex((v) => v.id === video.id) + 1;
 
+  // 再生数ランキング計算
+  const viewsRanked = [...FILTERED_VIDEOS].sort((a, b) => b.views - a.views);
+  const viewsRank = viewsRanked.findIndex((v) => v.id === video.id) + 1;
+
   // 前後の動画（全体ランキング基準）
   const prevVideo = overallRank > 1 ? allRanked[overallRank - 2] : null;
   const nextVideo = overallRank < allRanked.length ? allRanked[overallRank] : null;
@@ -148,7 +152,7 @@ export default async function VideoPage({ params }) {
             ランキングデータ
           </h2>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
-            <DataCard label="Eloレーティング" value={elo.toLocaleString()} />
+            <DataCard label="Eloレーティング" value={String(elo)} />
             <DataCard
               label="全体ランキング"
               value={`${overallRank}位`}
@@ -180,8 +184,8 @@ export default async function VideoPage({ params }) {
             <DataCard label="高評価数" value={formatNum(video.likes)} />
             <DataCard label="投稿年" value={`${video.year}年`} />
             <DataCard
-              label="高評価率"
-              value={video.views > 0 ? `${(video.likes / video.views * 100).toFixed(1)}%` : '-'}
+              label="再生数ランキング"
+              value={`${viewsRank}/${FILTERED_VIDEOS.length}`}
             />
           </div>
         </div>
@@ -214,7 +218,7 @@ export default async function VideoPage({ params }) {
           }}>
             <span style={{ fontWeight: 900, fontSize: '16px', color: '#ffd700', width: '36px', textAlign: 'center' }}>{overallRank}</span>
             <span style={{ fontSize: '13px', fontWeight: 600, color: '#fff', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', flex: 1 }}>{video.title}</span>
-            <span style={{ fontSize: '11px', color: '#ffd700', flexShrink: 0 }}>Elo {elo}</span>
+            <span style={{ fontSize: '11px', color: '#ffd700', flexShrink: 0 }}>Elo {String(elo)}</span>
           </div>
           {nextVideo && (
             <RankingNeighbor rank={overallRank + 1} video={nextVideo} />
@@ -228,7 +232,7 @@ export default async function VideoPage({ params }) {
         }}>
           <p style={{ color: '#888', fontSize: '12px', margin: 0 }}>
             「東海オンエア 動画バトル」は、東海オンエアの全{FILTERED_VIDEOS.length.toLocaleString()}本の動画をファン投票で順位付けするランキングサイトです。
-            運営は東海オンエアの公認切り抜きチャンネルである「東海ランキング」。
+            東海オンエアの公認切り抜きチャンネルである「東海ランキング」が運営しています。
             投票にはEloレーティングシステムを採用しており、2本の動画を比較する形式で「どっちが好き？」を繰り返すことで、統計的に信頼性の高い順位を算出しています。
             このページでは「{video.title}」（{video.year}年公開）のランキング情報をご覧いただけます。
             データはリアルタイムの投票結果に基づいて更新されます。
