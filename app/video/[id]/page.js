@@ -167,19 +167,16 @@ export default async function VideoPage({ params }) {
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
             <DataCard label="Eloレーティング" value={String(elo)} />
             <DataCard
+              label="勝率"
+              value={winRate !== null ? `${winRate}%` : '-'}
+            />
+            <DataCard
               label="全体ランキング"
               value={`${overallRank}位`}
-              sub={`/ ${FILTERED_VIDEOS.length.toLocaleString()}本中`}
             />
             <DataCard
               label={`${video.year}年ランキング`}
               value={`${yearRank}位`}
-              sub={`/ ${yearVideos.length.toLocaleString()}本中`}
-            />
-            <DataCard
-              label="勝率"
-              value={winRate !== null ? `${winRate}%` : '-'}
-              sub={videoMatches > 0 ? `${videoMatches}対戦` : ''}
             />
           </div>
         </div>
@@ -197,11 +194,11 @@ export default async function VideoPage({ params }) {
             <DataCard label="高評価数" value={formatNum(video.likes)} />
             <DataCard
               label="再生数ランキング"
-              value={`${viewsRank}/${FILTERED_VIDEOS.length}`}
+              value={`${viewsRank}位`}
             />
             <DataCard
               label={`${video.year}年 再生数ランキング`}
-              value={`${yearViewsRank}/${yearVideos.length}`}
+              value={`${yearViewsRank}位`}
             />
           </div>
         </div>
