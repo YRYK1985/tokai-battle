@@ -3,15 +3,18 @@ import { NextResponse } from 'next/server';
 
 export async function GET() {
   try {
-    // 2 commands only: hgetall + get
-    const [ratings, matchCount] = await Promise.all([
+    const [ratings, matchCount, wins, matches] = await Promise.all([
       kv.hgetall('ratings'),
       kv.get('matchCount'),
+      kv.hgetall('wins'),
+      kv.hgetall('matches'),
     ]);
 
     return NextResponse.json({
       ratings: ratings || {},
       matchCount: matchCount ?? 0,
+      wins: wins || {},
+      matches: matches || {},
     }, {
       headers: { 'Cache-Control': 's-maxage=10, stale-while-revalidate=30' },
     });

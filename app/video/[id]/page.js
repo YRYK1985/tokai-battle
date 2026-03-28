@@ -55,21 +55,30 @@ export default async function VideoPage({ params }) {
     );
   }
 
-  // Redisからレーティングデータを取得
+  // Redisからレーティング・勝敗データを取得
   let ratings = {};
   let matchCount = 0;
+  let wins = {};
+  let matches = {};
   try {
-    const [ratingsData, matchCountData] = await Promise.all([
+    const [ratingsData, matchCountData, winsData, matchesData] = await Promise.all([
       kv.hgetall('ratings'),
       kv.get('matchCount'),
+      kv.hgetall('wins'),
+      kv.hgetall('matches'),
     ]);
     ratings = ratingsData || {};
     matchCount = matchCountData ?? 0;
+    wins = winsData || {};
+    matches = matchesData || {};
   } catch (e) {
     console.error('Failed to fetch ratings:', e);
   }
 
   const elo = ratings[video.id] || 1200;
+  const videoWins = wins[video.id] || 0;
+  const videoMatches = matches[video.id] || 0;
+  const winRate = videoMatches >= 10 ? Math.round(videoWins / videoMatches * 100) : null;
 
   // 全体ランキング計算
   const allRanked = FILTERED_VIDEOS
@@ -84,9 +93,13 @@ export default async function VideoPage({ params }) {
     .sort((a, b) => b.elo - a.elo || b.views - a.views);
   const yearRank = yearRanked.findIndex((v) => v.id === video.id) + 1;
 
-  // 再生数ランキング計算
+  // 再生数ランキング計算（全体）
   const viewsRanked = [...FILTERED_VIDEOS].sort((a, b) => b.views - a.views);
   const viewsRank = viewsRanked.findIndex((v) => v.id === video.id) + 1;
+
+  // 再生数ランキング計算（年度別）
+  const yearViewsRanked = [...yearVideos].sort((a, b) => b.views - a.views);
+  const yearViewsRank = yearViewsRanked.findIndex((v) => v.id === video.id) + 1;
 
   // 前後の動画（全体ランキング基準）
   const prevVideo = overallRank > 1 ? allRanked[overallRank - 2] : null;
@@ -164,9 +177,9 @@ export default async function VideoPage({ params }) {
               sub={`/ ${yearVideos.length.toLocaleString()}本中`}
             />
             <DataCard
-              label="総投票数"
-              value={formatNum(matchCount)}
-              sub="サイト全体"
+              label="勝率"
+              value={winRate !== null ? `${winRate}%` : '-'}
+              sub={videoMatches > 0 ? `${videoMatches}対戦` : ''}
             />
           </div>
         </div>
@@ -182,10 +195,13 @@ export default async function VideoPage({ params }) {
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
             <DataCard label="再生回数" value={formatNum(video.views)} sub="回" />
             <DataCard label="高評価数" value={formatNum(video.likes)} />
-            <DataCard label="投稿年" value={`${video.year}年`} />
             <DataCard
               label="再生数ランキング"
               value={`${viewsRank}/${FILTERED_VIDEOS.length}`}
+            />
+            <DataCard
+              label={`${video.year}年 再生数ランキング`}
+              value={`${yearViewsRank}/${yearVideos.length}`}
             />
           </div>
         </div>

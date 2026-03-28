@@ -24,10 +24,13 @@ export async function POST(request) {
     const newW = Math.round(rW + K * (1 - eW));
     const newL = Math.round(rL + K * (0 - eL));
 
-    // Save new ratings and increment match count (2 commands)
+    // Save new ratings, increment match count, and record win/match stats
     await Promise.all([
       kv.hset('ratings', { [winnerId]: newW, [loserId]: newL }),
       kv.incr('matchCount'),
+      kv.hincrby('wins', winnerId, 1),
+      kv.hincrby('matches', winnerId, 1),
+      kv.hincrby('matches', loserId, 1),
     ]);
 
     return NextResponse.json({
