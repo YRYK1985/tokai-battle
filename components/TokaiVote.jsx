@@ -175,7 +175,7 @@ export default function TokaiVote() {
     return (
       <div style={{ minHeight: "100vh", background: "linear-gradient(135deg,#130f34,#1d1d46,#28284a)", color: "#fff", fontFamily: "system-ui,sans-serif", padding: 0, margin: 0, paddingBottom: '80px' }}>
         <div style={{ textAlign: "center", padding: "24px 16px 4px" }}>
-          <h1 style={{ fontSize: "24px", fontWeight: 800, background: "linear-gradient(180deg,#ffd080,#ffb840,#ffa030,#ff8820)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", margin: 0 }}>
+          <h1 style={{ fontSize: "24px", fontWeight: 800, fontFamily: '"M PLUS 1p", sans-serif', background: "linear-gradient(180deg,#ffd080,#ffb840,#ffa030,#ff8820)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", margin: 0 }}>
             ランキング {rankYear === 'all' ? 'TOP300' : 'TOP50'}
           </h1>
           <p style={{ color: "#888", fontSize: "11px", marginTop: "4px", letterSpacing: "0.03em" }}>by 東海ランキング<span style={{ marginLeft: "-0.3em" }}>【</span>公認】</p>
