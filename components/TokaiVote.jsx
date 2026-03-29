@@ -291,11 +291,11 @@ export default function TokaiVote() {
   return (
     <div style={{ minHeight: "100vh", background: "linear-gradient(135deg,#110e30,#1b1b42,#262646)", color: "#fff", fontFamily: "system-ui,sans-serif", padding: 0, margin: 0, paddingBottom: '80px', display: "flex", flexDirection: "column", justifyContent: "flex-start" }}>
       <div style={{ textAlign: "center", padding: isSmallScreen ? "64px 12px 0" : "56px 16px 0" }}>
-        <h1 style={{ fontSize: isSmallScreen ? "26px" : "32px", fontWeight: 800, fontFamily: '"M PLUS 1p", sans-serif', letterSpacing: "0.05em", margin: 0, lineHeight: "1.6", display: "inline-block", paddingLeft: "0.15em" }}>
+        <h1 style={{ fontSize: isSmallScreen ? "26px" : "36px", fontWeight: 800, fontFamily: '"M PLUS 1p", sans-serif', letterSpacing: "0.05em", margin: 0, lineHeight: "1.6", display: "inline-block", paddingLeft: "0.15em" }}>
           <span style={{ background: "linear-gradient(180deg,#ffd080,#ffb840,#ffa030,#ff8820)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>東海オンエア 動画バトル</span>
         </h1>
         <p style={{ color: "#aaa", fontSize: isSmallScreen ? "12px" : "13px", marginTop: "-2px", letterSpacing: "0.03em", lineHeight: "1.6" }}>by 東海ランキング<span style={{ marginLeft: "-0.3em" }}>【</span>公認】</p>
-        <p style={{ color: "#ff9944", fontSize: isSmallScreen ? "17px" : "19px", fontWeight: 500, fontFamily: '"M PLUS 1p", sans-serif', letterSpacing: "0.05em", marginTop: "16px", lineHeight: "1.6" }}>どっちの動画が好き？タップで投票！</p>
+        <p style={{ color: "#ff9944", fontSize: isSmallScreen ? "15px" : "19px", fontWeight: 500, fontFamily: '"M PLUS 1p", sans-serif', letterSpacing: "0.05em", marginTop: "16px", lineHeight: "1.6" }}>どっちの動画が好き？タップで投票！</p>
         <p style={{ color: "#aaa", fontSize: isSmallScreen ? "13px" : "14px", marginTop: "16px", lineHeight: "1.6" }}>あなた {myVoteCount.toLocaleString()}回投票済み ・ 全体 {formatNum(matchCount)}票 ・ {FILTERED_VIDEOS.length.toLocaleString()}本の動画</p>
       </div>
 
