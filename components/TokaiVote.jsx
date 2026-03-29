@@ -29,7 +29,12 @@ export default function TokaiVote() {
   const [matchCount, setMatchCount] = useState(0);
   const [myVoteCount, setMyVoteCount] = useState(0);
   const [pair, setPair] = useState([null, null]);
-  const [showRanking, setShowRanking] = useState(false);
+  const [showRanking, setShowRanking] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return new URLSearchParams(window.location.search).get('ranking') === '1';
+    }
+    return false;
+  });
   const [hoveredCard, setHoveredCard] = useState(null);
   const [imgErrors, setImgErrors] = useState({});
   const [votedState, setVotedState] = useState(null);
@@ -144,7 +149,7 @@ export default function TokaiVote() {
     flex: 1,
     maxWidth: isSmallScreen ? "100%" : "560px",
     minWidth: isSmallScreen ? "auto" : "400px",
-    background: "rgba(255,255,255,0.09)",
+    background: "rgba(255,255,255,0.06)",
     borderRadius: "16px",
     overflow: "hidden",
     cursor: phase !== 'idle' ? "default" : "pointer",

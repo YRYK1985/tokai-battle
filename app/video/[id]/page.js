@@ -117,8 +117,8 @@ export default async function VideoPage({ params }) {
 
         {/* ヘッダーナビ */}
         <div style={{ marginBottom: '24px', display: 'flex', gap: '16px', fontSize: '13px' }}>
-          <Link href="/" style={{ color: '#888', textDecoration: 'none' }}>← 投票に戻る</Link>
-          <Link href="/" style={{ color: '#ffb840', textDecoration: 'none', fontWeight: 600 }}>🏆 ランキングに戻る</Link>
+          <Link href="/" style={{ color: '#fff', textDecoration: 'none' }}>← 投票に戻る</Link>
+          <Link href="/?ranking=1" style={{ color: '#ffb840', textDecoration: 'none', fontWeight: 600 }}>🏆 ランキングに戻る</Link>
         </div>
 
         {/* サムネイル */}
@@ -173,12 +173,12 @@ export default async function VideoPage({ params }) {
             <DataCard
               label="ランキング（全体）"
               value={`${overallRank}位`}
-              rankColor={overallRank <= 3 ? (overallRank === 1 ? '#ffd700' : overallRank === 2 ? '#c0c0c0' : '#cd7f32') : null}
+              rankColor={overallRank === 1 ? '#ffd700' : null}
             />
             <DataCard
               label={`ランキング（${video.year}年）`}
               value={`${yearRank}位`}
-              rankColor={yearRank <= 3 ? (yearRank === 1 ? '#ffd700' : yearRank === 2 ? '#c0c0c0' : '#cd7f32') : null}
+              rankColor={yearRank === 1 ? '#ffd700' : null}
             />
           </div>
         </div>
@@ -197,12 +197,12 @@ export default async function VideoPage({ params }) {
             <DataCard
               label="再生数ランキング（全体）"
               value={`${viewsRank}位`}
-              rankColor={viewsRank <= 3 ? (viewsRank === 1 ? '#ffd700' : viewsRank === 2 ? '#c0c0c0' : '#cd7f32') : null}
+              rankColor={viewsRank === 1 ? '#ffd700' : null}
             />
             <DataCard
               label={`再生数ランキング（${video.year}年）`}
               value={`${yearViewsRank}位`}
-              rankColor={yearViewsRank <= 3 ? (yearViewsRank === 1 ? '#ffd700' : yearViewsRank === 2 ? '#c0c0c0' : '#cd7f32') : null}
+              rankColor={yearViewsRank === 1 ? '#ffd700' : null}
             />
           </div>
         </div>
