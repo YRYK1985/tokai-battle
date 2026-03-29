@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback, useMemo, useRef } from "react";
+import { useSearchParams } from "next/navigation";
 import { FILTERED_VIDEOS } from "../lib/videos";
 
 const K = 32;
@@ -29,12 +30,8 @@ export default function TokaiVote() {
   const [matchCount, setMatchCount] = useState(0);
   const [myVoteCount, setMyVoteCount] = useState(0);
   const [pair, setPair] = useState([null, null]);
-  const [showRanking, setShowRanking] = useState(() => {
-    if (typeof window !== 'undefined') {
-      return new URLSearchParams(window.location.search).get('ranking') === '1';
-    }
-    return false;
-  });
+  const searchParams = useSearchParams();
+  const [showRanking, setShowRanking] = useState(false);
   const [hoveredCard, setHoveredCard] = useState(null);
   const [imgErrors, setImgErrors] = useState({});
   const [votedState, setVotedState] = useState(null);
@@ -63,6 +60,13 @@ export default function TokaiVote() {
   }, []);
 
   useEffect(() => { pickPair(); }, [pickPair]);
+
+  // URLパラメータ ?ranking=1 でランキング直接表示
+  useEffect(() => {
+    if (searchParams.get('ranking') === '1') {
+      setShowRanking(true);
+    }
+  }, [searchParams]);
 
   // Fetch global ratings on mount
   useEffect(() => {
@@ -165,7 +169,7 @@ export default function TokaiVote() {
   // ---- Ranking ----
   if (showRanking) {
     return (
-      <div style={{ minHeight: "100vh", background: "linear-gradient(135deg,#171240,#22224e,#2e2e52)", color: "#fff", fontFamily: "system-ui,sans-serif", padding: 0, margin: 0, paddingBottom: '80px' }}>
+      <div style={{ minHeight: "100vh", background: "linear-gradient(135deg,#130f34,#1d1d46,#28284a)", color: "#fff", fontFamily: "system-ui,sans-serif", padding: 0, margin: 0, paddingBottom: '80px' }}>
         <div style={{ textAlign: "center", padding: "24px 16px 4px" }}>
           <h1 style={{ fontSize: "24px", fontWeight: 800, background: "linear-gradient(180deg,#ffd080,#ffb840,#ffa030,#ff8820)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", margin: 0 }}>
             ランキング {rankYear === 'all' ? 'TOP300' : 'TOP50'}
@@ -281,7 +285,7 @@ export default function TokaiVote() {
   if (!pair[0] || !pair[1]) return null;
 
   return (
-    <div style={{ minHeight: "100vh", background: "linear-gradient(135deg,#141038,#1f1f4a,#2a2a4e)", color: "#fff", fontFamily: "system-ui,sans-serif", padding: 0, margin: 0, paddingBottom: '80px', display: "flex", flexDirection: "column", justifyContent: "flex-start" }}>
+    <div style={{ minHeight: "100vh", background: "linear-gradient(135deg,#110e30,#1b1b42,#262646)", color: "#fff", fontFamily: "system-ui,sans-serif", padding: 0, margin: 0, paddingBottom: '80px', display: "flex", flexDirection: "column", justifyContent: "flex-start" }}>
       <div style={{ textAlign: "center", padding: isSmallScreen ? "64px 12px 0" : "56px 16px 0" }}>
         <h1 style={{ fontSize: isSmallScreen ? "26px" : "32px", fontWeight: 700, fontFamily: '"Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic Medium", sans-serif', letterSpacing: "0.05em", margin: 0, lineHeight: "1.6", display: "inline-block", paddingLeft: "0.15em" }}>
           <span style={{ background: "linear-gradient(180deg,#ffd080,#ffb840,#ffa030,#ff8820)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>東海オンエア 動画バトル</span>

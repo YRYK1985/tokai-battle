@@ -46,7 +46,7 @@ export default async function VideoPage({ params }) {
 
   if (!video) {
     return (
-      <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg,#141038,#1f1f4a,#2a2a4e)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'system-ui,sans-serif' }}>
+      <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg,#110e30,#1b1b42,#262646)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'system-ui,sans-serif' }}>
         <div style={{ textAlign: 'center' }}>
           <h1 style={{ fontSize: '24px', marginBottom: '16px' }}>動画が見つかりません</h1>
           <Link href="/" style={{ color: '#ffb840' }}>← トップに戻る</Link>
@@ -108,11 +108,17 @@ export default async function VideoPage({ params }) {
   return (
     <div style={{
       minHeight: '100vh',
-      background: 'linear-gradient(135deg,#141038,#1f1f4a,#2a2a4e)',
+      background: 'linear-gradient(135deg,#110e30,#1b1b42,#262646)',
       color: '#ccc',
       fontFamily: '"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic Medium",system-ui,sans-serif',
       lineHeight: '1.8',
     }}>
+      <style dangerouslySetInnerHTML={{ __html: `
+        .sp-only { display: none; }
+        @media (max-width: 640px) {
+          .sp-only { display: inline; }
+        }
+      `}} />
       <div style={{ maxWidth: '700px', margin: '0 auto', padding: '32px 20px 80px' }}>
 
         {/* ヘッダーナビ */}
@@ -274,9 +280,15 @@ export default async function VideoPage({ params }) {
 }
 
 function DataCard({ label, value, sub, rankColor }) {
+  // スマホで長いラベルを2行にする: 「（」の前で改行
+  const parts = label.match(/^(.+?)(（.+）)$/);
   return (
     <div style={{ background: 'rgba(255,255,255,0.09)', borderRadius: '10px', padding: '14px 16px' }}>
-      <div style={{ fontSize: '11px', color: '#888', marginBottom: '4px' }}>{label}</div>
+      <div className="datacard-label" style={{ fontSize: '11px', color: '#888', marginBottom: '4px' }}>
+        {parts ? (
+          <>{parts[1]}<br className="sp-only" />{parts[2]}</>
+        ) : label}
+      </div>
       <div style={{ fontSize: '22px', fontWeight: 800, color: rankColor || '#fff' }}>
         {value}
         {sub && <span style={{ fontSize: '11px', color: '#888', fontWeight: 400, marginLeft: '4px' }}>{sub}</span>}
