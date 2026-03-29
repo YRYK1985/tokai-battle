@@ -11,7 +11,7 @@ export default function PrivacyPage() {
       color: '#ccc',
       fontFamily: '"Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic Medium", sans-serif',
       lineHeight: '1.8',
-      background: 'linear-gradient(135deg,#0f0c29,#1a1a3e,#24243e)',
+      background: 'linear-gradient(135deg,#141038,#1f1f4a,#2a2a4e)',
       minHeight: '100vh',
     }}>
       <h1 style={{ fontSize: '22px', fontWeight: 700, color: '#fff', marginBottom: '32px' }}>プライバシーポリシー</h1>

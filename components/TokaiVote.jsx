@@ -144,7 +144,7 @@ export default function TokaiVote() {
     flex: 1,
     maxWidth: isSmallScreen ? "100%" : "560px",
     minWidth: isSmallScreen ? "auto" : "400px",
-    background: "rgba(255,255,255,0.06)",
+    background: "rgba(255,255,255,0.09)",
     borderRadius: "16px",
     overflow: "hidden",
     cursor: phase !== 'idle' ? "default" : "pointer",
@@ -160,7 +160,7 @@ export default function TokaiVote() {
   // ---- Ranking ----
   if (showRanking) {
     return (
-      <div style={{ minHeight: "100vh", background: "linear-gradient(135deg,#12102e,#1c1c42,#282848)", color: "#fff", fontFamily: "system-ui,sans-serif", padding: 0, margin: 0, paddingBottom: '80px' }}>
+      <div style={{ minHeight: "100vh", background: "linear-gradient(135deg,#171240,#22224e,#2e2e52)", color: "#fff", fontFamily: "system-ui,sans-serif", padding: 0, margin: 0, paddingBottom: '80px' }}>
         <div style={{ textAlign: "center", padding: "24px 16px 4px" }}>
           <h1 style={{ fontSize: "24px", fontWeight: 800, background: "linear-gradient(180deg,#ffd080,#ffb840,#ffa030,#ff8820)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", margin: 0 }}>
             ランキング {rankYear === 'all' ? 'TOP300' : 'TOP50'}
@@ -209,9 +209,6 @@ export default function TokaiVote() {
                     <div style={{ fontSize: "13px", fontWeight: 600, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{v.title}</div>
                     <div style={{ fontSize: "11px", color: "#888", marginTop: "2px" }}>Elo {v.elo} ・ ▶ {formatNum(v.views)} ・ ♡ {formatNum(v.likes)}</div>
                   </div>
-                  <span onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.open(`https://www.youtube.com/watch?v=${v.id}`, '_blank'); }} style={{ flexShrink: 0, display: "flex", alignItems: "center", padding: "4px", cursor: "pointer" }}>
-                    <svg width="20" height="14" viewBox="0 0 28 20" fill="none"><rect width="28" height="20" rx="4" fill="#FF0000"/><polygon points="11,4 11,16 21,10" fill="#fff"/></svg>
-                  </span>
                 </a>
                 {adPositions.includes(i + 1) && (
                   <div className="ad-slot" style={{ maxWidth: "700px", marginLeft: "auto", marginRight: "auto", marginBottom: "6px", padding: "12px", background: "rgba(255,255,255,0.04)", borderRadius: "12px", textAlign: "center", minHeight: i + 1 === 5 ? "90px" : "250px", display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -279,7 +276,7 @@ export default function TokaiVote() {
   if (!pair[0] || !pair[1]) return null;
 
   return (
-    <div style={{ minHeight: "100vh", background: "linear-gradient(135deg,#0f0c29,#1a1a3e,#24243e)", color: "#fff", fontFamily: "system-ui,sans-serif", padding: 0, margin: 0, paddingBottom: '80px', display: "flex", flexDirection: "column", justifyContent: "flex-start" }}>
+    <div style={{ minHeight: "100vh", background: "linear-gradient(135deg,#141038,#1f1f4a,#2a2a4e)", color: "#fff", fontFamily: "system-ui,sans-serif", padding: 0, margin: 0, paddingBottom: '80px', display: "flex", flexDirection: "column", justifyContent: "flex-start" }}>
       <div style={{ textAlign: "center", padding: isSmallScreen ? "64px 12px 0" : "56px 16px 0" }}>
         <h1 style={{ fontSize: isSmallScreen ? "26px" : "32px", fontWeight: 700, fontFamily: '"Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic Medium", sans-serif', letterSpacing: "0.05em", margin: 0, lineHeight: "1.6", display: "inline-block", paddingLeft: "0.15em" }}>
           <span style={{ background: "linear-gradient(180deg,#ffd080,#ffb840,#ffa030,#ff8820)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>東海オンエア 動画バトル</span>
@@ -335,7 +332,7 @@ export default function TokaiVote() {
                 href={`https://www.youtube.com/watch?v=${video.id}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{ display: "block", textAlign: "center", padding: isSmallScreen ? "8px" : "10px", fontSize: isSmallScreen ? "12px" : "12px", color: "#ff4444", textDecoration: "none", borderTop: "1px solid rgba(255,255,255,0.06)" }}
+                style={{ display: "block", textAlign: "center", padding: isSmallScreen ? "8px" : "10px", fontSize: isSmallScreen ? "12px" : "12px", color: "#ff4444", textDecoration: "none", borderTop: "1px solid rgba(255,255,255,0.09)" }}
                 onClick={(e) => e.stopPropagation()}
               >
                 YouTubeで見る →

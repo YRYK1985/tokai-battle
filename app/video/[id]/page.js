@@ -46,7 +46,7 @@ export default async function VideoPage({ params }) {
 
   if (!video) {
     return (
-      <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg,#0f0c29,#1a1a3e,#24243e)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'system-ui,sans-serif' }}>
+      <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg,#141038,#1f1f4a,#2a2a4e)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'system-ui,sans-serif' }}>
         <div style={{ textAlign: 'center' }}>
           <h1 style={{ fontSize: '24px', marginBottom: '16px' }}>動画が見つかりません</h1>
           <Link href="/" style={{ color: '#ffb840' }}>← トップに戻る</Link>
@@ -108,7 +108,7 @@ export default async function VideoPage({ params }) {
   return (
     <div style={{
       minHeight: '100vh',
-      background: 'linear-gradient(135deg,#0f0c29,#1a1a3e,#24243e)',
+      background: 'linear-gradient(135deg,#141038,#1f1f4a,#2a2a4e)',
       color: '#ccc',
       fontFamily: '"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic Medium",system-ui,sans-serif',
       lineHeight: '1.8',
@@ -118,7 +118,7 @@ export default async function VideoPage({ params }) {
         {/* ヘッダーナビ */}
         <div style={{ marginBottom: '24px', display: 'flex', gap: '16px', fontSize: '13px' }}>
           <Link href="/" style={{ color: '#888', textDecoration: 'none' }}>← 投票に戻る</Link>
-          <Link href="/about" style={{ color: '#888', textDecoration: 'none' }}>このサイトについて</Link>
+          <Link href="/" style={{ color: '#ffb840', textDecoration: 'none', fontWeight: 600 }}>🏆 ランキングに戻る</Link>
         </div>
 
         {/* サムネイル */}
@@ -158,7 +158,7 @@ export default async function VideoPage({ params }) {
 
         {/* ランキングデータ */}
         <div style={{
-          background: 'rgba(255,255,255,0.06)', borderRadius: '16px',
+          background: 'rgba(255,255,255,0.09)', borderRadius: '16px',
           padding: '24px', marginBottom: '24px',
         }}>
           <h2 style={{ fontSize: '16px', fontWeight: 700, color: '#fff', margin: '0 0 16px' }}>
@@ -173,17 +173,19 @@ export default async function VideoPage({ params }) {
             <DataCard
               label="ランキング（全体）"
               value={`${overallRank}位`}
+              rankColor={overallRank <= 3 ? (overallRank === 1 ? '#ffd700' : overallRank === 2 ? '#c0c0c0' : '#cd7f32') : null}
             />
             <DataCard
               label={`ランキング（${video.year}年）`}
               value={`${yearRank}位`}
+              rankColor={yearRank <= 3 ? (yearRank === 1 ? '#ffd700' : yearRank === 2 ? '#c0c0c0' : '#cd7f32') : null}
             />
           </div>
         </div>
 
         {/* 動画情報 */}
         <div style={{
-          background: 'rgba(255,255,255,0.06)', borderRadius: '16px',
+          background: 'rgba(255,255,255,0.09)', borderRadius: '16px',
           padding: '24px', marginBottom: '24px',
         }}>
           <h2 style={{ fontSize: '16px', fontWeight: 700, color: '#fff', margin: '0 0 16px' }}>
@@ -195,10 +197,12 @@ export default async function VideoPage({ params }) {
             <DataCard
               label="再生数ランキング（全体）"
               value={`${viewsRank}位`}
+              rankColor={viewsRank <= 3 ? (viewsRank === 1 ? '#ffd700' : viewsRank === 2 ? '#c0c0c0' : '#cd7f32') : null}
             />
             <DataCard
               label={`再生数ランキング（${video.year}年）`}
               value={`${yearViewsRank}位`}
+              rankColor={yearViewsRank <= 3 ? (yearViewsRank === 1 ? '#ffd700' : yearViewsRank === 2 ? '#c0c0c0' : '#cd7f32') : null}
             />
           </div>
         </div>
@@ -215,7 +219,7 @@ export default async function VideoPage({ params }) {
 
         {/* 前後のランキング */}
         <div style={{
-          background: 'rgba(255,255,255,0.06)', borderRadius: '16px',
+          background: 'rgba(255,255,255,0.09)', borderRadius: '16px',
           padding: '24px', marginBottom: '24px',
         }}>
           <h2 style={{ fontSize: '16px', fontWeight: 700, color: '#fff', margin: '0 0 16px' }}>
@@ -269,11 +273,11 @@ export default async function VideoPage({ params }) {
   );
 }
 
-function DataCard({ label, value, sub }) {
+function DataCard({ label, value, sub, rankColor }) {
   return (
-    <div style={{ background: 'rgba(255,255,255,0.06)', borderRadius: '10px', padding: '14px 16px' }}>
+    <div style={{ background: 'rgba(255,255,255,0.09)', borderRadius: '10px', padding: '14px 16px' }}>
       <div style={{ fontSize: '11px', color: '#888', marginBottom: '4px' }}>{label}</div>
-      <div style={{ fontSize: '22px', fontWeight: 800, color: '#fff' }}>
+      <div style={{ fontSize: '22px', fontWeight: 800, color: rankColor || '#fff' }}>
         {value}
         {sub && <span style={{ fontSize: '11px', color: '#888', fontWeight: 400, marginLeft: '4px' }}>{sub}</span>}
       </div>
@@ -289,7 +293,7 @@ function RankingNeighbor({ rank, video }) {
     >
       <div style={{
         display: 'flex', alignItems: 'center', gap: '10px',
-        padding: '10px 14px', background: 'rgba(255,255,255,0.06)',
+        padding: '10px 14px', background: 'rgba(255,255,255,0.09)',
         borderRadius: '8px', transition: 'background 0.2s',
       }}>
         <span style={{ fontWeight: 700, fontSize: '14px', color: '#666', width: '36px', textAlign: 'center' }}>{rank}</span>
