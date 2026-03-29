@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect, useCallback, useMemo, useRef } from "react";
-import { useSearchParams } from "next/navigation";
 import { FILTERED_VIDEOS } from "../lib/videos";
 
 const K = 32;
@@ -30,7 +29,6 @@ export default function TokaiVote() {
   const [matchCount, setMatchCount] = useState(0);
   const [myVoteCount, setMyVoteCount] = useState(0);
   const [pair, setPair] = useState([null, null]);
-  const searchParams = useSearchParams();
   const [showRanking, setShowRanking] = useState(false);
   const [hoveredCard, setHoveredCard] = useState(null);
   const [imgErrors, setImgErrors] = useState({});
@@ -61,12 +59,18 @@ export default function TokaiVote() {
 
   useEffect(() => { pickPair(); }, [pickPair]);
 
-  // URLパラメータ ?ranking=1 でランキング直接表示
+  // ハッシュ #ranking でランキング直接表示（動画ページからの遷移用）
   useEffect(() => {
-    if (searchParams.get('ranking') === '1') {
-      setShowRanking(true);
-    }
-  }, [searchParams]);
+    const checkHash = () => {
+      if (window.location.hash === '#ranking') {
+        setShowRanking(true);
+        window.history.replaceState(null, '', '/');
+      }
+    };
+    checkHash();
+    window.addEventListener('hashchange', checkHash);
+    return () => window.removeEventListener('hashchange', checkHash);
+  }, []);
 
   // Fetch global ratings on mount
   useEffect(() => {

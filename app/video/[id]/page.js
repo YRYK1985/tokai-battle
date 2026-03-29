@@ -124,7 +124,7 @@ export default async function VideoPage({ params }) {
         {/* ヘッダーナビ */}
         <div style={{ marginBottom: '24px', display: 'flex', gap: '16px', fontSize: '13px' }}>
           <Link href="/" style={{ color: '#fff', textDecoration: 'none' }}>← 投票に戻る</Link>
-          <Link href="/?ranking=1" style={{ color: '#ffb840', textDecoration: 'none', fontWeight: 600 }}>🏆 ランキングに戻る</Link>
+          <Link href="/#ranking" style={{ color: '#ffb840', textDecoration: 'none', fontWeight: 600 }}>🏆 ランキングに戻る</Link>
         </div>
 
         {/* サムネイル */}
