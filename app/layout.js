@@ -31,7 +31,8 @@ export default function RootLayout({ children }) {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@500;800&display=swap" rel="stylesheet" />
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9862215132601373" crossOrigin="anonymous"></script>
+        {/* AdSense一時停止（審査対策） */}
+        {/* <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9862215132601373" crossOrigin="anonymous"></script> */}
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-2L1ZYVZQ3C"></script>
         <script dangerouslySetInnerHTML={{ __html: `
           window.dataLayer = window.dataLayer || [];

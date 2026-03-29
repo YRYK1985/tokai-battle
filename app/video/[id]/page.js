@@ -213,15 +213,7 @@ export default async function VideoPage({ params }) {
           </div>
         </div>
 
-        {/* 広告スロット */}
-        <div style={{
-          background: 'rgba(255,255,255,0.04)', borderRadius: '12px',
-          padding: '12px', textAlign: 'center', minHeight: '250px',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          marginBottom: '24px',
-        }}>
-          <span style={{ color: '#555', fontSize: '11px' }}>広告スペース（レスポンシブ）</span>
-        </div>
+        {/* 広告スロット — 一時停止（AdSense審査対策） */}
 
         {/* 前後のランキング */}
         <div style={{

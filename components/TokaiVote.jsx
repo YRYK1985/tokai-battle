@@ -223,19 +223,18 @@ export default function TokaiVote() {
                     <div style={{ fontSize: "11px", color: "#888", marginTop: "2px" }}>Elo {v.elo} ・ ▶ {formatNum(v.views)} ・ ♡ {formatNum(v.likes)}</div>
                   </div>
                 </a>
+                {/* 広告スロット一時停止（AdSense審査対策）
                 {adPositions.includes(i + 1) && (
                   <div className="ad-slot" style={{ maxWidth: "700px", marginLeft: "auto", marginRight: "auto", marginBottom: "6px", padding: "12px", background: "rgba(255,255,255,0.04)", borderRadius: "12px", textAlign: "center", minHeight: i + 1 === 5 ? "90px" : "250px", display: "flex", alignItems: "center", justifyContent: "center" }}>
                     <span style={{ color: "#555", fontSize: "11px" }}>広告スペース{i + 1 === 5 ? "（横長バナー）" : "（レスポンシブ）"}</span>
                   </div>
                 )}
+                */}
               </div>
             );
           })}
 
-          {/* ランキング終わりの広告スロット */}
-          <div className="ad-slot" style={{ maxWidth: "700px", marginLeft: "auto", marginRight: "auto", marginTop: "16px", marginBottom: "16px", padding: "12px", background: "rgba(255,255,255,0.04)", borderRadius: "12px", textAlign: "center", minHeight: "250px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <span style={{ color: "#555", fontSize: "11px" }}>広告スペース（レスポンシブ）</span>
-          </div>
+          {/* ランキング終わりの広告スロット — 一時停止（AdSense審査対策） */}
 
           <button
             style={{ display: "block", margin: "24px auto 16px", padding: "14px 32px", background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.2)", borderRadius: "30px", color: "#ccc", fontSize: "15px", fontWeight: 600, cursor: "pointer", transition: "background 0.2s" }}
@@ -271,16 +270,7 @@ export default function TokaiVote() {
           </div>
         </div>
 
-        {/* 広告枠 - AdSense設定後にここを差し替え */}
-        <div style={{
-          position: 'fixed', bottom: 0, left: 0, right: 0,
-          height: '60px', background: 'rgba(20,20,40,0.95)',
-          borderTop: '1px solid rgba(255,255,255,0.1)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          color: '#555', fontSize: '12px', zIndex: 100,
-        }}>
-          広告スペース
-        </div>
+        {/* 広告枠 — 一時停止（AdSense審査対策） */}
       </div>
     );
   }
@@ -434,16 +424,7 @@ export default function TokaiVote() {
         </p>
       </div>
 
-      {/* 広告枠 - AdSense設定後にここを差し替え */}
-      <div style={{
-        position: 'fixed', bottom: 0, left: 0, right: 0,
-        height: '60px', background: 'rgba(20,20,40,0.95)',
-        borderTop: '1px solid rgba(255,255,255,0.1)',
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        color: '#555', fontSize: '12px', zIndex: 100,
-      }}>
-        広告スペース
-      </div>
+      {/* 広告枠 — 一時停止（AdSense審査対策） */}
     </div>
   );
 }
