@@ -173,7 +173,7 @@ export default function TokaiVote() {
   // ---- Ranking ----
   if (showRanking) {
     return (
-      <div style={{ minHeight: "100vh", background: "linear-gradient(135deg,#1c1842,#212148,#28284a)", color: "#fff", fontFamily: "system-ui,sans-serif", padding: 0, margin: 0, paddingBottom: '80px' }}>
+      <div style={{ minHeight: "100vh", background: "linear-gradient(135deg,#1c1842,#1f1f46,#232346)", color: "#fff", fontFamily: "system-ui,sans-serif", padding: 0, margin: 0, paddingBottom: '80px' }}>
         <div style={{ textAlign: "center", padding: "24px 16px 4px" }}>
           <h1 style={{ fontSize: "24px", fontWeight: 800, fontFamily: '"M PLUS 1p", sans-serif', background: "linear-gradient(180deg,#ffd080,#ffb840,#ffa030,#ff8820)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", margin: 0 }}>
             ランキング {rankYear === 'all' ? 'TOP300' : 'TOP50'}
@@ -279,7 +279,7 @@ export default function TokaiVote() {
   if (!pair[0] || !pair[1]) return null;
 
   return (
-    <div style={{ minHeight: "100vh", background: "linear-gradient(135deg,#1a1640,#202046,#262646)", color: "#fff", fontFamily: "system-ui,sans-serif", padding: 0, margin: 0, paddingBottom: '80px', display: "flex", flexDirection: "column", justifyContent: "flex-start" }}>
+    <div style={{ minHeight: "100vh", background: "linear-gradient(135deg,#1a1640,#1e1e44,#222244)", color: "#fff", fontFamily: "system-ui,sans-serif", padding: 0, margin: 0, paddingBottom: '80px', display: "flex", flexDirection: "column", justifyContent: "flex-start" }}>
       <div style={{ textAlign: "center", padding: isSmallScreen ? "64px 12px 0" : "56px 16px 0" }}>
         <h1 style={{ fontSize: isSmallScreen ? "26px" : "36px", fontWeight: 800, fontFamily: '"M PLUS 1p", sans-serif', letterSpacing: "0.05em", margin: 0, lineHeight: "1.6", display: "inline-block", paddingLeft: "0.15em" }}>
           <span style={{ background: "linear-gradient(180deg,#ffd080,#ffb840,#ffa030,#ff8820)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>東海オンエア 動画バトル</span>
