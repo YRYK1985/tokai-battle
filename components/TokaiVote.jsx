@@ -408,7 +408,7 @@ export default function TokaiVote() {
 
       {/* フッター */}
       <div style={{ textAlign: "center", padding: "32px 16px 100px", color: "#888", fontSize: "13px", lineHeight: "1.8" }}>
-        <p style={{ margin: "0 0 8px" }}>東海オンエアの動画3,000本以上から、好きな動画を選んで投票できるランキングサイトです。</p>
+        <p style={{ margin: "0 0 12px", maxWidth: "600px", marginLeft: "auto", marginRight: "auto", textAlign: "left" }}>「東海オンエア 動画バトル」は、東海オンエアの全3,054本の動画をファン投票で順位付けするランキングサイトです。東海オンエアの公認切り抜きチャンネルである「東海ランキング」が運営しています。投票にはEloレーティングシステムを採用しており、2本の動画を比較する形式で「どっちが好き？」を繰り返すことで、統計的に信頼性の高い順位を算出しています。5回投票すると全体のランキング結果を閲覧でき、全期間ランキングと年度別ランキングを切り替えて楽しめます。</p>
         <a
           href="https://www.youtube.com/@tokairanking"
           target="_blank"
