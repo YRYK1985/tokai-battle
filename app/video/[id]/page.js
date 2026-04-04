@@ -106,6 +106,12 @@ export default async function VideoPage({ params }) {
   const nextVideo = overallRank < allRanked.length ? allRanked[overallRank] : null;
 
   return (
+    <>
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9862215132601373"
+      crossOrigin="anonymous"
+    />
     <div style={{
       minHeight: '100vh',
       background: 'linear-gradient(135deg,#110e30,#1b1b42,#262646)',
@@ -268,6 +274,7 @@ export default async function VideoPage({ params }) {
         </div>
       </div>
     </div>
+    </>
   );
 }
 
