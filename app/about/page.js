@@ -43,8 +43,6 @@ export default function AboutPage() {
         東海オンエアのメインチャンネルに投稿された通常動画が対象です。
         ショート動画（Shorts）、生放送アーカイブ、ミュージックビデオ（リサイタルズ）、
         グレーゾーン・エージェンシー、グレーゾーン・アイランドの動画は投票対象から除外しています。
-        また、初回投票・2回目投票では再生数1,000万回以上・400万回以上の動画を優先的に表示するロジックを採用しており、
-        まず代表的な人気動画から投票を始められるようになっています。
         動画データ（再生回数・いいね数）はYouTube Data APIから定期的に取得し、最新の状態に更新しています。
       </Section>
 
@@ -59,7 +57,7 @@ export default function AboutPage() {
 
       <Section title="運営について">
         このサイトは、東海オンエアの公認切り抜きチャンネル「東海ランキング」の
-        運営者が個人で制作・運営しています。東海オンエアの公式とは関係ありません。
+        運営者が個人で制作・運営しています。
         <br /><br />
         <a href="https://www.youtube.com/@TokaiRanking" target="_blank" rel="noopener noreferrer" style={{ color: '#ffb840' }}>
           東海ランキング YouTubeチャンネル
