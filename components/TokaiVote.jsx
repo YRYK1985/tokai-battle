@@ -407,21 +407,47 @@ export default function TokaiVote() {
       </div>
 
       {/* フッター */}
-      <div style={{ textAlign: "center", padding: "32px 16px 100px", color: "#888", fontSize: "13px", lineHeight: "1.8" }}>
-        <p style={{ margin: "0 0 12px", maxWidth: "600px", marginLeft: "auto", marginRight: "auto", textAlign: "left" }}>「東海オンエア 動画バトル」は、東海オンエアの全3,054本の動画をファン投票で順位付けするランキングサイトです。東海オンエアの公認切り抜きチャンネルである「東海ランキング」が運営しています。投票にはEloレーティングシステムを採用しており、2本の動画を比較する形式で「どっちが好き？」を繰り返すことで、統計的に信頼性の高い順位を算出しています。5回投票するとランキング結果を閲覧でき、全期間ランキングと年度別ランキングを切り替えて見ることができます。</p>
-        <a
-          href="https://www.youtube.com/@tokairanking"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ color: "#888", textDecoration: "none", fontSize: "13px" }}
-        >
-          東海ランキング【公認】チャンネルはこちらをクリック
-        </a>
-        <p style={{ margin: "12px 0 0" }}>
-          <a href="/about" style={{ color: "#666", textDecoration: "none", fontSize: "12px" }}>このサイトについて</a>
-          <span style={{ color: "#444", margin: "0 8px" }}>|</span>
-          <a href="/privacy" style={{ color: "#666", textDecoration: "none", fontSize: "12px" }}>プライバシーポリシー</a>
-        </p>
+      <div style={{ padding: "32px 16px 100px", maxWidth: "700px", margin: "0 auto", color: "#888", fontSize: "13px", lineHeight: "1.8" }}>
+
+        {/* サイト説明 */}
+        <div style={{ background: "rgba(255,255,255,0.05)", borderRadius: "14px", padding: "18px 20px", marginBottom: "12px", border: "1px solid rgba(255,255,255,0.08)" }}>
+          <p style={{ margin: "0 0 10px", fontWeight: 700, color: "#ddd", fontSize: "14px" }}>東海オンエア 動画バトルとは</p>
+          <p style={{ margin: 0 }}>「東海オンエア 動画バトル」は、東海オンエアの全3,054本の動画をファン投票で順位付けするランキングサイトです。東海オンエアの公認切り抜きチャンネルである「東海ランキング」が運営しています。投票にはEloレーティングシステムを採用しており、2本の動画を比較する形式で「どっちが好き？」を繰り返すことで、統計的に信頼性の高い順位を算出しています。5回投票するとランキング結果を閲覧でき、全期間ランキングと年度別ランキングを切り替えて見ることができます。</p>
+        </div>
+
+        {/* 遊び方 */}
+        <div style={{ background: "rgba(255,255,255,0.05)", borderRadius: "14px", padding: "18px 20px", marginBottom: "12px", border: "1px solid rgba(255,255,255,0.08)" }}>
+          <p style={{ margin: "0 0 10px", fontWeight: 700, color: "#ddd", fontSize: "14px" }}>遊び方</p>
+          <p style={{ margin: 0 }}>2本の動画が表示されたら「どっちの動画が好き？」を直感で選んでタップするだけ。特別な知識は必要ありません。5回投票するとランキング画面が解放され、全期間または年度別のランキングを確認できます。投票結果はXでシェアすることもできます。各動画のページでは詳細情報や関連動画も確認できます。</p>
+        </div>
+
+        {/* Eloレーティング */}
+        <div style={{ background: "rgba(255,255,255,0.05)", borderRadius: "14px", padding: "18px 20px", marginBottom: "12px", border: "1px solid rgba(255,255,255,0.08)" }}>
+          <p style={{ margin: "0 0 10px", fontWeight: 700, color: "#ddd", fontSize: "14px" }}>Eloレーティングとは</p>
+          <p style={{ margin: 0 }}>チェスや将棋などの対戦競技で使われる統計的なレーティングシステムです。高レーティングの動画に勝つとポイントが大きく上昇し、低レーティングの動画に勝ってもわずかしか上がりません。全動画は初期レーティング1200からスタートし、投票が積み重なるほど統計的に信頼性の高い順位が算出されます。単純な投票数ではなく、対戦相手の強さを考慮した公平なランキングを実現しています。</p>
+        </div>
+
+        {/* 対象動画 */}
+        <div style={{ background: "rgba(255,255,255,0.05)", borderRadius: "14px", padding: "18px 20px", marginBottom: "20px", border: "1px solid rgba(255,255,255,0.08)" }}>
+          <p style={{ margin: "0 0 10px", fontWeight: 700, color: "#ddd", fontSize: "14px" }}>対象動画について</p>
+          <p style={{ margin: 0 }}>東海オンエアのメインチャンネルに投稿された通常動画が対象です。ショート動画（Shorts）、生放送アーカイブ、ミュージックビデオ（リサイタルズ）、グレーゾーン・エージェンシー、グレーゾーン・アイランドの動画は投票対象から除外しています。動画データ（再生回数・いいね数）はYouTube Data APIから定期的に取得し、最新の状態に更新しています。</p>
+        </div>
+
+        <div style={{ textAlign: "center" }}>
+          <a
+            href="https://www.youtube.com/@tokairanking"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: "#888", textDecoration: "none", fontSize: "13px" }}
+          >
+            東海ランキング【公認】チャンネルはこちらをクリック
+          </a>
+          <p style={{ margin: "12px 0 0" }}>
+            <a href="/about" style={{ color: "#666", textDecoration: "none", fontSize: "12px" }}>このサイトについて</a>
+            <span style={{ color: "#444", margin: "0 8px" }}>|</span>
+            <a href="/privacy" style={{ color: "#666", textDecoration: "none", fontSize: "12px" }}>プライバシーポリシー</a>
+          </p>
+        </div>
       </div>
 
       {/* 広告枠 — 一時停止（AdSense審査対策） */}
