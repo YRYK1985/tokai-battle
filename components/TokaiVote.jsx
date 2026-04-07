@@ -433,6 +433,8 @@ export default function TokaiVote() {
           <a href="/about" style={{ color: "#666", textDecoration: "none", fontSize: "12px" }}>このサイトについて</a>
           <span style={{ color: "#444", margin: "0 8px" }}>|</span>
           <a href="/privacy" style={{ color: "#666", textDecoration: "none", fontSize: "12px" }}>プライバシーポリシー</a>
+          <span style={{ color: "#444", margin: "0 8px" }}>|</span>
+          <a href="/contact" style={{ color: "#666", textDecoration: "none", fontSize: "12px" }}>お問い合わせ</a>
         </p>
       </div>
 
