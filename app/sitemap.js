@@ -6,8 +6,9 @@ export default function sitemap() {
   // 静的ページ
   const staticPages = [
     { url: baseUrl, lastModified: new Date(), changeFrequency: 'daily', priority: 1.0 },
-    { url: `${baseUrl}/about`, lastModified: new Date('2026-03-27'), changeFrequency: 'monthly', priority: 0.5 },
+    { url: `${baseUrl}/about`, lastModified: new Date('2026-04-06'), changeFrequency: 'monthly', priority: 0.5 },
     { url: `${baseUrl}/privacy`, lastModified: new Date('2026-03-27'), changeFrequency: 'monthly', priority: 0.3 },
+    { url: `${baseUrl}/contact`, lastModified: new Date('2026-04-06'), changeFrequency: 'monthly', priority: 0.3 },
   ];
 
   // 動画個別ページ（3,000+ページ）
