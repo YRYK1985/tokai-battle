@@ -128,9 +128,23 @@ export default async function VideoPage({ params }) {
       <div style={{ maxWidth: '700px', margin: '0 auto', padding: '32px 20px 80px' }}>
 
         {/* ヘッダーナビ */}
-        <div style={{ marginBottom: '24px', display: 'flex', gap: '16px', fontSize: '13px' }}>
+        <div style={{ marginBottom: '12px', display: 'flex', gap: '16px', fontSize: '13px' }}>
           <Link href="/" style={{ color: '#fff', textDecoration: 'none' }}>← 投票に戻る</Link>
           <Link href="/#ranking" style={{ color: '#ffb840', textDecoration: 'none', fontWeight: 600 }}>🏆 ランキングに戻る</Link>
+        </div>
+
+        {/* サイト説明テキスト（AdSense審査対策 — 承認後フッターに戻す） */}
+        <div style={{
+          background: 'rgba(255,255,255,0.04)', borderRadius: '12px',
+          padding: '14px 18px', lineHeight: '1.9', marginBottom: '20px',
+        }}>
+          <p style={{ color: '#888', fontSize: '12px', margin: 0 }}>
+            「東海オンエア 動画バトル」は、東海オンエアの全{FILTERED_VIDEOS.length.toLocaleString()}本の動画をファン投票で順位付けするランキングサイトです。
+            東海オンエアの公認切り抜きチャンネルである「東海ランキング」が運営しています。
+            投票にはEloレーティングシステムを採用しており、2本の動画を比較する形式で「どっちが好き？」を繰り返すことで、統計的に信頼性の高い順位を算出しています。
+            このページでは「{video.title}」（{video.year}年公開）のランキング情報をご覧いただけます。
+            データはリアルタイムの投票結果に基づいて更新されます。
+          </p>
         </div>
 
         {/* サムネイル */}
@@ -244,20 +258,6 @@ export default async function VideoPage({ params }) {
           {nextVideo && (
             <RankingNeighbor rank={overallRank + 1} video={nextVideo} />
           )}
-        </div>
-
-        {/* サイト説明テキスト */}
-        <div style={{
-          background: 'rgba(255,255,255,0.04)', borderRadius: '12px',
-          padding: '16px 18px', lineHeight: '1.9', marginBottom: '24px',
-        }}>
-          <p style={{ color: '#888', fontSize: '12px', margin: 0 }}>
-            「東海オンエア 動画バトル」は、東海オンエアの全{FILTERED_VIDEOS.length.toLocaleString()}本の動画をファン投票で順位付けするランキングサイトです。
-            東海オンエアの公認切り抜きチャンネルである「東海ランキング」が運営しています。
-            投票にはEloレーティングシステムを採用しており、2本の動画を比較する形式で「どっちが好き？」を繰り返すことで、統計的に信頼性の高い順位を算出しています。
-            このページでは「{video.title}」（{video.year}年公開）のランキング情報をご覧いただけます。
-            データはリアルタイムの投票結果に基づいて更新されます。
-          </p>
         </div>
 
         {/* フッター */}

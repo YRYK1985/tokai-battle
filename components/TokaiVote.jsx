@@ -181,6 +181,14 @@ export default function TokaiVote() {
           <p style={{ color: "#888", fontSize: "11px", marginTop: "4px", letterSpacing: "0.03em" }}>by 東海ランキング<span style={{ marginLeft: "-0.3em" }}>【</span>公認】</p>
           <p style={{ color: "#999", fontSize: "13px", marginTop: "6px" }}>ユーザー{formatNum(Math.floor(matchCount / 5))}人 全{formatNum(matchCount)}票 の投票に基づく</p>
         </div>
+
+        {/* ランキング上部の説明テキスト（AdSense審査対策 — 承認後フッターに戻す） */}
+        <div style={{ maxWidth: "700px", margin: "0 auto 8px", padding: "12px 18px", background: "rgba(255,255,255,0.04)", borderRadius: "12px", lineHeight: "1.9" }}>
+          <p style={{ color: "#888", fontSize: "12px", margin: 0 }}>
+            「東海オンエア 動画バトル」は、東海オンエアの全{formatNum(FILTERED_VIDEOS.length)}本の動画をファン投票で順位付けするランキングサイトです。東海オンエアの公認切り抜きチャンネルである「東海ランキング」が運営しています。投票にはEloレーティングシステムを採用しており、2本の動画を比較する形式で「どっちが好き？」を繰り返すことで、統計的に信頼性の高い順位を算出しています。5回投票するとランキング結果を閲覧でき、全期間ランキングと年度別ランキングを切り替えて見ることができます。
+          </p>
+        </div>
+
         <div style={{ padding: "8px 16px 16px" }}>
           <button
             style={{ display: "block", margin: "0 auto 12px", padding: "10px 28px", background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.2)", borderRadius: "30px", color: "#fff", fontSize: "14px", cursor: "pointer" }}
@@ -248,13 +256,6 @@ export default function TokaiVote() {
           >
             🎲 ランダムで{rankYear === 'all' ? '' : `${rankYear}年の`}東海オンエアの動画を見る
           </button>
-
-          {/* ランキング下部の説明テキスト（AdSense審査対策） */}
-          <div style={{ maxWidth: "700px", margin: "0 auto 24px", padding: "16px 18px", background: "rgba(255,255,255,0.04)", borderRadius: "12px", lineHeight: "1.9" }}>
-            <p style={{ color: "#888", fontSize: "12px", margin: 0 }}>
-              「東海オンエア 動画バトル」は、東海オンエアの全{formatNum(FILTERED_VIDEOS.length)}本の動画をファン投票で順位付けするランキングサイトです。東海オンエアの公認切り抜きチャンネルである「東海ランキング」が運営しています。投票にはEloレーティングシステムを採用しており、2本の動画を比較する形式で「どっちが好き？」を繰り返すことで、統計的に信頼性の高い順位を算出しています。5回投票するとランキング結果を閲覧でき、全期間ランキングと年度別ランキングを切り替えて見ることができます。
-            </p>
-          </div>
 
           {/* ランキングページ フッター */}
           <div style={{ textAlign: "center", padding: "16px 16px 100px", color: "#888", fontSize: "13px", lineHeight: "1.8" }}>
