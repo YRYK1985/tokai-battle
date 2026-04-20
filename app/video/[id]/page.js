@@ -128,17 +128,13 @@ export default async function VideoPage({ params }) {
           <Link href="/#ranking" style={{ color: '#ffb840', textDecoration: 'none', fontWeight: 600 }}>🏆 ランキングに戻る</Link>
         </div>
 
-        {/* サイト説明テキスト（AdSense審査対策 — 承認後フッターに戻す） */}
+        {/* 動画固有の説明テキスト */}
         <div style={{
           background: 'rgba(255,255,255,0.04)', borderRadius: '12px',
           padding: '14px 18px', lineHeight: '1.9', marginBottom: '20px',
         }}>
           <p style={{ color: '#888', fontSize: '12px', margin: 0 }}>
-            「東海オンエア 動画バトル」は、東海オンエアの全{FILTERED_VIDEOS.length.toLocaleString()}本の動画をファン投票で順位付けするランキングサイトです。
-            東海オンエアの公認切り抜きチャンネルである「東海ランキング」が運営しています。
-            投票にはEloレーティングシステムを採用しており、2本の動画を比較する形式で「どっちが好き？」を繰り返すことで、統計的に信頼性の高い順位を算出しています。
-            このページでは「{video.title}」（{video.year}年公開）のランキング情報をご覧いただけます。
-            データはリアルタイムの投票結果に基づいて更新されます。
+            「{video.title}」は{video.year}年に投稿された東海オンエアの動画です。再生数{formatNum(video.views)}回、高評価数{formatNum(video.likes)}。Eloレーティングは{elo}で、全{FILTERED_VIDEOS.length.toLocaleString()}本中{overallRank}位、{video.year}年公開動画の中では{yearRank}位です。東海オンエアの公認切り抜きチャンネル「東海ランキング」が運営する「東海オンエア 動画バトル」では、ファン投票によるEloレーティングシステムを採用し、統計的に信頼性の高い順位を算出しています。
           </p>
         </div>
 
