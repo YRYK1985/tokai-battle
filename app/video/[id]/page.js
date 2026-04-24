@@ -105,8 +105,23 @@ export default async function VideoPage({ params }) {
   const prevVideo = overallRank > 1 ? allRanked[overallRank - 2] : null;
   const nextVideo = overallRank < allRanked.length ? allRanked[overallRank] : null;
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'VideoObject',
+    name: video.title,
+    description: `「${video.title}」は${video.year}年に投稿された東海オンエアの動画です。再生数${formatNum(video.views)}回、高評価数${formatNum(video.likes)}。Eloレーティングは${elo}で全${FILTERED_VIDEOS.length}本中${overallRank}位。`,
+    thumbnailUrl: `https://img.youtube.com/vi/${video.id}/maxresdefault.jpg`,
+    uploadDate: `${video.year}-01-01`,
+    embedUrl: `https://www.youtube.com/embed/${video.id}`,
+    url: `https://www.youtube.com/watch?v=${video.id}`,
+  };
+
   return (
     <>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
     <div style={{
       minHeight: '100vh',
       background: 'linear-gradient(135deg,#110e30,#1b1b42,#262646)',
