@@ -276,6 +276,8 @@ export default async function VideoPage({ params }) {
             <Link href="/about" style={{ color: '#666', textDecoration: 'none', fontSize: '12px' }}>このサイトについて</Link>
             <span style={{ color: '#444', margin: '0 8px' }}>|</span>
             <Link href="/privacy" style={{ color: '#666', textDecoration: 'none', fontSize: '12px' }}>プライバシーポリシー</Link>
+            <span style={{ color: '#444', margin: '0 8px' }}>|</span>
+            <Link href="/contact" style={{ color: '#666', textDecoration: 'none', fontSize: '12px' }}>お問い合わせ</Link>
           </p>
         </div>
       </div>
