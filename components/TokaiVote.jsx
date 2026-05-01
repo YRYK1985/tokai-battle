@@ -290,26 +290,6 @@ export default function TokaiVote() {
         <p style={{ color: "#aaa", fontSize: isSmallScreen ? "13px" : "14px", marginTop: "16px", lineHeight: "1.6" }}>あなた {myVoteCount.toLocaleString()}回投票済み ・ 全体 {formatNum(matchCount)}票 ・ {FILTERED_VIDEOS.length.toLocaleString()}本の動画</p>
       </div>
 
-      {/* コンテンツブロック（AdSense審査対策 — 承認後フッターに戻す） */}
-      <div style={{ padding: "20px 16px 8px", maxWidth: "700px", margin: "0 auto", color: "#888", fontSize: "13px", lineHeight: "1.8" }}>
-        <div style={{ background: "rgba(255,255,255,0.05)", borderRadius: "14px", padding: "18px 20px", marginBottom: "12px", border: "1px solid rgba(255,255,255,0.08)" }}>
-          <p style={{ margin: "0 0 10px", fontWeight: 700, color: "#ddd", fontSize: "14px" }}>東海オンエア 動画バトルとは</p>
-          <p style={{ margin: 0 }}>「東海オンエア 動画バトル」は、東海オンエアの全3,054本の動画をファン投票で順位付けするランキングサイトです。東海オンエアの公認切り抜きチャンネルである「東海ランキング」が運営しています。投票にはEloレーティングシステムを採用しており、2本の動画を比較する形式で「どっちが好き？」を繰り返すことで、統計的に信頼性の高い順位を算出しています。5回投票するとランキング結果を閲覧でき、全期間ランキングと年度別ランキングを切り替えて見ることができます。</p>
-        </div>
-        <div style={{ background: "rgba(255,255,255,0.05)", borderRadius: "14px", padding: "18px 20px", marginBottom: "12px", border: "1px solid rgba(255,255,255,0.08)" }}>
-          <p style={{ margin: "0 0 10px", fontWeight: 700, color: "#ddd", fontSize: "14px" }}>遊び方</p>
-          <p style={{ margin: 0 }}>2本の動画が表示されたら「どっちの動画が好き？」を直感で選んでタップするだけ。特別な知識は必要ありません。5回投票するとランキング画面が解放され、全期間または年度別のランキングを確認できます。投票結果はXでシェアすることもできます。各動画のページでは詳細情報や関連動画も確認できます。</p>
-        </div>
-        <div style={{ background: "rgba(255,255,255,0.05)", borderRadius: "14px", padding: "18px 20px", marginBottom: "12px", border: "1px solid rgba(255,255,255,0.08)" }}>
-          <p style={{ margin: "0 0 10px", fontWeight: 700, color: "#ddd", fontSize: "14px" }}>Eloレーティングとは</p>
-          <p style={{ margin: 0 }}>チェスや将棋などの対戦競技で使われる統計的なレーティングシステムです。高レーティングの動画に勝つとポイントが大きく上昇し、低レーティングの動画に勝ってもわずかしか上がりません。全動画は初期レーティング1200からスタートし、投票が積み重なるほど統計的に信頼性の高い順位が算出されます。単純な投票数ではなく、対戦相手の強さを考慮した公平なランキングを実現しています。</p>
-        </div>
-        <div style={{ background: "rgba(255,255,255,0.05)", borderRadius: "14px", padding: "18px 20px", marginBottom: "12px", border: "1px solid rgba(255,255,255,0.08)" }}>
-          <p style={{ margin: "0 0 10px", fontWeight: 700, color: "#ddd", fontSize: "14px" }}>対象動画について</p>
-          <p style={{ margin: 0 }}>東海オンエアのメインチャンネルに投稿された通常動画が対象です。ショート動画（Shorts）、生放送アーカイブ、ミュージックビデオ（リサイタルズ）、グレーゾーン・エージェンシー、グレーゾーン・アイランドの動画は投票対象から除外しています。動画データ（再生回数・いいね数）はYouTube Data APIから定期的に取得し、最新の状態に更新しています。</p>
-        </div>
-      </div>
-
       <div style={{ display: "flex", justifyContent: "center", alignItems: "stretch", gap: isSmallScreen ? "8px" : "24px", padding: "0 16px 12px", maxWidth: "1200px", margin: "0 auto", minHeight: isSmallScreen ? "auto" : "440px", opacity: phase === 'exit' ? 0 : 1, transition: "opacity 0.15s ease", flexDirection: "row", }}>
         {pair.map((video, idx) => {
           const isWinner = phase === 'voted' && votedState?.winnerId === video.id;
@@ -390,25 +370,9 @@ export default function TokaiVote() {
       )}
 
       {myVoteCount < 5 ? (
-        <>
         <p style={{ textAlign: "center", color: "#bbb", fontSize: isSmallScreen ? "14px" : "15px", margin: 0, lineHeight: "1.6" }}>
           あと{5 - myVoteCount}回投票すると詳しいランキングが見られます
         </p>
-        {matchCount > 0 && (
-          <div style={{ margin: "6px auto 0", padding: "0 16px" }}>
-            <p style={{ textAlign: "center", color: "#888", fontSize: "11px", marginBottom: "8px" }}>現在のTOP3</p>
-            <div style={{ display: "flex", justifyContent: "center", gap: "8px" }}>
-              {ranking.slice(0, 3).map((v, i) => (
-                <div key={v.id} style={{ position: "relative", width: isSmallScreen ? "30vw" : "120px", flexShrink: 0 }}>
-                  <div style={{ position: "absolute", top: "-6px", left: "-4px", zIndex: 1, width: "22px", height: "22px", borderRadius: "50%", background: i === 0 ? "#ffd700" : i === 1 ? "#c0c0c0" : "#cd7f32", color: "#000", fontSize: "12px", fontWeight: 800, display: "flex", alignItems: "center", justifyContent: "center" }}>{i + 1}</div>
-                  <img src={`https://img.youtube.com/vi/${v.id}/mqdefault.jpg`} alt="" style={{ width: "100%", aspectRatio: "16/9", borderRadius: "6px", objectFit: "cover", display: "block" }} />
-                  <a href={`https://www.youtube.com/watch?v=${v.id}`} target="_blank" rel="noopener noreferrer" style={{ display: "block", textAlign: "center", color: "#888", fontSize: "10px", textDecoration: "none", marginTop: "4px" }}>YouTubeで見る →</a>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-        </>
       ) : (
         <button
           style={{ padding: "12px 32px", background: "linear-gradient(135deg,#ff6b6b,#ee5a24)", border: "none", borderRadius: "30px", color: "#fff", fontSize: "16px", fontWeight: 700, cursor: "pointer", boxShadow: "0 4px 20px rgba(255,107,107,0.3)" }}
@@ -425,6 +389,43 @@ export default function TokaiVote() {
           🏆 ランキングを見る
         </button>
       )}
+      </div>
+
+      {/* ランキング上位5本 — 常時表示（AdSense審査対策） */}
+      <div style={{ padding: "8px 16px 16px", maxWidth: "700px", margin: "0 auto", width: "100%" }}>
+        <p style={{ textAlign: "center", color: "#aaa", fontSize: "13px", marginBottom: "10px", fontWeight: 600 }}>現在のランキング上位5本</p>
+        {ranking.slice(0, 5).map((v, i) => (
+          <a key={v.id} href={`/video/${v.id}`} style={{ display: "flex", alignItems: "center", gap: "10px", padding: "10px 14px", background: "rgba(255,255,255,0.06)", borderRadius: "12px", marginBottom: "6px", textDecoration: "none", color: "inherit" }}>
+            <span style={{ fontWeight: 900, fontSize: "16px", width: "28px", textAlign: "center", flexShrink: 0, color: i === 0 ? "#ffd700" : i === 1 ? "#c0c0c0" : i === 2 ? "#cd7f32" : "#88c8e8" }}>
+              {i + 1}
+            </span>
+            <img src={`https://img.youtube.com/vi/${v.id}/mqdefault.jpg`} alt="" style={{ width: "48px", height: "27px", borderRadius: "4px", objectFit: "cover", flexShrink: 0, background: "#1a1a2e" }} onError={(e) => (e.target.style.display = "none")} />
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={{ fontSize: "13px", fontWeight: 600, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", color: "#ddd" }}>{v.title}</div>
+              <div style={{ fontSize: "11px", color: "#888", marginTop: "2px" }}>Elo {v.elo} ・ ▶ {formatNum(v.views)} ・ {v.year}年</div>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      {/* コンテンツブロック（AdSense審査対策 — 承認後フッターに戻す） */}
+      <div style={{ padding: "0 16px 8px", maxWidth: "700px", margin: "0 auto", color: "#888", fontSize: "13px", lineHeight: "1.8" }}>
+        <div style={{ background: "rgba(255,255,255,0.05)", borderRadius: "14px", padding: "18px 20px", marginBottom: "12px", border: "1px solid rgba(255,255,255,0.08)" }}>
+          <p style={{ margin: "0 0 10px", fontWeight: 700, color: "#ddd", fontSize: "14px" }}>東海オンエア 動画バトルとは</p>
+          <p style={{ margin: 0 }}>「東海オンエア 動画バトル」は、東海オンエアの全3,054本の動画をファン投票で順位付けするランキングサイトです。東海オンエアの公認切り抜きチャンネルである「東海ランキング」が運営しています。投票にはEloレーティングシステムを採用しており、2本の動画を比較する形式で「どっちが好き？」を繰り返すことで、統計的に信頼性の高い順位を算出しています。5回投票するとランキング結果を閲覧でき、全期間ランキングと年度別ランキングを切り替えて見ることができます。</p>
+        </div>
+        <div style={{ background: "rgba(255,255,255,0.05)", borderRadius: "14px", padding: "18px 20px", marginBottom: "12px", border: "1px solid rgba(255,255,255,0.08)" }}>
+          <p style={{ margin: "0 0 10px", fontWeight: 700, color: "#ddd", fontSize: "14px" }}>遊び方</p>
+          <p style={{ margin: 0 }}>2本の動画が表示されたら「どっちの動画が好き？」を直感で選んでタップするだけ。特別な知識は必要ありません。5回投票するとランキング画面が解放され、全期間または年度別のランキングを確認できます。投票結果はXでシェアすることもできます。各動画のページでは詳細情報や関連動画も確認できます。</p>
+        </div>
+        <div style={{ background: "rgba(255,255,255,0.05)", borderRadius: "14px", padding: "18px 20px", marginBottom: "12px", border: "1px solid rgba(255,255,255,0.08)" }}>
+          <p style={{ margin: "0 0 10px", fontWeight: 700, color: "#ddd", fontSize: "14px" }}>Eloレーティングとは</p>
+          <p style={{ margin: 0 }}>チェスや将棋などの対戦競技で使われる統計的なレーティングシステムです。高レーティングの動画に勝つとポイントが大きく上昇し、低レーティングの動画に勝ってもわずかしか上がりません。全動画は初期レーティング1200からスタートし、投票が積み重なるほど統計的に信頼性の高い順位が算出されます。単純な投票数ではなく、対戦相手の強さを考慮した公平なランキングを実現しています。</p>
+        </div>
+        <div style={{ background: "rgba(255,255,255,0.05)", borderRadius: "14px", padding: "18px 20px", marginBottom: "12px", border: "1px solid rgba(255,255,255,0.08)" }}>
+          <p style={{ margin: "0 0 10px", fontWeight: 700, color: "#ddd", fontSize: "14px" }}>対象動画について</p>
+          <p style={{ margin: 0 }}>東海オンエアのメインチャンネルに投稿された通常動画が対象です。ショート動画（Shorts）、生放送アーカイブ、ミュージックビデオ（リサイタルズ）、グレーゾーン・エージェンシー、グレーゾーン・アイランドの動画は投票対象から除外しています。動画データ（再生回数・いいね数）はYouTube Data APIから定期的に取得し、最新の状態に更新しています。</p>
+        </div>
       </div>
 
       {/* フッター */}
