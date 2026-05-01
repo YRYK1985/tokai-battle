@@ -29,15 +29,7 @@ export default function ContactPage() {
         </a>
       </Section>
 
-      <Section title="YouTubeコミュニティからのお問い合わせ">
-        東海ランキング【公認】のYouTubeチャンネルのコミュニティ投稿からもご連絡いただけます。
-        <br /><br />
-        <a href="https://www.youtube.com/@TokaiRanking" target="_blank" rel="noopener noreferrer" style={{ color: '#ffb840', fontWeight: 700 }}>
-          東海ランキング YouTubeチャンネル →
-        </a>
-      </Section>
-
-      <Section title="対応について">
+<Section title="対応について">
         いただいたご意見はサイト改善の参考にさせていただきます。内容によっては返信できない場合もございますが、ご了承ください。
         本サイトは東海オンエアの公式サイトではありません。
       </Section>
