@@ -2,8 +2,8 @@ import { FILTERED_VIDEOS } from '../../../lib/videos';
 import { kv } from '@vercel/kv';
 import Link from 'next/link';
 
-// ISR: 60秒ごとに再生成
-export const revalidate = 60;
+// ISR: 1時間ごとに再生成（Fast Origin Transfer節約）
+export const revalidate = 3600;
 
 // ビルド時に静的生成しない（オンデマンド生成 + ISRキャッシュ）
 // 初回アクセス時に生成 → 60秒キャッシュ → Vercelの無料枠でもビルド時間を節約
