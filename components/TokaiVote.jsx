@@ -439,6 +439,13 @@ export default function TokaiVote() {
           <span style={{ color: "#444", margin: "0 8px" }}>|</span>
           <a href="/contact" style={{ color: "#666", textDecoration: "none", fontSize: "12px" }}>お問い合わせ</a>
         </p>
+        <p style={{ margin: "8px 0 0" }}>
+          <a href="/ranking-views" style={{ color: "#666", textDecoration: "none", fontSize: "12px" }}>再生数ランキング</a>
+          <span style={{ color: "#444", margin: "0 8px" }}>|</span>
+          <a href="/ranking-stats" style={{ color: "#666", textDecoration: "none", fontSize: "12px" }}>年別データ</a>
+          <span style={{ color: "#444", margin: "0 8px" }}>|</span>
+          <a href="/history" style={{ color: "#666", textDecoration: "none", fontSize: "12px" }}>年別振り返り</a>
+        </p>
       </div>
 
       {/* 広告枠 — 一時停止（AdSense審査対策） */}
