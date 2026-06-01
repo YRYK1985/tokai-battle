@@ -71,7 +71,11 @@ export default function AboutPage() {
       <p style={{ marginTop: '40px', fontSize: '12px', color: '#666' }}>最終更新：2026年4月6日</p>
 
       <div style={{ marginTop: '40px', textAlign: 'center' }}>
-        <a href="/" style={{ color: '#ffb840', fontSize: '14px', textDecoration: 'none' }}>← トップに戻る</a>
+        <div style={{ marginTop: '40px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+          <a href="/ranking-views" style={{ color: '#ffb840', fontSize: '14px', textDecoration: 'none' }}>→ 再生数ランキング TOP30</a>
+          <a href="/ranking-stats" style={{ color: '#ffb840', fontSize: '14px', textDecoration: 'none' }}>→ 年別動画データ一覧</a>
+        </div>
+        <a href="/" style={{ color: '#ffb840', fontSize: '14px', textDecoration: 'none', display: 'inline-block', marginTop: '16px' }}>← トップに戻る</a>
       </div>
     </div>
   );
