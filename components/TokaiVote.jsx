@@ -445,6 +445,10 @@ export default function TokaiVote() {
           <a href="/ranking-stats" style={{ color: "#666", textDecoration: "none", fontSize: "12px" }}>年別データ</a>
           <span style={{ color: "#444", margin: "0 8px" }}>|</span>
           <a href="/history" style={{ color: "#666", textDecoration: "none", fontSize: "12px" }}>年別振り返り</a>
+          <span style={{ color: "#444", margin: "0 8px" }}>|</span>
+          <a href="/ranking-hits" style={{ color: "#666", textDecoration: "none", fontSize: "12px" }}>平均2倍超え動画</a>
+          <span style={{ color: "#444", margin: "0 8px" }}>|</span>
+          <a href="/ranking-keywords" style={{ color: "#666", textDecoration: "none", fontSize: "12px" }}>キーワード別データ</a>
         </p>
       </div>
 
